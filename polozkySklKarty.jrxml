@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="782" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="polozkySklKarty" orientation="Landscape" pageHeight="595" pageWidth="782" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" vAlign="Middle"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isDefault="false" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.impl.WSValueObjectBLImpl" isForPrompting="false" name="_LOGIKA"/>
+
+	<field class="java.lang.Boolean" name="storno">
+		<fieldDescription><![CDATA[storno]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.DoklSklad" name="doklSklad">
+		<fieldDescription><![CDATA[doklSklad]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Adresar" name="dodavatel">
+		<fieldDescription><![CDATA[dodavatel]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.Doklad" name="doklad">
+		<fieldDescription><![CDATA[doklad]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="mnozMj">
+		<fieldDescription><![CDATA[mnozMj]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="cenaMj">
+		<fieldDescription><![CDATA[cenaMj]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZkl">
+		<fieldDescription><![CDATA[sumZkl]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklMen">
+		<fieldDescription><![CDATA[sumZklMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="sarze">
+		<fieldDescription><![CDATA[sarze]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="expirace">
+		<fieldDescription><![CDATA[expirace]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datVyst">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field class="java.util.Set" name="vyrobniCislaPrijata">
+		<fieldDescription><![CDATA[vyrobniCislaPrijata]]></fieldDescription>
+	</field>
+	<field class="java.util.Set" name="vyrobniCislaVydana">
+		<fieldDescription><![CDATA[vyrobniCislaVydana]]></fieldDescription>
+	</field>
+
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="sumMnozMjPrijem" resetType="Report">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_POHYBU_PRIJEM.equals($F{doklSklad}.getTypPohybuK()) && !$F{storno}.booleanValue()
+? $F{mnozMj} : new Double(0.0)
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="sumMnozMjVydej" resetType="Report">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_POHYBU_VYDEJ.equals($F{doklSklad}.getTypPohybuK()) && !$F{storno}.booleanValue()
+?
+$F{mnozMj} : new Double(0.0)
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="sumSumZklPrijem" resetType="Report">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_POHYBU_PRIJEM.equals($F{doklSklad}.getTypPohybuK()) && !$F{storno}.booleanValue()
+? $F{sumZkl} : new Double(0.0)
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="sumSumZklVydej" resetType="Report">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_POHYBU_VYDEJ.equals($F{doklSklad}.getTypPohybuK()) && !$F{storno}.booleanValue()
+? $F{sumZkl} : new Double(0.0)
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="19" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-42" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="57" x="2" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "typPohybuK", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-43" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="107" x="59" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "firma", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-44" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="65" x="166" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "doklSklad", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-45" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="238" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "datVyst", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-46" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="48" x="284" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "mnozMj", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-47" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="337" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "cenaMj", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-48" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="387" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "sumZkl", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-49" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="42" x="466" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "mena", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-50" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="512" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "kurz", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-51" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="60" x="554" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "sumZklMen", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-52" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="673" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "sarze", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-53" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="44" x="727" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "expirace", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-54" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="32" x="439" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "storno", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-55" positionType="Float" stretchType="NoStretch" style="ColumnHeader" width="49" x="624" y="9"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.skl.VyrobniCislo", "_title", true )]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-7" positionType="FixRelativeToTop" stretchType="NoStretch" width="781" x="0" y="18"/>
+					<graphicElement pen="Thin" stretchType="NoStretch"/>
+				</line>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="11" isSplitAllowed="true">
+				<line direction="TopDown">
+					<reportElement forecolor="#999999" height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-3" positionType="FixRelativeToTop" stretchType="NoStretch" width="781" x="0" y="5">
+							<printWhenExpression><![CDATA[$F{storno}]]></printWhenExpression>
+						</reportElement>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-4" positionType="FixRelativeToTop" stretchType="NoStretch" width="781" x="0" y="10">
+							<printWhenExpression><![CDATA[$P{_LINKA}]]></printWhenExpression>
+						</reportElement>
+					<graphicElement pen="Thin" stretchType="NoStretch"/>
+				</line>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="107" x="59" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{doklSklad}.getNazFirmy()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-7" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="2" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, "global", $F{doklSklad}.getTypPohybuK() , true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="65" x="166" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{doklSklad}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-24" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="238" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-25" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="284" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena( 
+$F{mnozMj}.doubleValue(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-26" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="337" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cenaMj}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-27" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="387" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sumZkl}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-28" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="464" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{mena}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-29" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="512" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[new Double($F{doklSklad}.getKurzZaJednotku())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-30" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="570" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sumZklMen}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-32" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="673" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sarze}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-33" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="44" x="727" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{expirace})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-34" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="25" x="439" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{storno}.booleanValue() ? "S" : "" )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-35" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="49" x="624" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{vyrobniCislaVydana} != null && !$F{vyrobniCislaVydana}.isEmpty() ?
+$P{_LOADER}.transformCollectionToString( $F{vyrobniCislaVydana} ) :
+($F{vyrobniCislaPrijata} != null && !$F{vyrobniCislaPrijata}.isEmpty() ?
+$P{_LOADER}.transformCollectionToString( $F{vyrobniCislaPrijata} ) : ""
+)
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="51" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-36" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="94" x="337" y="2"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{sumSumZklPrijem}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-37" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="90" x="238" y="2"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena( 
+$V{sumMnozMjPrijem}.doubleValue(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-38" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="90" x="238" y="12"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena( 
+$V{sumMnozMjVydej}.doubleValue(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-39" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="94" x="337" y="12"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{sumSumZklVydej}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-40" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="90" x="148" y="2"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "skladKarty", "sumPrijem", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-41" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="90" x="148" y="12"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "skladKarty", "sumVydej", true )]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-5" positionType="FixRelativeToTop" stretchType="NoStretch" width="290" x="148" y="1"/>
+					<graphicElement pen="Thin" stretchType="NoStretch"/>
+				</line>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-6" positionType="FixRelativeToTop" stretchType="NoStretch" width="781" x="0" y="46"/>
+					<graphicElement pen="1Point" stretchType="NoStretch"/>
+				</line>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-56" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="90" x="238" y="22"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena( 
+($V{sumMnozMjPrijem}.doubleValue() - $V{sumMnozMjVydej}.doubleValue()),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-57" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="94" x="337" y="22"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[new Double($V{sumSumZklPrijem}.doubleValue() - $V{sumSumZklVydej}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="" textAdjust="StretchHeight">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-58" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="90" x="148" y="22"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "skladKarty", "rozdil", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-59" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="90" x="238" y="32"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement isStyledText="true" textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "skladKarty", "stavMJ", true ).trim()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-60" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="94" x="337" y="32"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement isStyledText="true" textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "skladKarty", "stavTuz", true )]]></textFieldExpression>
+				</textField>
+			</band>
+		</summary>
+</jasperReport>

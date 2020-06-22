@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnCount="1" columnSpacing="0" columnWidth="267" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="30" name="prodejka" orientation="Portrait" pageHeight="842" pageWidth="327" printOrder="Vertical" rightMargin="30" topMargin="20" whenNoDataType="NoPages" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="java.lang.String" isForPrompting="true" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="cz.winstrom.service.dok.impl.DokladBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="cz.winstrom.service.dok.DokladReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+
+	<field class="java.lang.String" name="kod">
+		<fieldDescription><![CDATA[kod]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datVyst">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field class="java.util.Set" name="polozkyDokladu">
+		<fieldDescription><![CDATA[polozkyDokladu]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.TypDokl" name="typDokl">
+		<fieldDescription><![CDATA[typDokl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkem">
+		<fieldDescription><![CDATA[sumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.util.List" name="nestornovanePolozkyDokladu">
+		<fieldDescription><![CDATA[nestornovanePolozkyDokladu]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkemMen">
+		<fieldDescription><![CDATA[sumCelkemMen]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="modul">
+		<fieldDescription><![CDATA[modul]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkSniz">
+		<fieldDescription><![CDATA[sumCelkSniz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkZakl">
+		<fieldDescription><![CDATA[sumCelkZakl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumOsv">
+		<fieldDescription><![CDATA[sumOsv]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphSniz">
+		<fieldDescription><![CDATA[sumDphSniz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphZakl">
+		<fieldDescription><![CDATA[sumDphZakl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphSniz_1">
+		<fieldDescription><![CDATA[sumDphSniz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphZakl_1">
+		<fieldDescription><![CDATA[sumDphZakl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklSniz">
+		<fieldDescription><![CDATA[sumZklSniz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklZakl">
+		<fieldDescription><![CDATA[sumZklZakl]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.nast.SazbaDph" name="sazbaDphOsv">
+		<fieldDescription><![CDATA[sazbaDphOsv]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.nast.SazbaDph" name="sazbaDphSniz">
+		<fieldDescription><![CDATA[sazbaDphSniz]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.nast.SazbaDph" name="sazbaDphZakl">
+		<fieldDescription><![CDATA[sazbaDphZakl]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="formaUhrK">
+		<fieldDescription><![CDATA[formaUhrK]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="duzpUcto">
+		<fieldDescription><![CDATA[duzpUcto]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="id">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.FormaUhradyCis" name="formaUhradyCis">
+		<fieldDescription><![CDATA[formaUhradyCis]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Stredisko" name="stredisko">
+		<fieldDescription><![CDATA[stredisko]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetDicPoverujiciho">
+		<fieldDescription><![CDATA[eetDicPoverujiciho]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetFik">
+		<fieldDescription><![CDATA[eetFik]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetPkp">
+		<fieldDescription><![CDATA[eetPkp]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetPokladniZarizeni">
+		<fieldDescription><![CDATA[eetPokladniZarizeni]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="eetProvozovna">
+		<fieldDescription><![CDATA[eetProvozovna]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetStavK">
+		<fieldDescription><![CDATA[eetStavK]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="eetTypK">
+		<fieldDescription><![CDATA[eetTypK]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="eetDatCasTrzby">
+		<fieldDescription><![CDATA[eetDatCasTrzby]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="storno">
+		<fieldDescription><![CDATA[storno]]></fieldDescription>
+	</field>
+
+
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetKonec">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="3" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></printWhenExpression>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="###0;-###0" textAdjust="StretchHeight">
+					<reportElement height="3" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-59" positionType="Float" stretchType="RelativeToBandHeight" width="267" x="0" y="0"/>
+					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" leftPadding="7" rightBorder="Thin" rightBorderColor="#000000" rightPadding="7" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="CMU Bright" isBold="false" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetDicPoverujiciho">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[new Boolean ($P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} ).booleanValue()
+&& !cz.winstrom.util.WSValidationUtil.isBlank($F{eetDicPoverujiciho}))]]></printWhenExpression>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetBpk">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></printWhenExpression>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetTyp">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></printWhenExpression>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetPokladniZarizeni">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></printWhenExpression>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetProvozovna">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="10" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></printWhenExpression>
+				<subreport isUsingCache="true">
+					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="subreport-4" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOGIKA">
+						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_POLDOKL_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}.getPolDoklReportAdapter()]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{_ADAPTER}.createDataSourceForEet( (cz.winstrom.vo.dok.Doklad) $F{this} )]]></dataSourceExpression>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prodejkaEetInfo.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="eetFik">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="30" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[new Boolean(
+!$P{_ADAPTER}.isPrintEetInfo( (cz.winstrom.vo.dok.Doklad) $F{this} ).booleanValue()
+)]]></printWhenExpression>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="30" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-61" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" leftPadding="6" rightBorder="Thin" rightBorderColor="#000000" rightPadding="6" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-62" positionType="FixRelativeToTop" stretchType="NoStretch" width="138" x="122" y="6"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{eetDatCasTrzby} != null ?
+cz.winstrom.util.WSFormatUtil.formatToShortDateTime($F{eetDatCasTrzby})
+:
+cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-63" positionType="FixRelativeToTop" stretchType="NoStretch" width="116" x="6" y="6"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "datVyst", true )]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="true" isStartNewColumn="false" isStartNewPage="true" minHeightToStartNewPage="0" name="faktura">
+			<groupExpression><![CDATA[$F{kod}]]></groupExpression>
+			<groupHeader>
+			<band height="211" isSplitAllowed="true">
+				<rectangle>
+					<reportElement height="25" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="rectangle-2" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="186"/>
+					<graphicElement pen="Thin" stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement height="186" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="rectangle-1" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<graphicElement pen="Thin" stretchType="NoStretch"/>
+				</rectangle>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-2" positionType="FixRelativeToTop" stretchType="NoStretch" width="123" x="6" y="6"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "dodavatel", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<subreport isUsingCache="true">
+					<reportElement height="185" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-2" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="266" x="0" y="0"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOGIKA">
+						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DAT_VYST">
+						<subreportParameterExpression><![CDATA[$F{datVyst}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( $P{_ADAPTER}.getDodavatelSubreportName( $F{datVyst}, $F{stredisko} ) )]]></subreportExpression>
+				</subreport>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-44" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="188" x="7" y="188">
+							<printWhenExpression><![CDATA[new Boolean(
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "datumZdanitelnehoPlneni", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-45" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="140" x="7" y="199"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getLangSetting( $P{_LOCALE}.GID_BEANS, "global", "formaUhrK" ).getTitle() + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-46" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="65" x="195" y="188">
+							<printWhenExpression><![CDATA[new Boolean(
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpUcto})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-47" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="113" x="147" y="199"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getFormaUhradyString( (cz.winstrom.vo.dok.Doklad) $F{this}, $P{_LOCALE} )]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="18" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-27" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" leftPadding="6" rightBorder="Thin" rightBorderColor="#000000" rightPadding="6" topBorder="Thin" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-24" positionType="FixRelativeToTop" stretchType="NoStretch" width="103" x="157" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[("FAV".equals($F{modul}) 
+	? ((($P{_PROJEKT}.isCiziMena( ($F{mena} != null ? $F{mena}.getKod() : null) )) ? $F{sumCelkemMen} : $F{sumCelkem})) 
+	:( ($F{sumCelkemMen}.doubleValue()) != 0 ? $F{sumCelkemMen} : $F{sumCelkem}))]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-25" positionType="FixRelativeToTop" stretchType="NoStretch" width="151" x="6" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="14"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkem", true )
+ + " [" + 
+($F{mena}.getSymbol() != null && !$F{mena}.getSymbol().isEmpty() ? $F{mena}.getSymbol() : $F{mena}.getKod() )
+ + "]"]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="rekapitulaceDph">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="9" isSplitAllowed="true">
+				<subreport isUsingCache="true">
+					<reportElement height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="false" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-3" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOGIKA">
+						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource( $P{_ADAPTER}.getRekapitulaceDph( $F{id}.intValue() ) )]]></dataSourceExpression>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "rekapitulaceDphUzka.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="802" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" textAdjust="ScaleFont">
+					<reportElement forecolor="#CCCCCC" height="511" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-60" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0">
+							<printWhenExpression><![CDATA[$F{storno}]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement rotation="Right" textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="65"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "stornovano", true ).toUpperCase()]]></textFieldExpression>
+				</textField>
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="20" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="20" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-20" positionType="FixRelativeToTop" stretchType="NoStretch" width="267" x="0" y="0"/>
+					<box bottomBorder="4Point" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" rightPadding="6" topBorder="Thin" topBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kod}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="20" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-21" positionType="FixRelativeToTop" stretchType="NoStretch" width="195" x="0" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" leftPadding="6" rightBorder="None" rightBorderColor="#000000" topBorder="Thin" topBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{_PROJEKT}.getNastaveniAPI($F{datVyst}).isPlatceDph() ?
+  $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "prodejka", "_title", true )
+:
+  $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "prodejkaNeplatce", true )
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="14" isSplitAllowed="true">
+				<subreport isUsingCache="true">
+					<reportElement height="14" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="subreport-1" mode="Transparent" positionType="FixRelativeToTop" stretchType="RelativeToBandHeight" width="267" x="0" y="0"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOGIKA">
+						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_ADAPTER}.getPolozkyProTisk($F{id}.intValue(), $P{_LOADER}.getLocaleCode()))]]></dataSourceExpression>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prodejkaPolozky.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

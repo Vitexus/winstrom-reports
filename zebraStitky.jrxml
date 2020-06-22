@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="141" leftMargin="0" name="zebraStitky" orientation="Landscape" pageHeight="85" pageWidth="141" rightMargin="0" topMargin="0" uuid="6155d3ae-9cf4-47a1-8743-edfcf50034c1" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="10" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="platiOd"/>
+	<parameter class="cz.winstrom.service.impl.WSValueObjectBLImpl" name="_LOGIKA"/>
+	<field class="java.lang.Double" name="cenaSDph"/>
+	<field class="java.lang.Double" name="cenaBezDph"/>
+	<field class="cz.winstrom.vo.skl.VyrobniCislo" name="vc"/>
+	<field class="cz.winstrom.vo.cen.Cenik" name="cenik"/>
+	<field class="cz.winstrom.vo.dok.PolDokl" name="polDokl"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="85" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" forecolor="#000000" height="20" key="textField" mode="Transparent" style="ColumnHeader" uuid="4477d6dc-9c53-4e66-a757-7aae4ab26eb8" width="141" x="0" y="17"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText(
+    ($F{polDokl} != null ?
+        new String[]{$F{polDokl}.getNazev(), $F{polDokl}.getNazevA(), $F{polDokl}.getNazevB(), $F{polDokl}.getNazevC()}
+    :
+        new String[]{$F{cenik}.getNazev(), $F{cenik}.getNazevA(), $F{cenik}.getNazevB(), $F{cenik}.getNazevC()}
+    ),
+    new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="13" key="textField-7" mode="Transparent" style="ColumnHeader" uuid="9ccaa434-49e2-41bb-925e-9b4f1707e8d3" width="141" x="0" y="4"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[($F{polDokl} != null ?
+$F{polDokl}.getKod()
+:
+$F{cenik}.getKod()
+)]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement height="31" style="Detail" uuid="59dada50-6fd8-4049-849c-a5ceb02f4d84" width="141" x="0" y="37">
+					<printWhenExpression><![CDATA[new Boolean(
+    ($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod()) != null
+    &&
+    !($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod()).isEmpty()
+)]]></printWhenExpression>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" barHeight="55" barWidth="3" checksumRequired="false" drawText="true" type="Code128" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod())]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" forecolor="#000000" height="17" key="textField" mode="Transparent" style="ColumnHeader" uuid="908602aa-dedd-4ae8-8d91-d06346ae4ed7" width="141" x="0" y="68"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+$F{cenik}.getCenaZaklZaMj(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.cen.Cenik.CENA_ZAKL
+)
++ " " +
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getZaklMena().getSymbolOrKod()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

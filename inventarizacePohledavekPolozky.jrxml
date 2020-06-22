@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="535" leftMargin="0" name="inventarizacePohledavekPolozky" pageHeight="842" pageWidth="535" rightMargin="0" topMargin="0" uuid="f7727cdd-55f0-48f7-84b5-443dd2959a6f" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isDefault="true" isPdfEmbedded="true" markup="styled" name="detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isPdfEmbedded="true" markup="styled" name="tucne" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="cz.winstrom.service.impl.WSValueObjectBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="cz.winstrom.service.vyk.SaldoKdatuReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datVyst">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datSplat">
+		<fieldDescription><![CDATA[datSplat]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="varSym">
+		<fieldDescription><![CDATA[varSym]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="kod">
+		<fieldDescription><![CDATA[kod]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkem">
+		<fieldDescription><![CDATA[sumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkemMen">
+		<fieldDescription><![CDATA[sumCelkemMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="juhSumDat">
+		<fieldDescription><![CDATA[juhSumDat]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="juhSumDatMen">
+		<fieldDescription><![CDATA[juhSumDatMen]]></fieldDescription>
+	</field>
+	<variable calculation="Sum" class="java.lang.Double" name="sumCelkem" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{sumCelkemMen} :
+$F{sumCelkem} )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="juhSum" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{juhSumDatMen} :
+$F{juhSumDat} )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="mena">
+		<groupExpression><![CDATA[$F{mena}]]></groupExpression>
+		<groupHeader>
+			<band height="13" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-9" style="tucne" uuid="b5dfb745-b8ae-48f5-9120-00c01f52c8a7" width="82" x="76" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "kod", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-10" style="tucne" uuid="a6e04329-d590-4754-b01c-922316e4b125" width="60" x="158" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "datVyst", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-11" style="tucne" uuid="ce35d486-6654-4fe5-aac3-0a110f3b1ef7" width="60" x="218" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "datSplat", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-12" style="tucne" uuid="1fe2ae7e-70b1-4b0e-9e51-df6e5e8454c3" width="75" x="0" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "varSym", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-13" style="tucne" uuid="47cedc6f-4d85-4277-92e0-73e1157efe66" width="75" x="310" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "sumCelkem", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-14" style="tucne" uuid="5bf81c9f-5c5c-4ef9-8fef-9d15bb50f9ac" width="75" x="385" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "juhSum", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-15" style="tucne" uuid="6ce8bd3d-f428-401e-a2b3-7bed516a8b19" width="75" x="460" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "zbyvaUhradit", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-17" style="tucne" uuid="a0b0f8f5-a759-4557-849e-08356c0b956a" width="32" x="278" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.DoklInt", "mena", true )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-18" style="tucne" uuid="fd717b35-d9a0-4f7b-844d-046931922639" width="242" x="68" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "inventarizacePohledavek", "celkem", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-19" style="tucne" uuid="1e03c832-16ba-4839-a5f0-c891deec46ea" width="75" x="310" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumCelkem}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-20" style="tucne" uuid="9f80e47c-57ac-41ff-a122-188dcc1df4dc" width="75" x="385" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{juhSum}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-21" style="tucne" uuid="b42cfb6a-cbcc-4ca2-b451-8b7933a5c031" width="75" x="460" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double(
+$V{sumCelkem}.doubleValue()
+-
+$V{juhSum}.doubleValue()
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-22" style="detail" uuid="d6435e43-2b1f-4e0a-82b5-7b3eda996f63" width="534" x="1" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$P{_ADAPTER}.getPodleModuluString($P{_LOCALE}, "inventarizacePohledavek", "dokladyVMene")
+:
+$P{_ADAPTER}.getPodleModuluString($P{_LOCALE}, "inventarizacePohledavek", "dokladyVTuz")
+)]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-1" style="detail" uuid="499fd3d1-59c1-4c8e-a339-d21b802d770f" width="82" x="76" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kod}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-2" style="detail" uuid="644167fa-b148-4479-a3bd-eda04e298820" width="60" x="158" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-3" style="detail" uuid="2c9b1cb8-b97d-4b35-80ad-cc184d5976e9" width="60" x="218" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datSplat})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-4" style="detail" uuid="f8435757-37d7-4fbf-9ae6-ee8072392d96" width="75" x="0" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{varSym}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-5" style="detail" uuid="339b63ef-fe3c-4ca6-974b-fc02c9c69e82" width="75" x="310" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{sumCelkemMen} :
+$F{sumCelkem} )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-6" style="detail" uuid="f1b9eced-e39f-408d-a515-69ca1344eaad" width="75" x="385" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{juhSumDatMen} :
+$F{juhSumDat})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-7" style="detail" uuid="40242b5f-79a1-457b-9a1b-731ba46851a8" width="75" x="460" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{sumCelkemMen} :
+$F{sumCelkem} ).doubleValue()
+-
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).isCiziMena($F{mena}) ?
+$F{juhSumDatMen} :
+$F{juhSumDat}).doubleValue()
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-16" style="detail" uuid="203e2611-30e7-45f9-9141-7a893105ae8b" width="32" x="278" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mena}.getKod()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

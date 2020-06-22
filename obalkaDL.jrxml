@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnCount="1" columnSpacing="0" columnWidth="563" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="30" name="obalkaDL" orientation="Landscape" pageHeight="311" pageWidth="623" printOrder="Vertical" rightMargin="30" topMargin="20" whenNoDataType="NoPages" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<style fontName="CMU Bright" isBlankWhenNull="true" isDefault="true" isPdfEmbedded="true" name="detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["adresar"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_PATA">
+		<defaultValueExpression><![CDATA["___"+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_SPECIF, "program", true )+"___"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.impl.WSValueObjectBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="197" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="15" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="203" x="360" y="144"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" bottomPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getNazevProTiskObalek( $F{this}, $P{_LOCALE}.getLocaleCode() )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField" positionType="Float" stretchType="NoStretch" style="detail" width="203" x="360" y="159"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" bottomPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getAdresaProTiskObalek( $F{this}, $P{_LOCALE}.getLocaleCode() )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-1" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="184" x="47" y="15"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).isPostovniShodna() ?
+$P{_ADAPTER}.getNastaveni().getNazFirmy()
+:
+$P{_ADAPTER}.getNastaveni().getNazFirmy()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-2" positionType="Float" stretchType="NoStretch" style="detail" width="184" x="47" y="28"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).isPostovniShodna() ?
+$P{_ADAPTER}.getNastaveni().getUlice()
+:
+((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getPostUlice()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-4" positionType="Float" stretchType="NoStretch" style="detail" width="184" x="47" y="41"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).isPostovniShodna() ?
+($P{_ADAPTER}.getNastaveni().getPsc() != null ? 
+$P{_ADAPTER}.getNastaveni().getPsc() : "")
++ " " +
+($P{_ADAPTER}.getNastaveni().getMesto() != null ? 
+$P{_ADAPTER}.getNastaveni().getMesto() : "")
+:
+(((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getPostPsc() != null ?
+((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getPostPsc() : "")
++ " " +
+(((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getPostMesto() != null ?
+((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getPostMesto() : "")
+)
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-5" positionType="Float" stretchType="NoStretch" style="detail" width="184" x="47" y="54"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getStat().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode()))
+:
+((cz.winstrom.vo.nast.Nastaveni)($P{_ADAPTER}.getNastaveni())).getStatPostovniAdresy().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode()))
+)]]></textFieldExpression>
+				</textField>
+				<image bookmarkLevel="0" evaluationTime="Now" hAlign="Center" hyperlinkTarget="Self" hyperlinkType="None" isLazy="false" onErrorType="Error" scaleImage="RetainShape" vAlign="Middle">
+					<reportElement height="30" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="resizuj-1" positionType="FixRelativeToTop" stretchType="NoStretch" width="47" x="0" y="15"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{_ADAPTER}.getLogo()]]></imageExpression>
+				</image>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

@@ -1,0 +1,1868 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnCount="1" columnSpacing="0" columnWidth="782" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="30" name="rozvahaVysledovkaPoUctechNescita" orientation="Landscape" pageHeight="595" pageWidth="842" printOrder="Vertical" rightMargin="30" topMargin="20" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isDefault="false" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["stavyUctu"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.vyk.impl.StavyUctuBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_IS_ROZVAHA">
+		<defaultValueExpression><![CDATA[new Boolean(true)]]></defaultValueExpression>
+	</parameter>
+
+	<field class="cz.winstrom.vo.ucto.Ucet" name="ucet">
+		<fieldDescription><![CDATA[ucet]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="pocatek">
+		<fieldDescription><![CDATA[pocatek]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav01">
+		<fieldDescription><![CDATA[stav01]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav02">
+		<fieldDescription><![CDATA[stav02]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav03">
+		<fieldDescription><![CDATA[stav03]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav04">
+		<fieldDescription><![CDATA[stav04]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav05">
+		<fieldDescription><![CDATA[stav05]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav06">
+		<fieldDescription><![CDATA[stav06]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav07">
+		<fieldDescription><![CDATA[stav07]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav08">
+		<fieldDescription><![CDATA[stav08]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav09">
+		<fieldDescription><![CDATA[stav09]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav10">
+		<fieldDescription><![CDATA[stav10]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav11">
+		<fieldDescription><![CDATA[stav11]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav12">
+		<fieldDescription><![CDATA[stav12]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal01">
+		<fieldDescription><![CDATA[obratDal01]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal02">
+		<fieldDescription><![CDATA[obratDal02]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal03">
+		<fieldDescription><![CDATA[obratDal03]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal04">
+		<fieldDescription><![CDATA[obratDal04]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal05">
+		<fieldDescription><![CDATA[obratDal05]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal06">
+		<fieldDescription><![CDATA[obratDal06]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal07">
+		<fieldDescription><![CDATA[obratDal07]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal08">
+		<fieldDescription><![CDATA[obratDal08]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal09">
+		<fieldDescription><![CDATA[obratDal09]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal10">
+		<fieldDescription><![CDATA[obratDal10]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal11">
+		<fieldDescription><![CDATA[obratDal11]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal12">
+		<fieldDescription><![CDATA[obratDal12]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd01">
+		<fieldDescription><![CDATA[obratMd01]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd02">
+		<fieldDescription><![CDATA[obratMd02]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd03">
+		<fieldDescription><![CDATA[obratMd03]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd04">
+		<fieldDescription><![CDATA[obratMd04]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd05">
+		<fieldDescription><![CDATA[obratMd05]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd06">
+		<fieldDescription><![CDATA[obratMd06]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd07">
+		<fieldDescription><![CDATA[obratMd07]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd08">
+		<fieldDescription><![CDATA[obratMd08]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd09">
+		<fieldDescription><![CDATA[obratMd09]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd10">
+		<fieldDescription><![CDATA[obratMd10]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd11">
+		<fieldDescription><![CDATA[obratMd11]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd12">
+		<fieldDescription><![CDATA[obratMd12]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav13">
+		<fieldDescription><![CDATA[stav13]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav14">
+		<fieldDescription><![CDATA[stav14]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav15">
+		<fieldDescription><![CDATA[stav15]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav16">
+		<fieldDescription><![CDATA[stav16]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav17">
+		<fieldDescription><![CDATA[stav17]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav18">
+		<fieldDescription><![CDATA[stav18]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav19">
+		<fieldDescription><![CDATA[stav19]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav20">
+		<fieldDescription><![CDATA[stav20]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav21">
+		<fieldDescription><![CDATA[stav21]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav22">
+		<fieldDescription><![CDATA[stav22]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="stav23">
+		<fieldDescription><![CDATA[stav23]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal13">
+		<fieldDescription><![CDATA[obratDal13]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal14">
+		<fieldDescription><![CDATA[obratDal14]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal15">
+		<fieldDescription><![CDATA[obratDal15]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal16">
+		<fieldDescription><![CDATA[obratDal16]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal17">
+		<fieldDescription><![CDATA[obratDal17]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal18">
+		<fieldDescription><![CDATA[obratDal18]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal19">
+		<fieldDescription><![CDATA[obratDal19]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal20">
+		<fieldDescription><![CDATA[obratDal20]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal21">
+		<fieldDescription><![CDATA[obratDal21]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal22">
+		<fieldDescription><![CDATA[obratDal22]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratDal23">
+		<fieldDescription><![CDATA[obratDal23]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd13">
+		<fieldDescription><![CDATA[obratMd13]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd14">
+		<fieldDescription><![CDATA[obratMd14]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd15">
+		<fieldDescription><![CDATA[obratMd15]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd16">
+		<fieldDescription><![CDATA[obratMd16]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd17">
+		<fieldDescription><![CDATA[obratMd17]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd18">
+		<fieldDescription><![CDATA[obratMd18]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd19">
+		<fieldDescription><![CDATA[obratMd19]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd20">
+		<fieldDescription><![CDATA[obratMd20]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd21">
+		<fieldDescription><![CDATA[obratMd21]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd22">
+		<fieldDescription><![CDATA[obratMd22]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="obratMd23">
+		<fieldDescription><![CDATA[obratMd23]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="id">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="idStavUctu">
+		<fieldDescription><![CDATA[idStavUctu]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.nast.UcetniObdobi" name="ucetniObdobi">
+		<fieldDescription><![CDATA[ucetniObdobi]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="druhUctuK">
+		<fieldDescription><![CDATA[druhUctuK]]></fieldDescription>
+	</field>
+
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav01sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav01} : new Double( $F{stav01}.doubleValue() - $F{pocatek}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav02sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav02} : new Double ( $F{stav02}.doubleValue() - $F{stav01}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav03sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav03} : new Double ( $F{stav03}.doubleValue() - $F{stav02}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav04sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav04} : new Double ( $F{stav04}.doubleValue() - $F{stav03}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav05sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav05} : new Double ( $F{stav05}.doubleValue() - $F{stav04}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav06sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav06} : new Double ( $F{stav06}.doubleValue() - $F{stav05}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav07sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav07} : new Double ( $F{stav07}.doubleValue() - $F{stav06}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav08sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav08} : new Double ( $F{stav08}.doubleValue() - $F{stav07}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav09sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav09} : new Double ( $F{stav09}.doubleValue() - $F{stav08}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav10sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav10} : new Double ( $F{stav10}.doubleValue() - $F{stav09}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav11sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav11} : new Double ( $F{stav11}.doubleValue() - $F{stav10}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav12sum" resetGroup="aktivaPasiva" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? $F{stav12} : new Double ( $F{stav12}.doubleValue() - $F{stav11}.doubleValue() ))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav01vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav01} : new Double(-$F{stav01}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav01}.doubleValue() - $F{pocatek}.doubleValue() ) : new Double(-$F{stav01}.doubleValue() + $F{pocatek}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav02vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav02} : new Double(-$F{stav02}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav02}.doubleValue() - $F{stav01}.doubleValue() ) : new Double(-$F{stav02}.doubleValue() + $F{stav01}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav03vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav03} : new Double(-$F{stav03}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav03}.doubleValue() - $F{stav02}.doubleValue() ) : new Double(-$F{stav03}.doubleValue() + $F{stav02}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav04vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav04} : new Double( -$F{stav04}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav04}.doubleValue() - $F{stav03}.doubleValue() ) : new Double(-$F{stav04}.doubleValue() + $F{stav03}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav05vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav05} : new Double(-$F{stav05}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav05}.doubleValue() - $F{stav04}.doubleValue() ) : new Double(-$F{stav05}.doubleValue() + $F{stav04}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav06vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav06} : new Double( -$F{stav06}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav06}.doubleValue() - $F{stav05}.doubleValue() ) : new Double(-$F{stav06}.doubleValue() + $F{stav05}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav07vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav07} : new Double(-$F{stav07}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav07}.doubleValue() - $F{stav06}.doubleValue() ) : new Double(-$F{stav07}.doubleValue() + $F{stav06}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav08vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav08} : new Double( -$F{stav08}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav08}.doubleValue() - $F{stav07}.doubleValue() ) : new Double(-$F{stav08}.doubleValue() + $F{stav07}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav09vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav09} : new Double(-$F{stav09}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav09}.doubleValue() - $F{stav08}.doubleValue() ) : new Double(-$F{stav09}.doubleValue() + $F{stav08}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav10vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav10} : new Double(-$F{stav10}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav10}.doubleValue() - $F{stav09}.doubleValue() ) : new Double(-$F{stav10}.doubleValue() + $F{stav09}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav11vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav11} : new Double(-$F{stav11}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav11}.doubleValue() - $F{stav10}.doubleValue() ) : new Double(-$F{stav11}.doubleValue() + $F{stav10}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav12vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav12} : new Double(-$F{stav12}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav12}.doubleValue() - $F{stav11}.doubleValue() ) : new Double(-$F{stav12}.doubleValue() + $F{stav11}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav13vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav13} : new Double(-$F{stav13}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav13}.doubleValue() - $F{stav12}.doubleValue() ) : new Double(-$F{stav13}.doubleValue() + $F{stav12}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav14vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav14} : new Double(-$F{stav14}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav14}.doubleValue() - $F{stav13}.doubleValue() ) : new Double(-$F{stav14}.doubleValue() + $F{stav13}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav15vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav15} : new Double(-$F{stav15}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav15}.doubleValue() - $F{stav14}.doubleValue() ) : new Double(-$F{stav15}.doubleValue() + $F{stav14}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav16vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav16} : new Double( -$F{stav16}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav16}.doubleValue() - $F{stav15}.doubleValue() ) : new Double(-$F{stav16}.doubleValue() + $F{stav15}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav17vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav17} : new Double(-$F{stav17}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav17}.doubleValue() - $F{stav16}.doubleValue() ) : new Double(-$F{stav17}.doubleValue() + $F{stav16}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav18vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav18} : new Double( -$F{stav18}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav18}.doubleValue() - $F{stav17}.doubleValue() ) : new Double(-$F{stav18}.doubleValue() + $F{stav17}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav19vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav19} : new Double(-$F{stav19}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav19}.doubleValue() - $F{stav18}.doubleValue() ) : new Double(-$F{stav19}.doubleValue() + $F{stav18}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav20vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav20} : new Double( -$F{stav20}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav20}.doubleValue() - $F{stav19}.doubleValue() ) : new Double(-$F{stav20}.doubleValue() + $F{stav19}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav21vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav21} : new Double(-$F{stav21}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav21}.doubleValue() - $F{stav20}.doubleValue() ) : new Double(-$F{stav21}.doubleValue() + $F{stav20}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav22vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav22} : new Double(-$F{stav22}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav22}.doubleValue() - $F{stav21}.doubleValue() ) : new Double(-$F{stav22}.doubleValue() + $F{stav21}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav23vysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($P{_LOADER}.isSumovana() ? ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+$F{stav23} : new Double(-$F{stav23}.doubleValue())) : ($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+new Double ( $F{stav23}.doubleValue() - $F{stav22}.doubleValue() ) : new Double(-$F{stav23}.doubleValue() + $F{stav22}.doubleValue())))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav13sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav13} : new Double ( $F{stav13}.doubleValue() - $F{stav12}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav14sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav14} : new Double ( $F{stav14}.doubleValue() - $F{stav13}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav15sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav15} : new Double ( $F{stav15}.doubleValue() - $F{stav14}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav16sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav16} : new Double ( $F{stav16}.doubleValue() - $F{stav15}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav17sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav17} : new Double ( $F{stav17}.doubleValue() - $F{stav16}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav18sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav18} : new Double ( $F{stav18}.doubleValue() - $F{stav17}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav19sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav19} : new Double ( $F{stav19}.doubleValue() - $F{stav18}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav20sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav20} : new Double ( $F{stav20}.doubleValue() - $F{stav19}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav21sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav21} : new Double ( $F{stav21}.doubleValue() - $F{stav20}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav22sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav22} : new Double ( $F{stav22}.doubleValue() - $F{stav21}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav23sum" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav23} : new Double ( $F{stav23}.doubleValue() - $F{stav22}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="zustatekSumSyn" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOGIKA}.getZustatekForReport(new Double[] {$F{stav01}, $F{stav02}, $F{stav03}, $F{stav04}, $F{stav05}, $F{stav06}, $F{stav07}, $F{stav08}, $F{stav09}, $F{stav10}, $F{stav11}, $F{stav12}, $F{stav13}, $F{stav14} , $F{stav15}, $F{stav16}, $F{stav17}, $F{stav18}, $F{stav19}, $F{stav20}, $F{stav21}, $F{stav22}, $F{stav23}})]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="zustatekSumVysledek" resetGroup="mena" resetType="Group">
+		<variableExpression><![CDATA[($F{druhUctuK}.substring(0,10).equals("druhUctu.a") || $F{druhUctuK}.substring(0,10).equals("druhUctu.v") ?
+(
+$P{_LOGIKA}.getZustatekForReport(new Double[] {$F{stav01}, $F{stav02}, $F{stav03}, $F{stav04}, $F{stav05}, $F{stav06}, $F{stav07}, $F{stav08}, $F{stav09}, $F{stav10}, $F{stav11}, $F{stav12}, $F{stav13}, $F{stav14} , $F{stav15}, $F{stav16}, $F{stav17}, $F{stav18}, $F{stav19}, $F{stav20}, $F{stav21}, $F{stav22}, $F{stav23}})
+)
+:
+(
+new Double(- $P{_LOGIKA}.getZustatekForReport(new Double[] {$F{stav01}, $F{stav02}, $F{stav03}, $F{stav04}, $F{stav05}, $F{stav06}, $F{stav07}, $F{stav08}, $F{stav09}, $F{stav10}, $F{stav11}, $F{stav12}, $F{stav13}, $F{stav14} , $F{stav15}, $F{stav16}, $F{stav17}, $F{stav18}, $F{stav19}, $F{stav20}, $F{stav21}, $F{stav22}, $F{stav23}}).doubleValue())
+)
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav25sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav01} : new Double( $F{stav01}.doubleValue() - $F{pocatek}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav26sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav02} : new Double ( $F{stav02}.doubleValue() - $F{stav01}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav27sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav03} : new Double ( $F{stav03}.doubleValue() - $F{stav02}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav28sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav04} : new Double ( $F{stav04}.doubleValue() - $F{stav03}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav29sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav05} : new Double ( $F{stav05}.doubleValue() - $F{stav04}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav30sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav06} : new Double ( $F{stav06}.doubleValue() - $F{stav05}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav31sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav07} : new Double ( $F{stav07}.doubleValue() - $F{stav06}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav32sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav08} : new Double ( $F{stav08}.doubleValue() - $F{stav07}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav33sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav09} : new Double ( $F{stav09}.doubleValue() - $F{stav08}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav34sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav10} : new Double ( $F{stav10}.doubleValue() - $F{stav09}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav35sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav11} : new Double ( $F{stav11}.doubleValue() - $F{stav10}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="stav36sum" resetGroup="standartniucet" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav12} : new Double ( $F{stav12}.doubleValue() - $F{stav11}.doubleValue() )]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" incrementType="None" name="zustatekSumTrida" resetGroup="uctovatrida" resetType="Group">
+		<variableExpression><![CDATA[$P{_LOGIKA}.getZustatekForReport(new Double[] {$F{stav01}, $F{stav02}, $F{stav03}, $F{stav04}, $F{stav05}, $F{stav06}, $F{stav07}, $F{stav08}, $F{stav09}, $F{stav10}, $F{stav11}, $F{stav12}, $F{stav13}, $F{stav14} , $F{stav15}, $F{stav16}, $F{stav17}, $F{stav18}, $F{stav19}, $F{stav20}, $F{stav21}, $F{stav22}, $F{stav23}})]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="mena">
+			<groupExpression><![CDATA[$F{mena}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="36" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-146" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav12vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-147" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav01vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-148" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav02vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-149" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav03vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-150" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav04vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-151" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav05vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-152" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav06vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-153" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav07vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-154" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav08vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-155" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav09vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-156" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav10vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-157" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav11vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-158" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="180" x="0" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "vysledek", true )
++ " - " + $F{mena}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#CCCCCC" height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-161" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="602" x="180" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-162" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-174" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-175" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav13vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-176" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 12 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav14vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-177" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 13)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav15vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-178" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 14 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav16vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-179" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 15 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav17vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-180" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 16 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav18vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-181" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 17 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav19vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-182" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 18 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav20vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-183" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 19 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav21vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-184" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 20 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav22vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-185" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 21 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav23vysledek}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-186" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="25">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#CCCCCC" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-215" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="725" y="14"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{zustatekSumVysledek}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="aktivaPasivaDalsiObdobi">
+			<groupExpression><![CDATA[/*($F{druhUctuK} != null && !$F{druhUctuK}.isEmpty() ? $F{druhUctuK}.substring(0, 10) : "druhUctu.aktivni".substring(0, 10))*/
+$F{ucet}.getKod().substring(0, 1)]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="11" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-187" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-188" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav13sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-189" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 12 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav14sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-190" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 13)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav15sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-191" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 14 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav16sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-192" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 15 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav17sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-193" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 16 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav18sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-194" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 17 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav19sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-195" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 18 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav20sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-196" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 19 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav21sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-197" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 20 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav22sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-198" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 21 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav23sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-199" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#D2D2D2" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-214" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="725" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="aktivaPasiva">
+			<groupExpression><![CDATA[($F{druhUctuK} != null && !$F{druhUctuK}.isEmpty() ? $F{druhUctuK}.substring(0, 10) : "druhUctu.aktivni".substring(0, 10))
+]]></groupExpression>
+			<groupHeader>
+			<band height="13" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="false" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="textField-145" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="178" x="0" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="2" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{_IS_ROZVAHA}.booleanValue() ?
+( $F{druhUctuK}.substring( 0, 10 ).equals("druhUctu.a") ?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "aktiva", true )
+:
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "pasiva", true )
+)
+:
+( $F{druhUctuK}.substring( 0, 10 ).equals("druhUctu.n") ?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "naklady", true )
+:
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "vynosy", true )
+)
+)
++ " - " + $F{mena}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#E5E5E5" height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="false" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="textField-160" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="602" x="180" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="uctovatrida">
+			<groupExpression><![CDATA[$F{ucet}.getKod().substring(0, 1)]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="11" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-133" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav12sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-134" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav01sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-135" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav02sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-136" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav03sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-137" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav04sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-138" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav05sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-139" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav06sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-140" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav07sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-141" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav08sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-142" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav09sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-143" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav10sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-144" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav11sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-159" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="1" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "uctovaTrida", true )+ " " + $F{ucet}.getKod().substring(0, 1)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-213" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="725" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{zustatekSumTrida}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="standartniucet">
+			<groupExpression><![CDATA[$F{ucet}.getStdUcet()]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="22" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-218" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav25sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-219" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav26sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-220" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav27sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-221" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav28sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-222" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav29sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-223" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav30sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-224" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav31sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-225" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav32sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-226" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav33sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-227" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav34sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-228" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav35sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-229" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{stav36sum}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-230" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="725" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{zustatekSumSyn}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="textField-231" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="741" x="40" y="0">
+							<printWhenExpression><![CDATA[new Boolean($P{_LOADER}.isRozsireny())]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="3" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[]{$F{ucet}.getStdUcet().getNazev(), $F{ucet}.getStdUcet().getNazevA(), $F{ucet}.getStdUcet().getNazevB(), $F{ucet}.getStdUcet().getNazevC()},  new java.util.Locale($P{_LOCALE}.getLocaleCode()))]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-232" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="11"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="3" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$P{_LOADER}.isRozsireny() ? $F{ucet}.getStdUcet().getKod() : "")]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#E5E5E5" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="true" key="textField-233" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="41" x="0" y="0">
+							<printWhenExpression><![CDATA[new Boolean($P{_LOADER}.isRozsireny())]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="3" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ucet}.getStdUcet().getKod()]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="delsiObdobi">
+			<groupExpression><![CDATA[$F{ucet}]]></groupExpression>
+			<groupHeader>
+			<band height="11" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[new Boolean($P{_LOADER}.isRozsireny())]]></printWhenExpression>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-119" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="35" x="6" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ucet}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-216" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="740" x="41" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[] {$F{ucet}.getNazev(), $F{ucet}.getNazevA(), $F{ucet}.getNazevB(), $F{ucet}.getNazevC()}, new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="11" isSplitAllowed="true">
+				<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-163" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="41" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav13} : new Double( $F{stav13}.doubleValue() - $F{stav12}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-164" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="98" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 12 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav14} :  new Double($F{stav14}.doubleValue() - $F{stav13}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-165" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="155" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 13)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav15} :  new Double($F{stav15}.doubleValue() - $F{stav14}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-166" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="212" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 15 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav16} :  new Double($F{stav16}.doubleValue() - $F{stav15}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-167" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="269" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 15 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav17} :  new Double($F{stav17}.doubleValue() - $F{stav16}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-168" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="326" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 16 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav18} :  new Double($F{stav18}.doubleValue() - $F{stav17}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-169" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="383" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 17 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav19} :  new Double($F{stav19}.doubleValue() - $F{stav18}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-170" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="440" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 18 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav20} :  new Double($F{stav20}.doubleValue() - $F{stav19}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-171" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="497" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 19 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav21} : new Double( $F{stav21}.doubleValue() - $F{stav20}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-172" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="554" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 20 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav22} :  new Double($F{stav22}.doubleValue() - $F{stav21}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-173" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="611" y="0">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 21 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav23} :  new Double($F{stav23}.doubleValue() - $F{stav22}.doubleValue())]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="22" isSplitAllowed="true">
+				<subreport isUsingCache="true">
+					<reportElement height="20" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-2" mode="Transparent" positionType="FixRelativeToTop" stretchType="RelativeToTallestObject" width="782" x="0" y="1"/>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA} + "Obraty"]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PAGE_NUMBER">
+						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "Hlava_land.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="15" isSplitAllowed="true">
+				<line direction="TopDown">
+					<reportElement height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-2" positionType="FixRelativeToBottom" stretchType="NoStretch" width="781" x="0" y="14"/>
+					<graphicElement pen="1Point" stretchType="NoStretch"/>
+				</line>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-6" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="40" x="1" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "ucet", true )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-8" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="41" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 0 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav01", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-9" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 1 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav02", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-11" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 2 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav03", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-13" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 3 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav04", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-15" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 4 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav05", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-17" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 5 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-19" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 6 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-21" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 7 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-23" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 8 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-25" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 9 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-27" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 10 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-29" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="668" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 11 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-200" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="40" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 11 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 12 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav01", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-201" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="98" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 12 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 13 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav02", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-202" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="155" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 13)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 14 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav03", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-203" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="212" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 14 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 15 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav04", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-204" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="269" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 15 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 16 )
+/*$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.StavyUctu", "stav05", true )*/]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-205" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="326" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 16 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 17 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-206" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="383" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 17 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 18 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-207" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="440" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 18 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 19 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-208" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="497" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 19 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 20 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-209" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="554" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 20 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 21 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-210" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="611" y="12">
+							<printWhenExpression><![CDATA[new Boolean( (cz.winstrom.util.WSCalendarUtil.diffCalendars(Calendar.MONTH,  $F{ucetniObdobi}.getPlatiDoData(), $F{ucetniObdobi}.getPlatiOdData())) > 21 )]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.getMonthName( $P{_LOGIKA}.getObdobi().getPlatiOdData(), 22 )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-212" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="57" x="725" y="1"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOADER}.isSumovana() ? $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "konecnyZustatek", true ) : $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "rozvahaVysledovkaPoUctech", "soucet", true )]]></textFieldExpression>
+				</textField>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="11" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-121" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="41" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav01} : new Double($F{stav01}.doubleValue() - $F{pocatek}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-122" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="98" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav02} : new Double( $F{stav02}.doubleValue() - $F{stav01}.doubleValue() )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-123" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="155" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav03} : new Double( $F{stav03}.doubleValue() - $F{stav02}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-124" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="212" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav04} : new Double( $F{stav04}.doubleValue() - $F{stav03}.doubleValue() )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-125" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="269" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav05} : new Double( $F{stav05}.doubleValue() - $F{stav04}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-126" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="326" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav06} : new Double( $F{stav06}.doubleValue() - $F{stav05}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-127" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="383" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav07} : new Double( $F{stav07}.doubleValue() - $F{stav06}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-128" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="440" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav08} : new Double( $F{stav08}.doubleValue() - $F{stav07}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-129" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="497" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav09} : new Double( $F{stav09}.doubleValue() - $F{stav08}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-130" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="554" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav10} : new Double( $F{stav10}.doubleValue() - $F{stav09}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-131" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="611" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav11} : new Double( $F{stav11}.doubleValue() - $F{stav10}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-132" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="668" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOADER}.isSumovana() ? $F{stav12} : new Double( $F{stav12}.doubleValue() - $F{stav11}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-211" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="725" y="0"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{_LOGIKA}.getZustatekForReport(new Double[] {$F{stav01}, $F{stav02}, $F{stav03}, $F{stav04}, $F{stav05}, $F{stav06}, $F{stav07}, $F{stav08}, $F{stav09}, $F{stav10}, $F{stav11}, $F{stav12}, $F{stav13}, $F{stav14} , $F{stav15}, $F{stav16}, $F{stav17}, $F{stav18}, $F{stav19}, $F{stav20}, $F{stav21}, $F{stav22}, $F{stav23}})
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-217" positionType="FixRelativeToTop" stretchType="NoStretch" style="ColumnHeader" width="35" x="6" y="0">
+							<printWhenExpression><![CDATA[new Boolean(!$P{_LOADER}.isRozsireny())]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ucet}.getKod()]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="32" isSplitAllowed="true">
+				<subreport isUsingCache="true">
+					<reportElement height="20" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-3" mode="Transparent" positionType="FixRelativeToTop" stretchType="RelativeToTallestObject" width="782" x="0" y="2"/>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "Pata_land.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

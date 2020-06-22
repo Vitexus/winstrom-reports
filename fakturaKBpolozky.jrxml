@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="535" leftMargin="0" name="fakturaKBpolozky" pageHeight="842" pageWidth="535" rightMargin="0" topMargin="0" uuid="72f15967-d931-4290-b4d1-8fe7ba66aa7e" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isDefault="true" isPdfEmbedded="true" markup="styled" name="detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isPdfEmbedded="true" markup="styled" name="tucne" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="SARZE_EXPIRACE"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="TISKNOUT_KOD"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="TISKNOUT_VYR_CIS"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="cz.winstrom.service.dok.impl.DoklFakBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="TISKNOUT_BALENI"/>
+	<parameter class="cz.winstrom.service.dok.DoklFakReportAdapter" name="_ADAPTER"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="TISKNOUT_ZARUKU"/>
+	<parameter class="cz.winstrom.service.dok.PolDoklReportAdapter" isForPrompting="false" name="_POLDOKL_ADAPTER"/>
+	<field class="java.lang.String" name="nazev">
+		<fieldDescription><![CDATA[nazev]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="mnozMj">
+		<fieldDescription><![CDATA[mnozMj]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.cen.MerJed" name="mj">
+		<fieldDescription><![CDATA[mj]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="slevaDokl">
+		<fieldDescription><![CDATA[slevaDokl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="slevaPol">
+		<fieldDescription><![CDATA[slevaPol]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="cenaMj">
+		<fieldDescription><![CDATA[cenaMj]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.nast.SazbaDph" name="sazbaDph">
+		<fieldDescription><![CDATA[sazbaDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZkl">
+		<fieldDescription><![CDATA[sumZkl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklMen">
+		<fieldDescription><![CDATA[sumZklMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkem">
+		<fieldDescription><![CDATA[sumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkemMen">
+		<fieldDescription><![CDATA[sumCelkemMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="uplSlevaDokl">
+		<fieldDescription><![CDATA[uplSlevaDokl]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="typPolozkyK">
+		<fieldDescription><![CDATA[typPolozkyK]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="id">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="sarze">
+		<fieldDescription><![CDATA[sarze]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="expirace">
+		<fieldDescription><![CDATA[expirace]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="kod">
+		<fieldDescription><![CDATA[kod]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="nazevA">
+		<fieldDescription><![CDATA[nazevA]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="nazevB">
+		<fieldDescription><![CDATA[nazevB]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="nazevC">
+		<fieldDescription><![CDATA[nazevC]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="mnozBaleni">
+		<fieldDescription><![CDATA[mnozBaleni]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="baleniId">
+		<fieldDescription><![CDATA[baleniId]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.cen.Cenik" name="cenik">
+		<fieldDescription><![CDATA[cenik]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="typCenyDphK">
+		<fieldDescription><![CDATA[typCenyDphK]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datVyst">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field class="java.util.Calendar" name="datUcto">
+		<fieldDescription><![CDATA[datUcto]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="cenaMjProdej">
+		<fieldDescription><![CDATA[cenaMjProdej]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDph">
+		<fieldDescription><![CDATA[sumDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphMen">
+		<fieldDescription><![CDATA[sumDphMen]]></fieldDescription>
+	</field>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZkl">
+		<variableExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumZklMen} : $F{sumZkl})]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumCelkem">
+		<variableExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumCelkemMen} : $F{sumCelkem})]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDph">
+		<variableExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumDphMen} : $F{sumDph})]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="cara">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="3" splitType="Stretch">
+				<line>
+					<reportElement height="1" key="line-1" positionType="FixRelativeToBottom" uuid="7f927c83-04ea-43c2-9083-8bbf1e4f4bf3" width="535" x="0" y="1"/>
+					<graphicElement fill="Solid">
+						<pen lineStyle="Solid" lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="puvodniSzbDph">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="12" splitType="Stretch">
+				<printWhenExpression><![CDATA[Boolean.valueOf(
+  $F{this}.getValue("sazbaDphPuv") != null
+  && $F{sazbaDph} != null
+  && !$F{sazbaDph}.equalsIgnoreVersion($F{this}.getValue("sazbaDphPuv"))
+  && $F{this}.getValue("clenDph") != null
+  && cz.winstrom.vo.UctoLokCiselniky.KOD_PLNENI_PRENES_DAN_POVIN.equals(((cz.winstrom.vo.ucto.ClenDph) $F{this}.getValue("clenDph")).getKodPlneniK())
+)]]></printWhenExpression>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-38" style="detail" uuid="53f37263-3bb5-4147-b735-3a067da5bd8d" width="38" x="335" y="1">
+						<printWhenExpression><![CDATA[new Boolean(
+!cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(((cz.winstrom.vo.nast.SazbaDph) ($F{this}.getValue("sazbaDphPuv"))) != null ?
+ new Double(((cz.winstrom.vo.nast.SazbaDph) ($F{this}.getValue("sazbaDphPuv"))).getSzbDph())
+:
+ null)]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-39" style="detail" uuid="d190a74a-7279-4fa6-81bf-713a0de67753" width="182" x="153" y="1">
+						<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolDokl", "sazbaDphPuv", true ) + ":"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="sleva">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="11" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement forecolor="#8C8C8C" height="11" isPrintWhenDetailOverflows="true" isRemoveLineWhenBlank="true" key="textField-1" style="detail" uuid="64789d86-3017-4ef7-bbaa-1b6af7b79d73" width="112" x="41" y="0">
+						<printWhenExpression><![CDATA[$P{_POLDOKL_ADAPTER}.containsAnySleva((cz.winstrom.vo.dok.PolFak)$F{this})]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "predSlevou", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement forecolor="#8C8C8C" height="11" isPrintWhenDetailOverflows="true" isRemoveLineWhenBlank="true" key="textField-9" style="detail" uuid="ce6d31f7-596b-4a30-a595-9ad76dfe0823" width="60" x="250" y="0">
+						<printWhenExpression><![CDATA[$P{_POLDOKL_ADAPTER}.containsAnySleva((cz.winstrom.vo.dok.PolFak)$F{this})]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cenaMj}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement forecolor="#8C8C8C" height="11" isPrintWhenDetailOverflows="true" isRemoveLineWhenBlank="true" key="textField-10" style="detail" uuid="967bda58-7c8d-4015-957a-a39a71d58524" width="60" x="355" y="0">
+						<printWhenExpression><![CDATA[new Boolean(
+$P{_POLDOKL_ADAPTER}.containsAnySleva((cz.winstrom.vo.dok.PolFak)$F{this})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)
+]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_POLDOKL_ADAPTER}.getSumZakladPredSlevou((cz.winstrom.vo.dok.PolFak)$F{this})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement forecolor="#8C8C8C" height="11" isPrintWhenDetailOverflows="true" isRemoveLineWhenBlank="true" key="textField-11" style="detail" uuid="ecf00e47-eeef-4176-a103-a4d4703c8be0" width="60" x="475" y="0">
+						<printWhenExpression><![CDATA[$P{_POLDOKL_ADAPTER}.containsAnySleva((cz.winstrom.vo.dok.PolFak)$F{this})]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_POLDOKL_ADAPTER}.getSumCelkemPredSlevou((cz.winstrom.vo.dok.PolFak)$F{this})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement forecolor="#8C8C8C" height="11" isPrintWhenDetailOverflows="true" isRemoveLineWhenBlank="true" key="textField-45" style="detail" uuid="80eb6718-891f-47cb-a099-7167bf372fff" width="60" x="415" y="0">
+						<printWhenExpression><![CDATA[new Boolean(
+$P{_POLDOKL_ADAPTER}.containsAnySleva((cz.winstrom.vo.dok.PolFak)$F{this})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)
+]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double(
+$P{_POLDOKL_ADAPTER}.getSumCelkemPredSlevou((cz.winstrom.vo.dok.PolFak)$F{this}).doubleValue()
+-
+$P{_POLDOKL_ADAPTER}.getSumZakladPredSlevou((cz.winstrom.vo.dok.PolFak)$F{this}).doubleValue()
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="sarzeExpirace">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="11" splitType="Stretch">
+				<printWhenExpression><![CDATA[new Boolean(($F{sarze} != null && !$F{sarze}.isEmpty()) || $F{expirace} != null || ($F{kod} != null && !$F{kod}.isEmpty()) ||
+$F{mnozBaleni}.doubleValue() != 0.0 ||
+($F{cenik} != null && $F{cenik}.getZaruka() != 0) ||
+($F{cenik} != null && $F{cenik}.isEvidVyrCis() ?
+($P{_ADAPTER}.readVyrobniCisla( (cz.winstrom.vo.dok.PolDokl) $F{this} ) != null && !$P{_ADAPTER}.readVyrobniCisla( (cz.winstrom.vo.dok.PolDokl)$F{this} ).isEmpty())
+:
+false
+)
+)]]></printWhenExpression>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-23" style="detail" uuid="349309b8-c5ae-413a-93a7-32c7c328416f" width="61" x="250" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate( $F{expirace} )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-24" style="detail" uuid="dd3e93a1-c53b-433c-979f-4052a5a1aca2" width="61" x="311" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sarze}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-27" style="detail" uuid="7746cac1-c738-435b-b12b-534180d98a7f" width="84" x="0" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{kod}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-29" style="detail" uuid="47ceeb65-6ab4-43db-a831-f5194f55ff66" width="156" x="372" y="0">
+						<printWhenExpression><![CDATA[new Boolean(
+ $F{cenik} != null && $F{cenik}.isEvidVyrCis()
+)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_LOADER}.transformCollectionToString($P{_ADAPTER}.readVyrobniCisla( (cz.winstrom.vo.dok.PolDokl)$F{this} ))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-32" style="detail" uuid="40ac5d7d-beca-494c-8275-06f195447767" width="43" x="146" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) || cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK}) )
+&& $F{mnozBaleni}.doubleValue() != 0.0
+)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+$F{mnozBaleni}.doubleValue(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-33" style="detail" uuid="fcb79b6e-eb48-435c-b063-8efb38cfb24c" width="56" x="194" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) || cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK}) ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cenik}.getBaleni( $F{baleniId}.intValue() ).getNazev()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-36" style="detail" uuid="d458a0dd-dddb-4b71-aab8-3464f8b46b27" width="62" x="84" y="0">
+						<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.service.util.ZarukaFormatUtil.formatZaruka($F{cenik}.getZaruka(), $F{cenik}.getMjZarukyK(), $P{_LOCALE})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="nazev">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="11" splitType="Stretch">
+				<printWhenExpression><![CDATA[new Boolean(
+($P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) ) != null ?
+$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) )
+:
+"").length() >= 35
+&&
+!cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+)]]></printWhenExpression>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="11" key="textField-31" style="detail" uuid="688d82e9-9e3d-4c9d-8e97-435e6bdcdfa9" width="535" x="0" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font pdfEncoding="Identity-H"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement height="1" key="line-2" positionType="FixRelativeToBottom" uuid="e6213d0c-3da6-419d-97f7-0de31e2a7e5d" width="535" x="0" y="15"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-13" style="tucne" uuid="850535d8-1330-4476-8eb2-e3fb7924835b" width="146" x="0" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "oznaceniDodavky", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-14" style="tucne" uuid="329efe68-978a-4f82-89c7-11f5e922ccc8" width="43" x="146" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "mnozMj", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-15" style="tucne" uuid="fb9f2aa1-664b-4ce3-8a23-289373deefea" width="30" x="194" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "mj", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-16" style="tucne" uuid="010e1a0f-f740-4c8d-aa6c-7b651c6f56d9" width="36" x="214" y="0">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.containsAnySlevaPol(((cz.winstrom.vo.dok.PolDokl)$F{this}).getDoklad())]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.DoklFak", "slevaDokl", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-17" style="tucne" uuid="d7bb899c-7c4d-4c2d-a1c2-b41dcfcaa1b8" width="60" x="250" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "cenaMj", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-18" style="tucne" uuid="4dfaa30e-6819-4801-9228-97e34ff3d4ef" width="60" x="355" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "zaklad", true )
++ " [" + ($F{mena}.getSymbol() != null && !$F{mena}.getSymbol().isEmpty() ? $F{mena}.getSymbol() : $F{mena}.getKod()) + "]"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-19" style="tucne" uuid="e1cdab85-bfa1-4f7f-af4e-e546df65f53b" width="60" x="475" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkem", true )
++ " [" + ($F{mena}.getSymbol() != null && !$F{mena}.getSymbol().isEmpty() ? $F{mena}.getSymbol() : $F{mena}.getKod()) + "]"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-20" style="tucne" uuid="395d37fd-f1b3-492f-aa7c-ab8e475062c0" width="53" x="315" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "sazbaDph", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-25" style="tucne" uuid="01b28556-9d46-489c-8d20-c80712196be2" width="61" x="250" y="13">
+					<printWhenExpression><![CDATA[$P{SARZE_EXPIRACE}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "expirace", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-26" style="tucne" uuid="28b5bec6-2098-456d-ad74-10d4107f4826" width="61" x="311" y="13">
+					<printWhenExpression><![CDATA[$P{SARZE_EXPIRACE}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "sarze", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-28" style="tucne" uuid="19994920-2608-4360-8ea9-f2caa9717a9d" width="84" x="0" y="13">
+					<printWhenExpression><![CDATA[$P{TISKNOUT_KOD}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "kod", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-30" style="tucne" uuid="8b0ce66d-5f1b-4a1e-85dd-73548cdc1825" width="156" x="372" y="13">
+					<printWhenExpression><![CDATA[$P{TISKNOUT_VYR_CIS}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.skl.VyrobniCislo", "_title", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-34" style="tucne" uuid="fdf4633c-15c3-43a1-8f8e-aad0a15ee144" width="105" x="84" y="13">
+					<printWhenExpression><![CDATA[$P{TISKNOUT_BALENI}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "mnozBaleni", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-35" style="tucne" uuid="678b1630-0636-4ac7-884d-1c2437526cb4" width="56" x="194" y="13">
+					<printWhenExpression><![CDATA[$P{TISKNOUT_BALENI}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.PolFak", "baleniId", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" isPrintWhenDetailOverflows="true" key="textField-37" style="tucne" uuid="465f7910-c0cb-4d78-87ad-9c64307c96f3" width="62" x="84" y="13">
+					<printWhenExpression><![CDATA[$P{TISKNOUT_ZARUKU}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.cen.Cenik", "zaruka", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isPrintWhenDetailOverflows="true" key="textField-43" style="tucne" uuid="d738b68b-b3f9-442a-a29a-1f3a317e756b" width="60" x="415" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "dph", true )
++ " [" + ($F{mena}.getSymbol() != null && !$F{mena}.getSymbol().isEmpty() ? $F{mena}.getSymbol() : $F{mena}.getKod()) + "]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-22" style="detail" uuid="82639716-485b-4637-bd8a-4c27c79d1792" width="535" x="0" y="0">
+					<printWhenExpression><![CDATA[new Boolean( cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-2" style="detail" uuid="e1465064-d7a6-416e-bf6d-47017a1ae0de" width="146" x="0" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}))
+&&
+(($P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) ) != null ?
+$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) )
+:
+"").length() < 35)
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) ) != null ?
+$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOCALE}.getLocaleCode()) )
+:
+"")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-3" style="detail" uuid="b7331e0e-329f-4d91-af9c-f8fcfa8f26d0" width="43" x="146" y="0">
+					<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) || cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK}) ))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+$F{mnozMj}.doubleValue(),
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-4" style="detail" uuid="a1c0024d-b500-407a-8edf-e4f518a733e5" width="30" x="194" y="0">
+					<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) || cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK}) ))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{mj} != null ?
+$P{_PROJEKT}.getLocalizedText(
+ new String[]{$F{mj}.getKodTisk(), $F{mj}.getKodTiskA(), $F{mj}.getKodTiskB(), $F{mj}.getKodTiskC()},
+ new java.util.Locale($P{_LOCALE}.getLocaleCode())
+)
+:
+""
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-6" style="detail" uuid="dc9e3d0a-2ed8-4189-8fa1-0b424bf2bdc6" width="60" x="250" y="0">
+					<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) || cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK}) ))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+$F{cenaMj}.doubleValue()*
+(1-($F{uplSlevaDokl}.booleanValue() ? $F{slevaDokl}.doubleValue() : 0.0)/100)
+* (1-$F{slevaPol}.doubleValue()/100) ,
+$P{_LOCALE}.getLocaleCode(),
+$P{_LOGIKA},
+cz.winstrom.vo.dok.PolDokl.CENA_MJ
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-7" style="detail" uuid="4cea4fba-a91f-477d-8b39-81d15bffc9ee" width="60" x="355" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+!cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumZklMen} : $F{sumZkl})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-8" style="detail" uuid="6732d42a-abe2-47e3-b9dc-56e5b15b1503" width="60" x="475" y="0">
+					<printWhenExpression><![CDATA[new Boolean(! cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK}) )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumCelkemMen} : $F{sumCelkem})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-12" style="detail" uuid="9ce7069f-90c8-4be8-9a0f-347556627866" width="26" x="224" y="0">
+					<printWhenExpression><![CDATA[new Boolean(! (cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+|| cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_UCETNI.equals($F{typPolozkyK})
+|| $P{_POLDOKL_ADAPTER}.getSleva( (cz.winstrom.vo.dok.PolDokl) $F{this} ).doubleValue() == 0.0 ))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double ( $P{_POLDOKL_ADAPTER}.getSleva( (cz.winstrom.vo.dok.PolDokl) $F{this} ).doubleValue() )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-21" style="detail" uuid="18c568f4-a3df-4f0e-a4ea-6981b06ae9b1" width="38" x="310" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+!cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double( $F{sazbaDph}.getSzbDph() )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-42" style="detail" uuid="e223a5cd-6f55-4f7b-996e-72cce0706e00" width="60" x="415" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+!cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
+&&
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{_ADAPTER}.isMenaCizi( $F{datVyst}, $F{mena}) ? $F{sumDphMen} : $F{sumDph})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="12" splitType="Stretch">
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-40" style="tucne" uuid="360c483e-f76a-466f-bff0-f19956fc6e49" width="66" x="349" y="1">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumZkl}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-41" style="tucne" uuid="4026221f-d45c-4c23-8903-4aa2be1c2093" width="60" x="475" y="1"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumCelkem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-44" style="tucne" uuid="428e5098-707a-4653-8c6f-e8e7e43b7467" width="60" x="415" y="1">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumDph}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-46" style="tucne" uuid="f5d38b44-4a6f-46b7-acf1-000ff8bfc46b" width="307" x="41" y="1">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkem", true ) + ":"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

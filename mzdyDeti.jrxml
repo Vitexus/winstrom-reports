@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="722" leftMargin="0" name="mzdyDeti" orientation="Landscape" pageHeight="595" pageWidth="722" rightMargin="0" topMargin="0" uuid="641f51cc-ba50-4090-9007-32f20bf6b0a8" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1148"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.mzdy.impl.AktualMzdyBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="java.lang.Integer" isForPrompting="false" name="_rok"/>
+	<field class="java.lang.String" name="jmenoPrijmeni">
+		<fieldDescription><![CDATA[jmenoPrijmeni]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="rc">
+		<fieldDescription><![CDATA[rc]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="odDoJedno">
+		<fieldDescription><![CDATA[odDoJedno]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="odDoDruhe">
+		<fieldDescription><![CDATA[odDoDruhe]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="odDoDalsi">
+		<fieldDescription><![CDATA[odDoDalsi]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="ztpOdDo">
+		<fieldDescription><![CDATA[ztpOdDo]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="13" key="textField-7" style="Detail" uuid="f9450c21-8c44-4dad-a1eb-9e5a8b7052c7" width="45" x="6" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "deti", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-8" style="Detail" uuid="a212aae3-4ad2-4d2d-82fb-a40c2825ad98" width="116" x="6" y="17"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiJmeno", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-9" style="Detail" uuid="d6fdd9f2-8575-40bd-a328-463d0850188e" width="87" x="135" y="17"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiRC", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="26" isPrintWhenDetailOverflows="true" key="textField-10" style="Detail" uuid="102b6ae8-e23a-40ed-80cf-0eaa530d9e50" width="130" x="236" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOGIKA}.getSlevaPrvni($P{_rok}.intValue()) == null ?
+""
+:
+($P{_LOGIKA}.getSlevaPrvniMin($P{_rok}.intValue()) != null
+?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva1Min", true, new String[]{$P{_LOGIKA}.getSlevaPrvni($P{_rok}.intValue()), $P{_LOGIKA}.getSlevaPrvniMin($P{_rok}.intValue()), $P{_LOGIKA}.getZakonZmeny($P{_rok}.intValue())} )
+:
+
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva1", true, new String[]{$P{_LOGIKA}.getSlevaPrvni($P{_rok}.intValue())} ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="26" key="textField-11" style="Detail" uuid="59a94d42-3e2d-4dba-9135-063c14d26826" width="130" x="517" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOGIKA}.getSlevaDalsi($P{_rok}.intValue()) == null ?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva", true)
+:
+($P{_LOGIKA}.getSlevaDalsiMin($P{_rok}.intValue()) != null
+?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva3Min", true, new String[]{$P{_LOGIKA}.getSlevaDalsi($P{_rok}.intValue()), $P{_LOGIKA}.getSlevaDalsiMin($P{_rok}.intValue()), $P{_LOGIKA}.getZakonZmeny($P{_rok}.intValue())} )
+:
+
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva3", true, new String[]{$P{_LOGIKA}.getSlevaDalsi($P{_rok}.intValue())} ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="26" key="textField-12" style="Detail" uuid="414a4dcc-ed3b-4308-8be3-416c430738a3" width="130" x="383" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOGIKA}.getSlevaDruhe($P{_rok}.intValue()) == null ?
+""
+:
+
+($P{_LOGIKA}.getSlevaDruheMin($P{_rok}.intValue()) != null
+?
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva2Min", true, new String[]{$P{_LOGIKA}.getSlevaDruhe($P{_rok}.intValue()), $P{_LOGIKA}.getSlevaDruheMin($P{_rok}.intValue()), $P{_LOGIKA}.getZakonZmeny($P{_rok}.intValue())} )
+:
+
+$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiSleva2", true, new String[]{$P{_LOGIKA}.getSlevaDruhe($P{_rok}.intValue())} ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="26" key="textField-16" style="Detail" uuid="d8daf9bd-0361-428c-bc20-e8fd5948c399" width="65" x="652" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "zamMzdovyList", "detiZTP", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="11" key="textField-2" mode="Transparent" style="Detail" uuid="8246284f-8eeb-4b90-b8bb-887fd705bc43" width="115" x="7" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jmenoPrijmeni}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="11" key="textField-4" mode="Transparent" style="Detail" uuid="aea8e088-6bbc-4851-b5b5-c6ecb03519e2" width="88" x="134" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{rc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-13" style="Detail" uuid="0b3bf974-5c0d-41d6-9742-8b25627bfc8c" width="130" x="236" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{odDoJedno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-14" style="Detail" uuid="826e3e4f-3359-4bc8-a128-3330b7b2539f" width="130" x="383" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{odDoDruhe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-15" style="Detail" uuid="b243cd00-a0b9-4f2c-bfde-23d21e4e8e36" width="130" x="517" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{odDoDalsi}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-17" style="Detail" uuid="789f461f-c418-41ee-b6c5-b7ace71401d8" width="66" x="652" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ztpOdDo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

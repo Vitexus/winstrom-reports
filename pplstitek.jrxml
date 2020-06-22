@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnCount="2" columnSpacing="20" columnWidth="381" leftMargin="30" name="pplstitek" orientation="Landscape" pageHeight="595" pageWidth="842" printOrder="Horizontal" rightMargin="30" topMargin="20" uuid="aaecff7e-f79c-4ddb-beb6-3e540aff82bb" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<style fontName="CMU Bright" fontSize="14" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" name="mestoStyle" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mestoOdesilatele}.length()> 30 ?  Boolean.TRUE : Boolean.FALSE]]></conditionExpression>
+			<style fontName="CMU Bright" fontSize="10" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+		</conditionalStyle>
+	</style>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.dok.CisloBalReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+	<parameter class="java.util.Map" name="_MAPA"/>
+	<queryString>
+		
+	</queryString>
+	<field class="cz.winstrom.vo.dok.Doklad" name="doklad">
+		<fieldDescription><![CDATA[doklad]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.FormaDopravy" name="formaDopravy">
+		<fieldDescription><![CDATA[formaDopravy]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="cislo">
+		<fieldDescription><![CDATA[cislo]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<variable class="cz.winstrom.vo.adr.Stat" name="statFirmy" resetType="Column">
+		<variableExpression><![CDATA[($F{doklad}.isPostovniShodna() ? $F{doklad}.getStat() : $F{doklad}.getFaStat())]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{doklad}.isPostovniShodna() ? $F{doklad}.getStat() : $F{doklad}.getFaStat())]]></initialValueExpression>
+	</variable>
+	<variable class="cz.winstrom.vo.adr.Stat" name="statNastaveni" resetType="Column">
+		<variableExpression><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStat()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStatFakturacniAdresy()
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStat()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStatFakturacniAdresy()
+)]]></initialValueExpression>
+	</variable>
+	<variable class="cz.winstrom.service.dok.impl.CisloBalHelper.Adresa" name="adresaDoruceni">
+		<variableExpression><![CDATA[$P{_ADAPTER}.getAdresaDoruceni($F{doklad})]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.getAdresaDoruceni($F{doklad})]]></initialValueExpression>
+	</variable>
+	<variable class="java.lang.String" name="mestoOdesilatele">
+		<variableExpression><![CDATA[((((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getMesto() : "")
+:
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaMesto() : "")
+))]]></variableExpression>
+		<initialValueExpression><![CDATA[((((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getMesto() : "")
+:
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaMesto() : "")
+))]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="276" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="14" key="textField-5" positionType="Float" style="ColumnHeader" uuid="a6dadf08-8924-4f5f-922c-8685f53c21e0" width="239" x="142" y="113"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tel: " +
+(!cz.winstrom.util.WSValidationUtil.isBlank($F{doklad}.getKontaktTel()) ?
+    $F{doklad}.getKontaktTel()
+    :
+    ($F{doklad}.getFirma() != null ?
+        (!cz.winstrom.util.WSValidationUtil.isBlank($F{doklad}.getFirma().getTel()) ?
+            $F{doklad}.getFirma().getTel()
+            :
+            (!cz.winstrom.util.WSValidationUtil.isBlank($F{doklad}.getFirma().getMobil()) ?
+                $F{doklad}.getFirma().getMobil()
+                :
+                ""
+            )
+        )
+        :
+        ""
+    )
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="34" key="textField-5" positionType="Float" style="ColumnHeader" uuid="7f6eeb8f-0b39-451f-9046-ea37b7a35700" width="239" x="142" y="79"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{adresaDoruceni}.getPsc()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="20" key="textField-5" positionType="Float" style="ColumnHeader" uuid="7227caca-ea9c-4335-803c-5252de529dbf" width="239" x="142" y="18"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{adresaDoruceni}.getNazev()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField" style="Detail" uuid="0f26d77e-f8dd-4a58-9593-5a5d121a18bd" width="214" x="142" y="8"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "prijemce", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="20" key="textField-5" positionType="Float" style="ColumnHeader" uuid="57c50d71-d25d-4c40-a391-7f82c8e16083" width="239" x="142" y="39"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{adresaDoruceni}.getUlice()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="20" key="textField-5" positionType="Float" style="ColumnHeader" uuid="89530504-25e2-4d29-afd3-aaae9a15f8c7" width="239" x="142" y="59"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{adresaDoruceni}.getMesto()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#000000" forecolor="#FFFFFF" height="49" key="textField-5" mode="Opaque" positionType="Float" style="ColumnHeader" uuid="065c3179-904c-47a7-9708-ab3f76cacb79" width="112" x="269" y="79">
+					<printWhenExpression><![CDATA[new Boolean(
+    $V{statFirmy} != null /*&&
+    !cz.winstrom.vo.adr.Stat.equalsIgnoreVersion($V{statFirmy}, $V{statNastaveni})*/
+ )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" size="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{adresaDoruceni}.getStat().getKod()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-6" style="Detail" uuid="1de64ab1-0e25-4f93-8fce-158c133e08ff" width="214" x="142" y="152"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "odesilatel", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-7" style="ColumnHeader" uuid="bc8fea2c-1b52-460e-be8d-46aa87261b27" width="239" x="142" y="162"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getNastaveniAPI().getNazFirmy()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-8" style="ColumnHeader" uuid="944fd876-3811-4251-ac26-6c9849d09018" width="239" x="142" y="180"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getUlice()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaUlice()
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-9" style="mestoStyle" uuid="a4948f89-fd51-4ce8-aa2d-b72da0d30f68" width="239" x="142" y="198"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$V{mestoOdesilatele}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-10" style="ColumnHeader" uuid="34f4d988-481e-4f78-8a29-25522d8383b1" width="109" x="142" y="216"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getPsc() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getPsc() : "")
+:
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaPsc() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getFaPsc() : "")
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-11" style="ColumnHeader" uuid="220b2503-81cb-4190-b50d-b317f644da38" width="130" x="251" y="216"/>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStat().getKod()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()).getStatFakturacniAdresy().getKod()
+)]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" scaleImage="RetainShape" vAlign="Top">
+				<reportElement height="45" key="image-1" style="Detail" uuid="b5c156b3-0ca3-43ca-8d2e-a00a05b55df5" width="135" x="0" y="1"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/resources/wsreports/_globalreports/ppl/logo.jpg")]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-12" style="Detail" uuid="894b8d51-051d-4c9c-9842-01b636e0fff3" width="135" x="0" y="41"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "expresnibalikovasluzba", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-13" style="Detail" uuid="00b94a87-f8a2-453a-b6ed-b710055dcbc7" width="135" x="0" y="53"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "modralinka", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-14" style="Detail" uuid="75af54c9-4e04-49da-b8fc-dfdad3cad345" width="135" x="0" y="66"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "email", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-15" style="Detail" uuid="8bb5fc1f-6749-4129-8782-46fe2ca5ddac" width="135" x="0" y="79"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "www", true )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement height="17" key="line-1" style="Detail" uuid="bdb4bd17-52d8-4c22-babc-a41e3c989f2e" width="1" x="391" y="1"/>
+			</line>
+			<line>
+				<reportElement height="17" key="line-2" style="Detail" uuid="540abeb9-c1ac-4b14-ab5d-28b8dbb6c91d" width="1" x="391" y="258"/>
+			</line>
+			<line>
+				<reportElement height="1" key="line-3" style="Detail" uuid="903181f3-364d-4626-b985-6fae2c52d95d" width="20" x="382" y="275"/>
+			</line>
+			<line>
+				<reportElement height="1" key="line-4" style="Detail" uuid="257483e0-42c4-4a00-9fa2-41bfec4ed972" width="20" x="382" y="0"/>
+			</line>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-16" style="ColumnHeader" uuid="7e4aa412-f06d-48a0-a819-cbcc980ff2fe" width="32" x="300" y="246"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $P{_ADAPTER}.vratPoradiStitku( $F{doklad}, $F{cislo}, $P{_MAPA})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="1" key="textField-17" positionType="Float" style="ColumnHeader" uuid="f4135baf-43db-4e38-a3bd-1874460e5da3" width="239" x="142" y="38">
+					<printWhenExpression><![CDATA[new Boolean(
+$F{doklad}.getFirma() != null && !cz.winstrom.util.WSValidationUtil.isBlank($F{doklad}.getFirma().getNazev2())
+)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="4">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{doklad}.getFirma() != null && !cz.winstrom.util.WSValidationUtil.isBlank($F{doklad}.getFirma().getNazev2()) ?
+  $P{_PROJEKT}.getLocalizedText(
+      new String[] {$F{doklad}.getFirma().getNazev2(), $F{doklad}.getFirma().getNazev2A(), $F{doklad}.getFirma().getNazev2B(), $F{doklad}.getFirma().getNazev2C()},
+      new java.util.Locale($P{_LOCALE}.getLocaleCode()) )
+  : ""
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="143" key="textField-18" style="ColumnHeader" uuid="b50bb871-ae8c-4afb-9dbc-91287ed8a505" width="37" x="98" y="102"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement rotation="Right" textAlignment="Center" verticalAlignment="Bottom">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.replaceNonDigitsCharsWithChar($F{cislo}, '0')]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement height="143" uuid="89c1263d-f878-4346-a7b6-80f6cd9667e3" width="98" x="0" y="102"/>
+				<jr:Interleaved2Of5 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" checksumMode="add" displayChecksum="true" moduleWidth="1.1" orientation="270" textPosition="none" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[cz.winstrom.util.WSFormatUtil.replaceNonDigitsCharsWithChar($F{cislo}, '0')]]></jr:codeExpression>
+				</jr:Interleaved2Of5>
+			</componentElement>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-15" style="Detail" uuid="c2523062-d61f-4bdb-a653-150fd2699e44" width="135" x="0" y="92"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText(
+    $F{formaDopravy}.getNazvy(),
+    new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" scaleImage="RetainShape" vAlign="Top">
+				<reportElement height="31" key="image-1" style="Detail" uuid="e401f88f-848d-49dc-ae8d-5998047cc048" width="36" x="0" y="245"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/graphics/flexibee.png")]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-14" style="Detail" uuid="a32112e3-116d-476d-8073-24bb59d9e628" width="102" x="40" y="256"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "flexibee", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-16" style="ColumnHeader" uuid="8eed0fa0-4f4b-4ebd-a875-9216e0877524" width="49" x="332" y="246"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" / " + $F{doklad}.getBalikPocet()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-14" style="Detail" uuid="27e3916d-a6cc-495a-bb9f-df4b2263a039" width="236" x="145" y="266"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "dokladCislo", true ) + ": " +
+$F{doklad}.getKod()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="18" key="textField-16" style="ColumnHeader" uuid="168a5c3a-14d8-46f2-b3de-a78e55d0ef4f" width="152" x="142" y="246">
+					<printWhenExpression><![CDATA[new Boolean(
+    cz.winstrom.vo.UctoLokCiselniky.FORMA_UHR_DOBIRKA.equals(((cz.winstrom.vo.dok.DoklFak) $F{doklad}).getFormaUhrK())
+    ||
+    ($F{doklad}.getFormaDopravy() != null && $P{_ADAPTER}.isSpecialniSluzbaDopravy($F{doklad}, $F{doklad}.getFormaDopravy(), "PPL.DOBIRKA"))
+)]]></printWhenExpression>
+				</reportElement>
+				<box rightPadding="0">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).isCiziMena( $F{doklad}.getMena() ) ?
+    $F{doklad}.getSumCelkemMen()
+    :
+    $F{doklad}.getSumCelkem()
+),
+$P{_LOCALE}.getLocaleCode(),
+$P{_ADAPTER}.getVoBL(),
+cz.winstrom.vo.dok.Doklad.SUM_CELKEM
+)
++ " " +
+($F{doklad}.getMena() == null ?
+    ((cz.winstrom.vo.nast.Nastaveni) ($P{_ADAPTER}.getNastaveni( $F{doklad}.getDatVyst() ))).getMena().getSymbolOrKod()
+    :
+    $F{doklad}.getMena().getSymbolOrKod()
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="10" key="textField-14" style="Detail" uuid="7f9d2660-826e-4c2c-a8b5-a3e35f1378cf" width="237" x="142" y="236">
+					<printWhenExpression><![CDATA[new Boolean(
+    cz.winstrom.vo.UctoLokCiselniky.FORMA_UHR_DOBIRKA.equals(((cz.winstrom.vo.dok.DoklFak) $F{doklad}).getFormaUhrK())
+    ||
+    ($F{doklad}.getFormaDopravy() != null && $P{_ADAPTER}.isSpecialniSluzbaDopravy($F{doklad}, $F{doklad}.getFormaDopravy(), "PPL.DOBIRKA"))
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "pplstitek", "dobirka", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

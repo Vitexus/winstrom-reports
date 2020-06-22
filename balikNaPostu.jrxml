@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="291" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="balikNaPostu" orientation="Portrait" pageHeight="419" pageWidth="291" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isDefault="false" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+
+	<field class="java.lang.Integer" name="id">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkem">
+		<fieldDescription><![CDATA[sumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkemMen">
+		<fieldDescription><![CDATA[sumCelkemMen]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="nazFirmy">
+		<fieldDescription><![CDATA[nazFirmy]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="ulice">
+		<fieldDescription><![CDATA[ulice]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="psc">
+		<fieldDescription><![CDATA[psc]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Stat" name="stat">
+		<fieldDescription><![CDATA[stat]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faNazev">
+		<fieldDescription><![CDATA[faNazev]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faUlice">
+		<fieldDescription><![CDATA[faUlice]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faPsc">
+		<fieldDescription><![CDATA[faPsc]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faMesto">
+		<fieldDescription><![CDATA[faMesto]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Stat" name="faStat">
+		<fieldDescription><![CDATA[faStat]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="varSym">
+		<fieldDescription><![CDATA[varSym]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.KonSym" name="konSym">
+		<fieldDescription><![CDATA[konSym]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="specSym">
+		<fieldDescription><![CDATA[specSym]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.Bsp" name="bspBan">
+		<fieldDescription><![CDATA[bspBan]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="mesto">
+		<fieldDescription><![CDATA[mesto]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Adresar" name="firma">
+		<fieldDescription><![CDATA[firma]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Kontakt" name="kontaktOsoba">
+		<fieldDescription><![CDATA[kontaktOsoba]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="formaUhrK">
+		<fieldDescription><![CDATA[formaUhrK]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="postovniShodna">
+		<fieldDescription><![CDATA[postovniShodna]]></fieldDescription>
+	</field>
+
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="391" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-7" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="57" x="54" y="166">
+							<printWhenExpression><![CDATA[new Boolean(cz.winstrom.vo.UctoLokCiselniky.FORMA_UHR_DOBIRKA.equals($F{formaUhrK}))]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sumCelkem}]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-8" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="165"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getNazFirmy()
+:
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getNazFirmy()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-9" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="179"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getUlice()
+:
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getPostUlice()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-10" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="194"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ ($P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() != null ? $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() + " " : "" )
+: 
+ (((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() != null ? 
+     ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() + " " : "" )
+)
++
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getMesto() != null ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getMesto() : "" )
+:
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getPostMesto() != null ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getPostMesto() : "" )
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-11" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="120" x="12" y="194">
+							<printWhenExpression><![CDATA[new Boolean(cz.winstrom.vo.UctoLokCiselniky.FORMA_UHR_DOBIRKA.equals($F{formaUhrK}))]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["="+
+cz.winstrom.util.WSConvertUtil.formatDoubleToWords(
+ ($P{_PROJEKT}.isCiziMena(($F{mena} != null ? $F{mena}.getKod() : null)) ? $F{sumCelkemMen}.doubleValue() : $F{sumCelkem}.doubleValue()),
+ $P{_LOCALE}.getLocaleCode(),
+ ($F{mena} == null ? "CZK" : $F{mena}.getKod())
+)
++ "="]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-12" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="248"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{postovniShodna}.booleanValue() ? $F{nazFirmy} : $F{faNazev} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-13" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="260"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{postovniShodna}.booleanValue() ? $F{ulice} : $F{faUlice})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-14" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="141" x="138" y="272"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{postovniShodna}.booleanValue() ? $F{mesto} : $F{faMesto} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-15" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="116" x="163" y="297"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement backcolor="#FFFFFF" forecolor="#000000" height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-16" mode="Transparent" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="105" x="174" y="312"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{kontaktOsoba} != null && $F{kontaktOsoba}.getMobil() != null && !$F{kontaktOsoba}.getMobil().isEmpty() ? 
+  $F{kontaktOsoba}.getMobil()
+:
+  ($F{kontaktOsoba} != null && $F{kontaktOsoba}.getTel() != null && !$F{kontaktOsoba}.getTel().isEmpty() ? 
+    $F{kontaktOsoba}.getTel()
+  :
+    ($F{firma} != null && $F{firma}.getMobil() != null && !$F{firma}.getMobil().isEmpty() ? 
+       $F{firma}.getMobil()
+    :
+       $F{firma}.getTel()
+    )
+  )
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

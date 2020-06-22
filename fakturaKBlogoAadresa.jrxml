@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="267" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="fakturaKBlogoAadresa" orientation="Portrait" pageHeight="400" pageWidth="267" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="java.lang.String" isForPrompting="true" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="cz.winstrom.service.dok.impl.DokladBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="java.util.Calendar" isForPrompting="false" name="_DAT_VYST">
+		<parameterDescription><![CDATA[new java.util.GregorianCalendar()]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.util.GregorianCalendar()]]></defaultValueExpression>
+	</parameter>
+	<parameter class="cz.winstrom.service.dok.DokladReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+	<parameter class="cz.winstrom.vo.dok.Doklad" isForPrompting="false" name="_DOKLAD"/>
+
+
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="false" minHeightToStartNewPage="0" name="Faktura">
+			<groupExpression/>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="186" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-23" positionType="Float" stretchType="NoStretch" width="243" x="17" y="115">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getIcDph( $P{_DAT_VYST}, $P{_DOKLAD} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-24" positionType="Float" stretchType="NoStretch" width="243" x="17" y="104">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getDic($P{_DAT_VYST})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-25" positionType="Float" stretchType="NoStretch" width="243" x="17" y="93">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getIc() != null ?
+$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "ic", true ) + ": " + 
+$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getIc()
+:
+"" )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-2" positionType="Float" stretchType="NoStretch" width="148" x="112" y="93">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getIc() != null ?
+$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "ic", true ) + ": " + 
+$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getIc()
+:
+"" )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-3" positionType="Float" stretchType="NoStretch" width="148" x="112" y="104">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getDic($P{_DAT_VYST})]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-4" positionType="Float" stretchType="NoStretch" width="148" x="112" y="115">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getIcDph( $P{_DAT_VYST}, $P{_DOKLAD} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="19" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-5" positionType="FixRelativeToTop" stretchType="NoStretch" width="243" x="17" y="17">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI($P{_DAT_VYST} ).getNazFirmy()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-6" positionType="Float" stretchType="NoStretch" width="243" x="17" y="39">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getUlice()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaUlice()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-7" positionType="Float" stretchType="NoStretch" width="243" x="17" y="57">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getPsc() != null ? 
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getPsc() : "")
++ "  " +
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getMesto() : "")
+:
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaPsc() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaPsc() : "")
++ "  " +
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaMesto() : "")
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-8" positionType="Float" stretchType="NoStretch" width="243" x="17" y="75">
+							<printWhenExpression><![CDATA[new Boolean (
+($P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) == null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement isStyledText="true">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{_ADAPTER} != null && $P{_DOKLAD} != null ?
+$P{_ADAPTER}.getNazevStatuFirmyZNastaveni($P{_DOKLAD}, new java.util.Locale($P{_LOADER}.getLocaleCode()))
+:
+( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getStat().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode())
+)
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getStatFakturacniAdresy().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode())
+)
+)
+)]]></textFieldExpression>
+				</textField>
+				<image bookmarkLevel="0" evaluationTime="Now" hAlign="Center" hyperlinkTarget="Self" hyperlinkType="None" isLazy="false" onErrorType="Error" scaleImage="RetainShape" vAlign="Middle">
+					<reportElement height="111" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="resizuj-1" positionType="FixRelativeToTop" stretchType="NoStretch" width="100" x="6" y="17">
+							<printWhenExpression><![CDATA[new Boolean(
+($P{_ADAPTER} != null ?
+(! cz.winstrom.vo.UctoLokCiselniky.ZOBR_LOGO_ZACHOV_VELIKOST.equals($P{_ADAPTER}.getNastaveni( $P{_DAT_VYST} ).getZobrLogoK()))
+&&
+(
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+)
+:
+(! cz.winstrom.vo.UctoLokCiselniky.ZOBR_LOGO_ZACHOV_VELIKOST.equals(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_DAT_VYST}).getZobrLogoK()))
+&&
+(
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)
+)
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.awt.Image"><![CDATA[($P{_ADAPTER} != null?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} )
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOGIKA}.getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()))
+)]]></imageExpression>
+				</image>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-9" positionType="FixRelativeToTop" stretchType="NoStretch" width="194" x="66" y="132"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getTel()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-10" positionType="FixRelativeToTop" stretchType="NoStretch" width="194" x="66" y="142"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getFax()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-11" positionType="FixRelativeToTop" stretchType="NoStretch" width="194" x="66" y="152"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getMobil()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-12" positionType="FixRelativeToTop" stretchType="NoStretch" width="194" x="66" y="162"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getEmail()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-13" positionType="FixRelativeToTop" stretchType="NoStretch" width="194" x="66" y="172"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI( $P{_DAT_VYST} ).getWww()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-14" positionType="FixRelativeToTop" stretchType="NoStretch" width="60" x="6" y="172"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "www", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-15" positionType="FixRelativeToTop" stretchType="NoStretch" width="60" x="6" y="162"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "email", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-16" positionType="FixRelativeToTop" stretchType="NoStretch" width="60" x="6" y="152"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "mobil", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-17" positionType="FixRelativeToTop" stretchType="NoStretch" width="60" x="6" y="142"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "fax", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-18" positionType="FixRelativeToTop" stretchType="NoStretch" width="60" x="6" y="132"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "global", "tel", true ) + ":"]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="19" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-19" positionType="FixRelativeToTop" stretchType="NoStretch" width="148" x="112" y="17">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNastaveniAPI($P{_DAT_VYST}).getNazFirmy()]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-20" positionType="Float" stretchType="NoStretch" width="148" x="112" y="57">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getPsc() != null ? 
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getPsc() : "")
++ "  " +
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getMesto() : "")
+:
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaPsc() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaPsc() : "")
++ "  " +
+(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaMesto() != null ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaMesto() : "")
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-21" positionType="Float" stretchType="NoStretch" width="148" x="112" y="39">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getUlice()
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getFaUlice()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="18" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-22" positionType="Float" stretchType="NoStretch" width="148" x="112" y="75">
+							<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER} != null ?
+$P{_ADAPTER}.getLogo( $P{_DAT_VYST} ) != null
+:
+((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
+.getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
+)]]></printWhenExpression>
+						</reportElement>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement isStyledText="true">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="12"/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{_ADAPTER} != null && $P{_DOKLAD} != null ?
+$P{_ADAPTER}.getNazevStatuFirmyZNastaveni($P{_DOKLAD}, new java.util.Locale($P{_LOADER}.getLocaleCode()))
+:
+( ((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).isFakturacniShodna() ?
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getStat().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode())
+)
+:
+((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni($P{_DAT_VYST}, $P{_LOGIKA}.getSessionManager()).getStatFakturacniAdresy().getNazev(
+ $P{_PROJEKT}.getLangsType(), new java.util.Locale($P{_LOADER}.getLocaleCode())
+)
+)
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

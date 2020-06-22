@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="240" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="podaciListek" orientation="Portrait" pageHeight="240" pageWidth="240" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isDefault="false" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isStyledText="true" isUnderline="false" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.impl.WSValueObjectBLImpl" isForPrompting="false" name="_LOGIKA"/>
+	<parameter class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+
+	<field class="java.lang.String" name="ulice">
+		<fieldDescription><![CDATA[ulice]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="psc">
+		<fieldDescription><![CDATA[psc]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Stat" name="stat">
+		<fieldDescription><![CDATA[stat]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="mesto">
+		<fieldDescription><![CDATA[mesto]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faMesto">
+		<fieldDescription><![CDATA[faMesto]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faPsc">
+		<fieldDescription><![CDATA[faPsc]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Stat" name="faStat">
+		<fieldDescription><![CDATA[faStat]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="faUlice">
+		<fieldDescription><![CDATA[faUlice]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="postovniShodna">
+		<fieldDescription><![CDATA[postovniShodna]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="id">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.WSValueObject" name="this">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+
+
+		<group isReprintHeaderOnEachPage="false" isResetPageNumber="false" isStartNewColumn="false" isStartNewPage="true" minHeightToStartNewPage="0" name="id">
+			<groupExpression><![CDATA[$F{id}]]></groupExpression>
+			<groupHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="2" isSplitAllowed="true">
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</background>
+		<title>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="235" isSplitAllowed="true">
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-8" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="180" x="50" y="116"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getNazFirmy()
+:
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getNazFirmy()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-9" positionType="Float" stretchType="NoStretch" style="Detail" width="213" x="17" y="133"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getUlice()
+:
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getPostUlice()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="ScaleFont">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-10" positionType="Float" stretchType="NoStretch" style="Detail" width="147" x="83" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).isPostovniShodna() ?
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getMesto()
+:
+((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar())).getPostMesto()
+)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-11" positionType="FixRelativeToTop" stretchType="NoStretch" style="Detail" width="213" x="17" y="169"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" bottomPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.Doklad.POSTOVNI_SHODNA ) ?
+( $F{postovniShodna}.booleanValue() ? 
+($F{this} instanceof cz.winstrom.vo.dok.Doklad ? $F{this}.getValue( cz.winstrom.vo.dok.Doklad.NAZ_FIRMY ) : $F{this}.getValue( cz.winstrom.vo.adr.Adresar.NAZEV ))
+: 
+($F{this} instanceof cz.winstrom.vo.dok.Doklad ? $F{this}.getValue( cz.winstrom.vo.dok.Doklad.FA_NAZEV ) : $F{this}.getValue( cz.winstrom.vo.adr.Adresar.FA_JMENO_FIRMY ))) 
+:
+($F{this} instanceof cz.winstrom.vo.dok.Doklad ? $F{this}.getValue( cz.winstrom.vo.dok.Doklad.NAZ_FIRMY ) : $F{this}.getValue( cz.winstrom.vo.adr.Adresar.NAZEV )) )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-12" positionType="Float" stretchType="NoStretch" style="Detail" width="213" x="17" y="185"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" bottomPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.Doklad.POSTOVNI_SHODNA ) ?
+( $F{postovniShodna}.booleanValue() ? $F{ulice} : $F{faUlice} ) :
+$F{ulice} )]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-13" positionType="Float" stretchType="NoStretch" style="Detail" width="213" x="17" y="201"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" bottomPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.Doklad.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ?
+($F{mesto} != null ? $F{mesto} : "")
+:
+($F{faMesto} != null ? $F{faMesto} : "")
+)
+: ($F{mesto} != null ? $F{mesto} : ""))]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-15" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="14" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 0, 
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() 
+: 
+ ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() )
+, true )
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-16" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="26" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 1, 
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() 
+: 
+ ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() )
+, true )
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-17" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="38" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 2, 
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() 
+: 
+ ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() )
+, true )
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-18" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="59" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 3, 
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() 
+: 
+ ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() )
+, true )
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-19" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="71" y="149"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 4, 
+(((cz.winstrom.vo.nast.Nastaveni) $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).isPostovniShodna() ?
+ $P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() ).getPsc() 
+: 
+ ((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( new java.util.GregorianCalendar() )).getPostPsc() )
+, true )
+]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-20" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="14" y="217"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 0 ,
+( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.DoklFak.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} ) : ($F{psc} != null ? $F{psc} : "")
+)
+, true)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-21" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="26" y="217"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 1 ,
+( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.DoklFak.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} ) : ($F{psc} != null ? $F{psc} : "")
+)
+, true)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-22" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="38" y="217"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 2 ,
+( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.DoklFak.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} ) : ($F{psc} != null ? $F{psc} : "")
+)
+, true)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-23" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="59" y="217"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 3 ,
+( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.DoklFak.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} ) : ($F{psc} != null ? $F{psc} : "")
+)
+, true)]]></textFieldExpression>
+				</textField>
+				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="16" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-24" positionType="Float" stretchType="NoStretch" style="Detail" width="11" x="71" y="217"/>
+					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{_ADAPTER}.stringAt( 4 ,
+( $P{_LOGIKA}.isActiveProperty( cz.winstrom.vo.dok.DoklFak.POSTOVNI_SHODNA ) ?
+($F{postovniShodna}.booleanValue() ? $F{psc} : $F{faPsc} ) : ($F{psc} != null ? $F{psc} : "")
+)
+, true)]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0" isSplitAllowed="true">
+			</band>
+		</summary>
+</jasperReport>

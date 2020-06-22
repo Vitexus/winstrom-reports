@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="320" leftMargin="0" name="rekapitulaceDphSPDP" pageHeight="842" pageWidth="320" rightMargin="0" topMargin="0" uuid="9bd98813-39df-4e16-bfb1-e3ba73fa2ce4" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="platiOd"/>
+	<parameter class="cz.winstrom.vo.dok.Doklad" isForPrompting="false" name="_DOKLAD"/>
+	<parameter class="cz.winstrom.service.dok.DokladReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_VMENE"/>
+	<field class="cz.winstrom.vo.nast.SazbaDph" name="sazbaDph">
+		<fieldDescription><![CDATA[sazbaDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkem">
+		<fieldDescription><![CDATA[sumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDph">
+		<fieldDescription><![CDATA[sumDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZkl">
+		<fieldDescription><![CDATA[sumZkl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumCelkem">
+		<fieldDescription><![CDATA[defaultSumCelkem]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumDph">
+		<fieldDescription><![CDATA[defaultSumDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumZkl">
+		<fieldDescription><![CDATA[defaultSumZkl]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumDphBezZaloh">
+		<fieldDescription><![CDATA[defaultSumDphBezZaloh]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumZklBezZaloh">
+		<fieldDescription><![CDATA[defaultSumZklBezZaloh]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumDphOdpocet">
+		<fieldDescription><![CDATA[defaultSumDphOdpocet]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="defaultSumZklOdpocet">
+		<fieldDescription><![CDATA[defaultSumZklOdpocet]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Mena" name="mena">
+		<fieldDescription><![CDATA[mena]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumCelkemMen">
+		<fieldDescription><![CDATA[sumCelkemMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphMen">
+		<fieldDescription><![CDATA[sumDphMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklMen">
+		<fieldDescription><![CDATA[sumZklMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="tisknoutMen">
+		<fieldDescription><![CDATA[tisknoutMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="tisknoutOdpocet">
+		<fieldDescription><![CDATA[tisknoutOdpocet]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="prenDPH">
+		<fieldDescription><![CDATA[prenDPH]]></fieldDescription>
+	</field>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklCelkem">
+		<variableExpression><![CDATA[($F{prenDPH}.booleanValue() == true ?
+new Double(0.0)
+:
+$F{defaultSumZkl}
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphCelkem">
+		<variableExpression><![CDATA[($F{prenDPH}.booleanValue() == true ?
+new Double(0.0)
+:
+$F{defaultSumDph}
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="celkemFakturovano">
+		<groupExpression/>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="13" splitType="Stretch">
+				<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDphCelkemBezZalohNew($P{_DOKLAD})]]></printWhenExpression>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-30" uuid="be39482c-60ab-4257-80d0-52fb27c38bd0" width="100" x="0" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDphCelkemBezZalohNew($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkemFakturovano", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-32" uuid="8cbe39d7-afd2-4cab-a4da-468b7b1b1111" width="144" x="176" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDphCelkemBezZalohNew($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2" rightPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getSumDphBezZaloh($P{_DOKLAD})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-31" uuid="2aa74154-e959-485a-811a-be0d9e16163e" width="109" x="67" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDphCelkemBezZalohNew($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2" rightPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getSumZklBezZaloh($P{_DOKLAD})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="celkem">
+		<groupExpression/>
+		<groupHeader>
+			<band height="13" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-27" positionType="FixRelativeToBottom" uuid="f68eeae8-a2ef-4b8b-a061-d1d8702e590a" width="319" x="1" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "rekapitulaceDphV", true ) +
+" " +
+($F{mena} != null ?
+$F{mena}.getSymbolOrKod()
+:
+($P{_VMENE} != null && $P{_VMENE}.booleanValue() == true ?
+$P{_DOKLAD}.getMena().getSymbolOrKod()
+:
+((cz.winstrom.vo.nast.Nastaveni) ($P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ))).getMena().getSymbolOrKod()
+)
+)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-44" style="ColumnHeader" uuid="c4613e6a-06bb-487d-a241-5dd18e19e352" width="100" x="0" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkemZaklad" )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-45" style="ColumnHeader" uuid="9e319190-8c91-4cab-9361-ea1db722a820" width="109" x="67" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2" rightPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumZklCelkem}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-32" style="ColumnHeader" uuid="10cef8d7-77cb-4c75-b40b-538e7b6dbff6" width="86" x="234" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2" rightPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumDphCelkem}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="13" key="textField-47" style="ColumnHeader" uuid="ccfb6800-19e4-4875-85c9-291f367c9852" width="100" x="176" y="0">
+						<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "celkemDph" )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean (
+$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD}).booleanValue()
+&& (
+$P{_ADAPTER}.isTisknoutDanPriPrijetiPlatby($P{_DOKLAD}).booleanValue()
+||
+$P{_ADAPTER}.isTisknoutDanOdvadiPrijemce($P{_DOKLAD}).booleanValue()
+)
+)]]></printWhenExpression>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-27" positionType="FixRelativeToBottom" uuid="49dbb605-46d2-4279-bb74-9f258243d9de" width="319" x="1" y="0">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutDanOdvadiPrijemce($P{_DOKLAD})]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "danOdvadiPrijemce", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-46" positionType="FixRelativeToBottom" uuid="ff989067-a663-42c7-aa38-46f7c03f5f52" width="319" x="1" y="13">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutDanPriPrijetiPlatby($P{_DOKLAD})]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "danPriPrijetiPlatby", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-18" uuid="1a473504-1fa5-463b-9bd7-4dbf7506afae" width="176" x="0" y="0">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(
+$F{prenDPH}.booleanValue()  == true?
+"Přenesená daňová povinnost"
+:
+$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "zaklad", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-20" uuid="4b396015-4f95-4cf8-a6be-73630e664482" width="109" x="67" y="0">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{prenDPH}.booleanValue() ?
+null
+:
+$F{defaultSumZklBezZaloh})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-22" uuid="24763e15-4b20-43e7-9c87-dde6306343c9" width="144" x="176" y="0">
+					<printWhenExpression><![CDATA[$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD})]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{prenDPH}.booleanValue() ?
+$F{defaultSumZklBezZaloh}
+:
+$F{defaultSumDphBezZaloh}
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-29" uuid="2b3ad904-a600-4c7c-a581-11db8199f1a6" width="58" x="176" y="0">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD}).booleanValue()
+&& $F{prenDPH}.booleanValue() == false)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{prenDPH}.booleanValue() ?
+null
+:
+$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "dph", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-40" positionType="FixRelativeToBottom" uuid="f4f6af7f-344f-43e6-b12d-b8da1164a180" width="100" x="0" y="13">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "zakladOdpocet", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-41" positionType="FixRelativeToBottom" uuid="4c56b634-e699-4657-8f96-a872eaa52781" width="109" x="67" y="13">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{defaultSumZklOdpocet}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-42" positionType="FixRelativeToBottom" uuid="aaa93493-9636-4c33-9c58-72561f27e808" width="108" x="212" y="13">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{defaultSumDphOdpocet}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-43" positionType="FixRelativeToBottom" uuid="97f2c0c8-b68c-4079-8045-8eca1ad8de90" width="58" x="176" y="13">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "dph", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-43" positionType="FixRelativeToBottom" uuid="e214559c-9c09-49b7-a883-c13c9aa913a5" width="58" x="176" y="26">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""
+/*$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "rozdil", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"*/]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-40" positionType="FixRelativeToBottom" uuid="172b6739-8b87-404b-b75f-d015b6ad8e1f" width="100" x="0" y="26">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "rozdil", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-41" positionType="FixRelativeToBottom" uuid="98376435-cd26-44ac-8908-49df97d27696" width="109" x="67" y="26">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(
+$F{defaultSumZklBezZaloh}.doubleValue()
++
+$F{defaultSumZklOdpocet}.doubleValue()
+)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="13" isRemoveLineWhenBlank="true" key="textField-42" positionType="FixRelativeToBottom" uuid="93f4daab-f205-4885-94bd-1f1b3ceed29d" width="108" x="212" y="26">
+					<printWhenExpression><![CDATA[$F{tisknoutOdpocet}]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(
+$F{defaultSumDphBezZaloh}.doubleValue()
++
+$F{defaultSumDphOdpocet}.doubleValue()
+)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="52" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="0" key="textField-33" mode="Transparent" uuid="c7a48ffb-b4ed-413c-89ea-8308522d6da8" width="314" x="1" y="50">
+					<printWhenExpression><![CDATA[new Boolean(
+!cz.winstrom.util.WSValidationUtil.isEmpty($P{_PROJEKT}.getLocalizedText(
+        new String[]{$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnac(),
+$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacA(), $P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacB(),
+ $P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacC()},
+    new java.util.Locale($P{_LOADER}.getLocaleCode()) ))
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText(
+        new String[]{$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnac(),
+$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacA(), $P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacB(),
+ $P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnacC()},
+    new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="11" key="textField-34" mode="Transparent" uuid="831296ef-6604-402e-894d-520b50003c3e" width="170" x="3" y="38">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnac() != null
+&&
+!$P{_PROJEKT}.getNastaveniAPI( $P{_DOKLAD}.getDatVyst() ).getSpisZnac().isEmpty()
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "registraceU", true ) + ":"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-35" uuid="89b1acde-009e-4c59-9e0c-547b508d0367" width="314" x="3" y="19"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(((cz.winstrom.service.UctoProject) $P{_PROJEKT}).getNastaveni( $P{_DOKLAD}.getDatVyst() ).isPlatceDph() ? "" : $P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "nejsemPlatceDph", true ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="13" key="textField-36" uuid="dfe51f3b-a7eb-4b4d-8cc6-31a447221862" width="314" x="3" y="2">
+					<printWhenExpression><![CDATA[new Boolean(
+$P{_PROJEKT}.isCiziMena( $P{_DOKLAD}.getMena().getKod() )
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.dok.DoklFak", "kurz", true )
+ + " "
+ + $P{_LOADER}.formatDualKurz( $P{_DOKLAD}.getKurz(), $P{_LOCALE}.getLocaleCode())
+ + " "
+ + $P{_PROJEKT}.getKodZaklMeny()
+ + " "
+ + $P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "za", true )
+ + " "
+ + cz.winstrom.util.WSFormatUtil.format($P{_DOKLAD}.getKurzMnozstvi())
+ + " "
+ + ($P{_DOKLAD}.getMena().getSymbol() != null && !$P{_DOKLAD}.getMena().getSymbol().isEmpty() ? $P{_DOKLAD}.getMena().getSymbol() : $P{_DOKLAD}.getMena().getKod()) + ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement height="0" key="textField-32" uuid="d3aea211-7347-48ad-b83a-98b5e4cffd80" width="320" x="0" y="0">
+					<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.isTisknoutRekapitulaciDph($P{_DOKLAD}).booleanValue()
+)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

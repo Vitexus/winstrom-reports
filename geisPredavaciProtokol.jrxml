@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="535" leftMargin="30" name="geisPredavaciProtokol" pageHeight="842" pageWidth="595" rightMargin="30" topMargin="20" uuid="c5137893-5ee3-4262-906b-39aac70fb38d" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="cz.winstrom.service.dok.CisloBalReportAdapter" isForPrompting="false" name="_ADAPTER"/>
+	<parameter class="java.util.Map" name="_MAPA"/>
+	<field class="java.lang.String" name="cislo">
+		<fieldDescription><![CDATA[cislo]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.Doklad" name="doklad">
+		<fieldDescription><![CDATA[doklad]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.dok.FormaDopravy" name="formaDopravy">
+		<fieldDescription><![CDATA[formaDopravy]]></fieldDescription>
+	</field>
+	<variable calculation="Count" class="java.lang.Integer" name="ROW_NUMBER">
+		<variableExpression><![CDATA[new Integer(1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(1)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="CELKEM_COD">
+		<variableExpression><![CDATA[($P{_ADAPTER}.isFormaUhradyDobirka($F{doklad}) ?
+($F{doklad}.getBalikPocet() != 0.0 && (1 == $P{_ADAPTER}.vratPoradiStitku( $F{doklad}, $F{cislo}, $P{_MAPA})) ?
+  new Double($P{_ADAPTER}.isCiziMena($F{doklad}.getMena()) ? $F{doklad}.getSumCelkemMen() : $F{doklad}.getSumCelkem())
+   :
+  new Double(0.0)
+)
+ :
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable class="cz.winstrom.service.dok.impl.CisloBalHelper.Adresa" name="adresaDoruceni">
+		<variableExpression><![CDATA[$P{_ADAPTER}.getAdresaDoruceni($F{doklad})]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.getAdresaDoruceni($F{doklad})]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="88" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="26" key="textField-8" style="ColumnHeader" uuid="b02492ed-0797-492c-9fc1-4e619edf5f06" width="426" x="38" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "potvrzeniOPrevzeti", true ).toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-9" style="Detail" uuid="58e72f50-36ff-4cd9-921e-396cba0ac932" width="86" x="0" y="26"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "prikazce", true ) + ":"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-10" style="ColumnHeader" uuid="22f567e2-8d22-4aea-be2d-65e007c1763e" width="133" x="86" y="26"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getNastaveni().getNazFirmy()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-11" style="Detail" uuid="fa9d6082-0056-4cd2-bf19-128dd345cda4" width="133" x="86" y="37"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getNastaveni().getUlice()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-12" style="Detail" uuid="87f2ae09-dfbc-48cc-a1aa-3de8c090d0c9" width="133" x="86" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[(!cz.winstrom.util.WSValidationUtil.isBlank($P{_ADAPTER}.getNastaveni().getPsc()) ?
+$P{_ADAPTER}.getNastaveni().getPsc() + "     " : "") +
+(!cz.winstrom.util.WSValidationUtil.isBlank($P{_ADAPTER}.getNastaveni().getMesto()) ?
+$P{_ADAPTER}.getNastaveni().getMesto() : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-13" style="Detail" uuid="4b0cde6d-8602-4549-ae6f-4057b6e5dfbc" width="92" x="219" y="26"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "datum", true ) + ": " +
+cz.winstrom.util.WSFormatUtil.formatToShortDate(new GregorianCalendar())]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-14" style="Detail" uuid="90235b48-963b-4077-9373-d45ce7dbb4a7" width="27" x="261" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" scaleImage="RetainShape" vAlign="Top">
+				<reportElement height="47" key="image-1" style="Detail" uuid="10e928ee-8da0-4e6d-986a-9b00b9125475" width="50" x="474" y="11"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/resources/wsreports/_globalreports/geis/logo.jpg")]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-35" style="Detail" uuid="f12b1a89-4d98-4fb1-8c14-1a4cf3f3ff1e" width="134" x="337" y="59"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getDepoSvoz($F{formaDopravy}).getTel()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-36" style="Detail" uuid="cbdca621-23fc-4689-ae04-24a2d6735488" width="28" x="219" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "strana", true ) + ": "]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-37" style="Detail" uuid="bb7c80db-24ac-4f79-8d28-2bf00bbde835" width="6" x="255" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-40" style="Detail" uuid="fc7b9df1-13fd-440e-bd65-aed64d1a71e1" width="153" x="318" y="37"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getDepoSvoz($F{formaDopravy}).getUlice()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-41" style="Detail" uuid="4bde148d-8fe6-4829-a93e-d283f8d32b83" width="134" x="337" y="70"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getDepoSvoz($F{formaDopravy}).getFax()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-42" style="Detail" uuid="0b67122b-70c7-4e52-912c-c063b1436217" width="153" x="318" y="26"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "geisNazev", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-43" style="Detail" uuid="23ac7a49-c175-4be3-b7b8-6fc32f7ae775" width="153" x="318" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getDepoSvoz($F{formaDopravy}).getMesto()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-46" style="Detail" uuid="d5b5692c-1ff1-4088-828b-eb363baf3c45" width="19" x="318" y="59"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Tel.:"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-47" style="Detail" uuid="25a2a74a-a2b2-4c85-a151-79247b6f6247" width="19" x="318" y="70"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Fax:"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-6" mode="Opaque" style="ColumnHeader" uuid="3517ff51-695e-42a1-ab6d-c1bc328e6116" width="24" x="0" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "poz", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-15" mode="Opaque" style="ColumnHeader" uuid="2992fa86-77cb-4ae9-9935-464ffa849778" width="126" x="24" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "balikCislo", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-16" mode="Opaque" style="ColumnHeader" uuid="513e0cab-e58d-498e-80dc-da5173766079" width="105" x="150" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "adresat", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-17" mode="Opaque" style="ColumnHeader" uuid="e0ae4463-d84e-4d83-b495-dc85735295ae" width="28" x="304" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "exw", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-18" mode="Opaque" style="ColumnHeader" uuid="442a608c-be10-4e36-a0b9-c12923290d35" width="58" x="332" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "cod", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-19" mode="Opaque" style="ColumnHeader" uuid="7cba9655-a24b-487d-89ef-4bac387454b5" width="57" x="390" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "varSym", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-20" mode="Opaque" style="ColumnHeader" uuid="0cd84efb-6fd3-468b-b4f2-2735a1f55c95" width="88" x="447" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "poznam", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#DDDDDD" height="18" key="textField-28" mode="Opaque" style="ColumnHeader" uuid="e27a689c-d3d7-462b-ad44-115b2f215686" width="50" x="255" y="1"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "pripojisteni", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-7" mode="Transparent" style="Detail" uuid="c538e8f7-3ab8-4abf-bdaf-a135e73a7d74" width="24" x="0" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ROW_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-21" mode="Transparent" style="Detail" uuid="50451d01-39e5-4f8b-bae9-001820379159" width="126" x="24" y="0"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $P{_ADAPTER}.formatCisloBalForGeisBarcode( $F{cislo} ).substring(0, 11) + " " + $F{cislo}.charAt( $F{cislo}.length() - 1 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-22" mode="Transparent" style="Detail" uuid="97b35afe-79a7-49dd-aa40-2b20150777a4" width="105" x="150" y="0"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(!cz.winstrom.util.WSValidationUtil.isBlank($V{adresaDoruceni}.getNazev()) ?
+$V{adresaDoruceni}.getNazev() + "\n" : "") +
+(!cz.winstrom.util.WSValidationUtil.isBlank($V{adresaDoruceni}.getUlice()) ?
+$V{adresaDoruceni}.getUlice() + "\n" : "") +
+($V{adresaDoruceni}.getStat() != null ?
+$V{adresaDoruceni}.getStat().getKod() + "  " : "") +
+(!cz.winstrom.util.WSValidationUtil.isBlank($V{adresaDoruceni}.getPsc()) ?
+$V{adresaDoruceni}.getPsc() + "  " : "") +
+(!cz.winstrom.util.WSValidationUtil.isBlank($V{adresaDoruceni}.getMesto()) ?
+$V{adresaDoruceni}.getMesto() : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-23" mode="Transparent" style="Detail" uuid="b348b45b-cc95-42ae-bbd1-1ae980488632" width="28" x="304" y="0"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-24" mode="Transparent" style="Detail" uuid="da53f0e0-1376-47dc-9071-5fbb2eca431a" width="58" x="332" y="0"/>
+				<box rightPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{_ADAPTER}.isFormaUhradyDobirka($F{doklad}) ?
+($F{doklad}.getBalikPocet() != 0.0 && (1 == $P{_ADAPTER}.vratPoradiStitku( $F{doklad}, $F{cislo}, $P{_MAPA})) ?
+  new Double($P{_ADAPTER}.isCiziMena($F{doklad}.getMena()) ? $F{doklad}.getSumCelkemMen() : $F{doklad}.getSumCelkem())
+   :
+  new Double(0.0)
+)
+ :
+new Double(0.0))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-25" mode="Transparent" style="Detail" uuid="3a247d08-ff65-4e91-9e13-d2ba6d9cfb2f" width="57" x="390" y="0"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{doklad}.getVarSym()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-26" mode="Transparent" style="Detail" uuid="72b8ffe9-ff79-4a61-9984-71b2cf183889" width="88" x="447" y="0"/>
+				<box leftPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getParametrDopravy($F{doklad}, "GEIS.POZNRIDIC")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="ScaleFont">
+				<reportElement backcolor="#FFFFFF" height="45" key="textField-27" mode="Transparent" style="Detail" uuid="12511743-40da-421b-94e7-3aa3453a232d" width="50" x="255" y="0"/>
+				<box rightPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getParametrDopravy($F{doklad}, "GEIS.PRIPOJISTENI_D")]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement height="31" uuid="5947d06d-3b41-4607-bee2-ec65cf95cc8b" width="115" x="30" y="6"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" barHeight="55" checksumRequired="false" drawText="false" type="Int2of5" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{_ADAPTER}.formatCisloBalForGeisBarcode( $F{cislo} )]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-38" positionType="Float" style="Detail" uuid="6744a090-3359-4dda-9850-0e23003102d5" width="535" x="0" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "paticka1", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-39" positionType="Float" style="Detail" uuid="37eee4b1-d3c5-4e06-b958-6cc3bce35425" width="535" x="0" y="11"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "paticka2", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="64" splitType="Stretch">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-32" positionType="Float" style="Detail" uuid="05edf316-2c28-4b30-b6b0-0ce59ec03cbb" width="150" x="0" y="14"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "podpisRidice", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-33" positionType="Float" style="Detail" uuid="588c353b-facd-4ce8-a22f-16eec24870c6" width="150" x="380" y="14"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "podpisOdesilatele", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-34" positionType="Float" style="Detail" uuid="491e4265-3f36-4585-9238-9da842bbd377" width="230" x="150" y="14"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "zasilkyBezPoskozeni", true )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement height="1" key="line-1" style="Detail" uuid="4cb149a7-906e-4ff4-9ced-d180c759e24d" width="1" x="131" y="46"/>
+			</line>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-44" positionType="Float" style="Detail" uuid="9e8ea618-db0a-4f4b-9426-f3fa6f611181" width="535" x="0" y="37"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "paticka1", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-45" positionType="Float" style="Detail" uuid="d6562b10-bbf3-4980-8b19-7b0e8be9a074" width="535" x="0" y="48"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "paticka2", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="39" splitType="Prevent">
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-29" style="Detail" uuid="749446e9-4457-479d-9e86-67af753c2766" width="175" x="0" y="7"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "celkemBaliku", true ) + ": " +
+$V{ROW_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-30" style="Detail" uuid="84b1c555-8ad2-48bc-a696-bccaa52ee442" width="143" x="175" y="7"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "geisPredavaciProtokol", "celkemCod", true ) + ": "]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="ScaleFont">
+				<reportElement height="11" key="textField-31" style="Detail" uuid="fad89443-9ce9-4c2e-9e9d-5a4731a20408" width="57" x="333" y="7"/>
+				<box rightPadding="5">
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$V{CELKEM_COD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

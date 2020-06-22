@@ -1,0 +1,1530 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="782" leftMargin="30" name="podkladyDphBezUctovani" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="30" topMargin="20" uuid="2a109545-6388-4ed1-bd2f-b3aff99ab00a" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Empty" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="false" isDefault="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="Detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" vAlign="Middle"/>
+	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isBold="true" isItalic="false" isPdfEmbedded="true" isStrikeThrough="false" isUnderline="false" markup="styled" name="ColumnHeader" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf"/>
+	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
+	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
+	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+		<defaultValueExpression><![CDATA["podkladyDphBezUctovani"]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="_NAZVY"/>
+	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
+	<parameter class="java.lang.String" isForPrompting="false" name="platiOd"/>
+	<field class="java.lang.String" name="modul">
+		<fieldDescription><![CDATA[modul]]></fieldDescription>
+	</field>
+	<field class="java.util.GregorianCalendar" name="duzpPuv"/>
+	<field class="java.util.GregorianCalendar" name="duzpUcto">
+		<fieldDescription><![CDATA[duzpUcto]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklTuz">
+		<fieldDescription><![CDATA[sumZklTuz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphTuz">
+		<fieldDescription><![CDATA[sumDphTuz]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumZklMen">
+		<fieldDescription><![CDATA[sumZklMen]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="sumDphMen">
+		<fieldDescription><![CDATA[sumDphMen]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Stat" name="statDph">
+		<fieldDescription><![CDATA[statDph]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.ClenDph" name="clenDph">
+		<fieldDescription><![CDATA[clenDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.Double" name="szbDph">
+		<fieldDescription><![CDATA[szbDph]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="popis">
+		<fieldDescription><![CDATA[popis]]></fieldDescription>
+	</field>
+	<field class="java.util.GregorianCalendar" name="datUcto">
+		<fieldDescription><![CDATA[datUcto]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="doklad">
+		<fieldDescription><![CDATA[doklad]]></fieldDescription>
+	</field>
+	<field class="java.util.GregorianCalendar" name="datVyst">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Stredisko" name="stredisko">
+		<fieldDescription><![CDATA[stredisko]]></fieldDescription>
+	</field>
+	<field class="java.lang.Boolean" name="zuctovano">
+		<fieldDescription><![CDATA[zuctovano]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.adr.Adresar" name="firma">
+		<fieldDescription><![CDATA[firma]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Ucet" name="zklMdUcet">
+		<fieldDescription><![CDATA[zklMdUcet]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Ucet" name="zklDalUcet">
+		<fieldDescription><![CDATA[zklDalUcet]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Ucet" name="dphMdUcet">
+		<fieldDescription><![CDATA[dphMdUcet]]></fieldDescription>
+	</field>
+	<field class="cz.winstrom.vo.ucto.Ucet" name="dphDalUcet">
+		<fieldDescription><![CDATA[dphDalUcet]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="typPlneniK">
+		<fieldDescription><![CDATA[typPlneniK]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="nazFirmy">
+		<fieldDescription><![CDATA[nazFirmy]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="typSzbDphK">
+		<fieldDescription><![CDATA[typSzbDphK]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="dic"/>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzStat" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzStat" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenStat" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenStat" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzClen" resetGroup="clenDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzClen" resetGroup="clenDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenClen" resetGroup="clenDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenClen" resetGroup="clenDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzSzb" resetGroup="szbDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzSzb" resetGroup="szbDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenSzb" resetGroup="szbDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenSzb" resetGroup="szbDph" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzPrijata" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}))
+&& !cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK})
+?
+$F{sumZklTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzPrijata" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenPrijata" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK})
+)&& !cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK})?
+$F{sumZklMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenPrijata" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzUskutecnena" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK})
+)&& !cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK})
+?
+$F{sumZklTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzUskutecnena" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenUskutecnena" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}))
+&& !cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK}) ?
+$F{sumZklMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenUskutecnena" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzUskutecnenaBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK})
+) && cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK})
+?
+$F{sumZklTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzUskutecnenaBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenUskutecnenaBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) )
+&& cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK}) ?
+$F{sumZklMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenUskutecnenaBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_USKUTECNENA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzPrijataBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) )
+&& cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK}) ?
+$F{sumZklTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzPrijataBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphTuz}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenPrijataBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[((cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}))
+&& cz.winstrom.vo.UctoLokCiselniky.TYP_SZB_DPH_OSV.equals($F{typSzbDphK}) ?
+$F{sumZklMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenPrijataBezDph" resetGroup="statDph" resetType="Group">
+		<variableExpression><![CDATA[(cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_PRIJATA_RCH.equals($F{typPlneniK}) ||
+cz.winstrom.vo.UctoLokCiselniky.TYP_PLNENI_OBOJI_RCH.equals($F{typPlneniK}) ?
+$F{sumDphMen}
+:
+new Double(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzDatUcto" resetGroup="datUcto" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzDatUcto" resetGroup="datUcto" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenDatUcto" resetGroup="datUcto" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenDatUcto" resetGroup="datUcto" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklTuzDoklad" resetGroup="doklad" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphTuzDoklad" resetGroup="doklad" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphTuz}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumZklMenDoklad" resetGroup="doklad" resetType="Group">
+		<variableExpression><![CDATA[$F{sumZklMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Double" name="sumDphMenDoklad" resetGroup="doklad" resetType="Group">
+		<variableExpression><![CDATA[$F{sumDphMen}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="statDph">
+		<groupExpression><![CDATA[$F{statDph}.getKod()]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="74" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="74" key="textField-80" mode="Transparent" style="ColumnHeader" uuid="025c171b-6b70-48f9-8e45-6cf2c796bc36" width="781" x="0" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-63" mode="Transparent" style="ColumnHeader" uuid="d4da030e-57ee-4c20-a7ae-2b08b184a522" width="57" x="225" y="1">
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzStat}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-64" mode="Transparent" style="ColumnHeader" uuid="9b0f8134-ca0a-4eca-ab0f-744be7c7e154" width="57" x="282" y="1">
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzStat}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-65" mode="Transparent" style="ColumnHeader" uuid="23894253-f10e-472c-b8c7-0dca9a167ed9" width="57" x="339" y="1">
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenStat}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-66" mode="Transparent" style="ColumnHeader" uuid="de05e322-fdb0-41e0-beaa-a99924055795" width="57" x="396" y="1">
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenStat}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-69" mode="Transparent" style="ColumnHeader" uuid="2240cf79-cfd1-4eb8-98a0-8f8d8119f7ec" width="82" x="3" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "statDph", true ) + ": " + ($F{statDph} != null ? $F{statDph}.getKod() : "")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-70" mode="Transparent" style="ColumnHeader" uuid="bce1bf82-ed9d-4410-8dac-ad413f65d022" width="57" x="225" y="32"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzPrijata}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-71" mode="Transparent" style="ColumnHeader" uuid="8da59d0b-ebc4-4cff-bc56-37aa0064627d" width="57" x="282" y="32"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzPrijata}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-72" mode="Transparent" style="ColumnHeader" uuid="a3a9bbe2-fc5b-4dce-a726-d9205a2192fc" width="57" x="339" y="32"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenPrijata}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-73" mode="Transparent" style="ColumnHeader" uuid="a41244ad-7544-42e1-a976-d27f6356dc23" width="57" x="396" y="32"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenPrijata}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-74" mode="Transparent" style="ColumnHeader" uuid="cc74e672-694b-4ded-82e1-18e58643c90a" width="57" x="225" y="23"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzUskutecnena}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-75" mode="Transparent" style="ColumnHeader" uuid="d0ef2275-8817-4c29-9651-abfc037b2c84" width="57" x="282" y="23"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzUskutecnena}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-76" mode="Transparent" style="ColumnHeader" uuid="0364ff13-73c0-4db3-ad55-5bcfba6f5b2c" width="57" x="339" y="23"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenUskutecnena}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-77" mode="Transparent" style="ColumnHeader" uuid="d4d3d783-bb63-42e8-ad78-3d7b07583035" width="57" x="396" y="23"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenUskutecnena}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-78" mode="Transparent" style="ColumnHeader" uuid="8d3c04f5-d2af-487d-8408-88bb1f5914b7" width="82" x="3" y="32"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, "typPlneni.prijata", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-79" mode="Transparent" style="ColumnHeader" uuid="81b1e5ad-72eb-48a6-87f3-91c30cabdf89" width="82" x="3" y="23"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, "typPlneni.uskutecnena", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-81" mode="Transparent" style="ColumnHeader" uuid="2364ae0c-1f8d-422a-afaf-6fec5c83435c" width="82" x="3" y="63"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, "typPlneni.prijata", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-82" mode="Transparent" style="ColumnHeader" uuid="87aa7a65-0278-481d-86cc-d382c71633b7" width="82" x="3" y="54"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, "typPlneni.uskutecnena", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-83" mode="Transparent" style="ColumnHeader" uuid="e69a757b-e9cb-4fd5-a558-aa33e30b1376" width="57" x="225" y="54"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzUskutecnenaBezDph}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-84" mode="Transparent" style="ColumnHeader" uuid="a1b73c7a-be81-490e-b9ec-174a6462cc8e" width="57" x="225" y="63"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzPrijataBezDph}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-87" mode="Transparent" style="ColumnHeader" uuid="36ad4cf7-985b-4af1-8dc8-4e58ffcdae85" width="57" x="339" y="54"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenUskutecnenaBezDph}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-88" mode="Transparent" style="ColumnHeader" uuid="a33f0c23-b6f4-4163-94a4-bd91c338bc53" width="57" x="339" y="63"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenPrijataBezDph}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-91" mode="Transparent" style="ColumnHeader" uuid="8f14935c-7958-4817-87a8-da77a037f1f1" width="82" x="3" y="14"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "podkladyDPH", "sDani", true )]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-92" mode="Transparent" style="ColumnHeader" uuid="03b5e10e-2dad-4e18-a7de-3c73c2943f89" width="82" x="3" y="45"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "podkladyDPH", "bezDane", true )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="datUcto">
+		<groupExpression><![CDATA[(("NES".equals($P{_LOADER}.getSumKod())) ?
+  $F{datUcto}.get( Calendar.MONTH ) + "/" + $F{datUcto}.get( Calendar.YEAR )
+ :
+  ""
+)]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="22" splitType="Stretch">
+				<printWhenExpression><![CDATA[new Boolean("NES".equals($P{_LOADER}.getSumKod()))]]></printWhenExpression>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-93" mode="Transparent" style="ColumnHeader" uuid="ad5e74a0-6da1-459a-a561-6b47f49b7f05" width="57" x="396" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenDatUcto}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-94" mode="Transparent" style="ColumnHeader" uuid="1785cac4-e2d2-4edd-8390-9a5014569e07" width="57" x="339" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenDatUcto}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-95" mode="Transparent" style="ColumnHeader" uuid="8e1de232-3998-4176-8940-9fbf05dd3669" width="57" x="282" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzDatUcto}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-96" mode="Transparent" style="ColumnHeader" uuid="178a71c9-8a1c-4420-a668-563705cc92bc" width="57" x="225" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzDatUcto}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-97" mode="Transparent" style="ColumnHeader" uuid="9361a193-779e-41f1-829e-d26c68c8c05a" width="208" x="3" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "podkladyDPH", "zauctovanoVObdobi", true ) +
+" " + ($F{datUcto}.get( Calendar.MONTH ) + 1) + " / " +  $F{datUcto}.get( Calendar.YEAR )]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="1" key="line-7" positionType="FixRelativeToBottom" uuid="794ccfee-6760-4463-b263-352eba5d7810" width="780" x="0" y="17"/>
+					<graphicElement>
+						<pen lineStyle="Solid" lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="clenDph">
+		<groupExpression><![CDATA[$F{clenDph}.getKod()]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="16" splitType="Stretch">
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-59" mode="Transparent" style="ColumnHeader" uuid="3d072096-9583-47f0-a00c-0cda7a02f06f" width="57" x="225" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzClen}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-60" mode="Transparent" style="ColumnHeader" uuid="8403d19a-8933-4533-9d5a-fb03333e2a16" width="57" x="282" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzClen}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-61" mode="Transparent" style="ColumnHeader" uuid="f79f1b4a-0bcf-45df-baf8-c111d8e30eb5" width="57" x="339" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenClen}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-62" mode="Transparent" style="ColumnHeader" uuid="fdbc0b42-f8ff-4d71-85b9-9389775fa952" width="57" x="396" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenClen}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-68" mode="Transparent" style="ColumnHeader" uuid="caad51d3-d3b2-482e-85a9-a4c184520ca9" width="208" x="3" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "clenDph", true ) + " "
++ ($F{clenDph} != null ? $F{clenDph}.getKod() : "") + ": "
++ $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "podkladyDPH", "celkem", true )]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="1" key="line-6" positionType="FixRelativeToBottom" uuid="0d88549b-fa29-4e35-be82-e60426e46b70" width="780" x="0" y="15">
+						<printWhenExpression><![CDATA[$P{_LINKA}]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineStyle="Solid" lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="szbDph">
+		<groupExpression><![CDATA[$F{szbDph}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="10" splitType="Stretch">
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-55" mode="Transparent" style="ColumnHeader" uuid="701ec70d-dd0d-4870-8ae9-94380d01908c" width="57" x="225" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzSzb}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-56" mode="Transparent" style="ColumnHeader" uuid="05c22d71-9551-421a-a810-2b6987416df1" width="57" x="282" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzSzb}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-57" mode="Transparent" style="ColumnHeader" uuid="a700b096-0ee2-4d4b-82a3-0b80aa27c3a9" width="57" x="339" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenSzb}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-58" mode="Transparent" style="ColumnHeader" uuid="c46fa00c-c287-48a1-a956-cbfc47fbc07a" width="57" x="396" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenSzb}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-67" mode="Transparent" style="ColumnHeader" uuid="58cf1e2e-0773-401a-876c-5aed3dbb6ac5" width="208" x="3" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "clenDph", true ) + " "
++ ($F{clenDph} != null ? $F{clenDph}.getKod() : "") + ": " + ((int) $F{szbDph}.doubleValue()) + " %"]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="1" key="line-5" positionType="FixRelativeToBottom" uuid="67f56fee-654a-4cb4-ab41-e0bc0f912b96" width="780" x="0" y="9">
+						<printWhenExpression><![CDATA[$P{_LINKA}]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineStyle="Solid" lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="doklad">
+		<groupExpression><![CDATA[$F{doklad}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="11" splitType="Stretch">
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-98" mode="Transparent" style="Detail" uuid="57d75ce6-479f-44e1-aff8-f437351cfb3b" width="25" x="3" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{modul}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="9" key="textField-99" style="Detail" uuid="f9502ad8-0b7e-4e47-a863-bc2c3ef30caf" width="44" x="28" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-100" mode="Transparent" style="Detail" uuid="0c50b1a0-d27f-46ba-b49e-37a062054afa" width="25" x="121" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{statDph}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-101" mode="Transparent" style="Detail" uuid="0956fe67-478e-4928-94bd-b69b063e2290" width="44" x="146" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{clenDph}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="###0" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-102" mode="Transparent" style="Detail" uuid="39dc76e5-8cb9-4edd-8a1c-35802979dd26" width="35" x="190" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{szbDph}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-103" mode="Transparent" style="Detail" uuid="312b5493-6afa-46fc-b6e2-ddc2b2cbc0a8" width="57" x="339" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklMenDoklad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-104" mode="Transparent" style="Detail" uuid="02264162-d83c-43e1-ba0e-a872309cdf04" width="57" x="225" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumZklTuzDoklad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-105" mode="Transparent" style="Detail" uuid="d965ebf6-cea2-4ffe-9762-f6d7e81cc023" width="57" x="282" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphTuzDoklad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-106" mode="Transparent" style="Detail" uuid="ff907f54-f43e-417f-af49-454a93ac5ea2" width="57" x="396" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{sumDphMenDoklad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="9" key="textField-107" style="Detail" uuid="7a9e63da-32ba-4640-a3d5-309b6e478142" width="44" x="454" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datUcto})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement height="9" key="textField-108" style="Detail" uuid="955dcb5f-da85-46e5-b99a-a0fbd31543be" width="44" x="498" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-109" mode="Transparent" style="Detail" uuid="567c0ee0-ec0e-44f6-bee0-6d0ef40e1a7c" width="57" x="544" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{doklad}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-110" mode="Transparent" style="Detail" uuid="c36125c3-8810-489c-af02-d9c3bb789f56" width="44" x="601" y="1"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{stredisko}.getKod()]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement forecolor="#000000" height="1" key="line-8" positionType="FixRelativeToBottom" uuid="bee24b28-35f2-498d-a912-3edaf13ad420" width="780" x="0" y="10">
+						<printWhenExpression><![CDATA[$P{_LINKA}]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineStyle="Solid" lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-117" mode="Transparent" style="Detail" uuid="6e9ed85a-7bba-47a3-a2bb-0ec446ee322e" width="83" x="645" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{nazFirmy}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<reportElement backcolor="#FFFFFF" height="9" key="textField-118" mode="Transparent" style="Detail" uuid="5413c91b-f480-4556-82f3-5bbeb56c3135" width="54" x="728" y="0"/>
+					<box>
+						<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+						<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{dic}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement height="9" style="Detail" uuid="b1c6eef9-1629-4932-85a0-18a228bfa3a8" width="44" x="74" y="1"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpUcto})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement height="20" key="subreport-2" mode="Transparent" stretchType="RelativeToTallestObject" uuid="f5d5a36f-2912-4801-a56e-697fdcbe84d8" width="781" x="0" y="1"/>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "Hlava_land.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement height="1" key="line-2" positionType="FixRelativeToBottom" uuid="ba5c181f-7552-4984-984a-6895cef1fad0" width="780" x="1" y="21"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-6" style="ColumnHeader" uuid="54141539-f5b3-4253-87d0-38a1c6b82c57" width="25" x="3" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "modul", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-8" style="ColumnHeader" uuid="906f33ad-b100-401d-93dc-ed5381d8507a" width="44" x="454" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "datUcto", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-23" style="ColumnHeader" uuid="b678ae3a-8e15-40a0-a3b9-f0f937b7cf6e" width="44" x="28" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "duzpPuv", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-25" style="ColumnHeader" uuid="fcacabb3-8efc-4ae1-95a2-57c99a034ba8" width="57" x="225" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "sumZklTuz", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-27" style="ColumnHeader" uuid="421bb408-fe72-4461-9322-1f6226392681" width="57" x="282" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "sumDphTuz", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-29" style="ColumnHeader" uuid="00bb1eba-cfac-46a7-95ab-1e79c46fdc70" width="57" x="339" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "sumZklMen", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-31" style="ColumnHeader" uuid="1075390f-9a2d-40d4-b01f-ae6d30339e23" width="57" x="396" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "sumDphMen", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-33" style="ColumnHeader" uuid="ea2f183c-7a2c-48ee-a60a-2bffe4e6f254" width="25" x="121" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "statDph", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-35" style="ColumnHeader" uuid="5973f001-d1e3-42b5-b639-8975ced0aab2" width="44" x="146" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "clenDph", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-37" style="ColumnHeader" uuid="f26e464e-8bdc-41e5-a670-114db988339e" width="35" x="190" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "szbDph", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-39" style="ColumnHeader" uuid="785f383a-0065-451d-99fd-6b305f5a63a4" width="44" x="498" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "datVyst", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-41" style="ColumnHeader" uuid="83bbeb9e-d6ba-4421-a354-da492c8b5770" width="57" x="544" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "doklad", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-43" style="ColumnHeader" uuid="727b4899-2dd9-475e-b4bf-4813ea50c9c3" width="44" x="601" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "stredisko", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" key="textField-51" style="ColumnHeader" uuid="7890c92a-0b2d-4375-b0d8-b2433e4c3e1a" width="92" x="41" y="20">
+					<printWhenExpression><![CDATA[new Boolean( $P{_LOADER}.isRozsireny())]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "zklMdUcet", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" key="textField-52" style="ColumnHeader" uuid="d1cb0dcf-5ea8-41df-a024-7bf06be9da5a" width="92" x="135" y="20">
+					<printWhenExpression><![CDATA[new Boolean( $P{_LOADER}.isRozsireny())]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "zklDalUcet", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" key="textField-53" style="ColumnHeader" uuid="7ad86d7f-9a85-405e-ba6a-fa747365a3b9" width="92" x="229" y="20">
+					<printWhenExpression><![CDATA[new Boolean( $P{_LOADER}.isRozsireny())]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "dphMdUcet", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="1" key="textField-54" style="ColumnHeader" uuid="c547e36d-c7e2-48e4-8454-526f83b5622d" width="92" x="323" y="20">
+					<printWhenExpression><![CDATA[new Boolean( $P{_LOADER}.isRozsireny())]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "dphDalUcet", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="18" key="textField-113" style="ColumnHeader" uuid="420ef3c8-d436-4db9-a16c-ded4096b219f" width="57" x="645" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "firma", true )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="10" key="textField-116" style="ColumnHeader" uuid="74e33364-f168-4b46-9bd5-30a2d5a4bb51" width="47" x="728" y="2"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "dic", true )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement height="18" style="ColumnHeader" uuid="c76f4ec3-2ad4-4df0-b5c9-b99447c8ba07" width="44" x="74" y="2"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "duzpUcto", true )]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+			<line direction="BottomUp">
+				<reportElement forecolor="#000000" height="1" key="line-4" positionType="FixRelativeToBottom" uuid="efc2b2c9-c336-4dad-8aae-22edca4f9cbc" width="780" x="0" y="9">
+					<printWhenExpression><![CDATA[$P{_LINKA}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Solid" lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-7" mode="Transparent" style="Detail" uuid="770c63ea-2c1e-45ba-96b5-b63fbabcf776" width="25" x="3" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{modul}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="9" key="textField" style="Detail" uuid="c70d3a07-a45f-4e76-9e9e-1cda5d84ec97" width="44" x="454" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datUcto})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="9" key="textField-24" style="Detail" uuid="f592c476-47e7-4383-92f2-1591bccfb216" width="44" x="28" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-26" mode="Transparent" style="Detail" uuid="cd332be7-bc9f-470c-9540-6b630a8aa1dc" width="57" x="225" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sumZklTuz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-28" mode="Transparent" style="Detail" uuid="63e23a08-229b-4833-bcc6-7d4b6484cba2" width="57" x="282" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sumDphTuz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-30" mode="Transparent" style="Detail" uuid="a4f8e41e-8e3b-4eb7-b994-f0b248b5e379" width="57" x="339" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sumZklMen}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="#,##0.00;-#,##0.00" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-32" mode="Transparent" style="Detail" uuid="f76bb7e9-8e4e-4422-a8af-c14d8443ec3a" width="57" x="396" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sumDphMen}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-34" mode="Transparent" style="Detail" uuid="ed33c771-b646-4c02-974c-685c6ce593f7" width="25" x="121" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{statDph}.getKod()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-36" mode="Transparent" style="Detail" uuid="6c151d9b-b737-4ba1-8a8b-26cc5bf47854" width="44" x="146" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{clenDph}.getKod()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" pattern="###0" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-38" mode="Transparent" style="Detail" uuid="9aded147-9934-4490-a727-87debbfeed46" width="35" x="190" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{szbDph}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement height="9" key="textField-40" style="Detail" uuid="6ed511c1-4516-41cb-b3ec-8526f72fd197" width="44" x="498" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-42" mode="Transparent" style="Detail" uuid="b3e19b23-a29b-4b4c-af6e-d67bb86d7f81" width="57" x="544" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{doklad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-44" mode="Transparent" style="Detail" uuid="80d059e2-9dd9-40cc-82f2-0afc941a0f97" width="44" x="601" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{stredisko}.getKod()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-114" mode="Transparent" style="Detail" uuid="62f00eb5-b2c8-48d8-b520-19acb92d3258" width="83" x="645" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nazFirmy}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+				<reportElement backcolor="#FFFFFF" height="9" key="textField-115" mode="Transparent" style="Detail" uuid="9e9a13c1-62b7-41e2-a5c3-4b61c032d456" width="54" x="728" y="0"/>
+				<box>
+					<topPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<leftPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<bottomPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+					<rightPen lineColor="#000000" lineStyle="Solid" lineWidth="0.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dic}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement height="9" style="Detail" uuid="5de81d81-9497-4a20-9826-4bcdaa9672a3" width="44" x="74" y="0"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpUcto})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement height="20" key="subreport-3" mode="Transparent" stretchType="RelativeToTallestObject" uuid="c45701b8-e64e-4cce-aceb-9e6c692ba202" width="781" x="0" y="2"/>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "Pata_land.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
