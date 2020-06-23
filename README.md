@@ -9,7 +9,7 @@ QuickStart
 
 1. Install https://community.jaspersoft.com/project/jaspersoft-studio/releases
 1. Install FlexiBee client with JasperReport project support https://github.com/Vitexus/flexibee-client-deb
-1. Install FlexuBee Tools with Jasper Compiler & Uploader https://github.com/VitexSoftware/FlexiBee-Tools
+1. Install FlexiBee Tools with Jasper Compiler & Uploader https://github.com/VitexSoftware/FlexiBee-Tools
 1. Clone this repo: https://github.com/Vitexus/winstrom-reports
 1. Open repo as project in jasperstudio & edit & save
 1. upload your report to FlexiBee server using  **upreport** command
