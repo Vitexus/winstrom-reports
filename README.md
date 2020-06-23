@@ -9,7 +9,7 @@ QuickStart
 
 1. Clone this repo: https://github.com/Vitexus/winstrom-reports
 1. Install https://community.jaspersoft.com/project/jaspersoft-studio/releases
-1. Install FlexiBee client with JasperReport project support
+1. Install FlexiBee client with JasperReport project support https://github.com/Vitexus/flexibee-client-deb
 1. Install FlexuBee Tools with Jasper Compiler & Uploader https://github.com/VitexSoftware/FlexiBee-Tools
 
 ```shell
