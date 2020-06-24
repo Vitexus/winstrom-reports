@@ -47,6 +47,7 @@ sudo apt install git flexibee-tools flexibee-client jaspersoftstudio
 And finally clone the source files
 ```
 git clone https://github.com/Vitexus/winstrom-reports
+/usr/share/flexibee/bin/updatejasperclasspath
 ```
 
 All tested on Debian 10 Buster
