@@ -1,6 +1,6 @@
 # winstrom-reports
 
-Jasper Reports sources for Abra FlexiBee 
+Jasper Reports sources for Abra Flexi 
 
 https://www.flexibee.eu/podpora/dokumentace/napoveda/uzivatelske_reporty/
 
