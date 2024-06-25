@@ -1,58 +1,72 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="780" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="Hlava_land" orientation="Landscape" pageHeight="595" pageWidth="780" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="AllSectionsNoDetail" whenResourceMissingType="Null" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Hlava_land" pageWidth="780" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="780" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5aa38140-c0fc-44d5-b552-482016838c1e">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
-	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
-
-	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
-	<parameter class="java.lang.String" isForPrompting="true" name="_HLAVA">
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String">
 		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
 	</parameter>
-	<parameter class="java.lang.Integer" isForPrompting="false" name="PAGE_NUMBER"/>
-	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
-	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
-	<parameter class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false" name="_ADAPTER"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_REPORT_NAME"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_REPORT_NAME_A"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_REPORT_NAME_B"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_REPORT_NAME_C"/>
-
-		<background>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</background>
-		<title>
-			<band height="2" isSplitAllowed="true">
-			</band>
-		</title>
-		<pageHeader>
-			<band height="32" isSplitAllowed="true">
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" textAdjust="ScaleFont">
-					<reportElement height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-1" positionType="FixRelativeToTop" stretchType="NoStretch" width="114" x="666" y="18"/>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Right">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "stranka", true ) + " " + $P{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Report" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" pattern="dd.MM.yyyy" textAdjust="ScaleFont">
-					<reportElement height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-2" positionType="FixRelativeToTop" stretchType="NoStretch" width="71" x="709" y="6"/>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Right">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDateTimeInMinutes(new java.util.GregorianCalendar())]]></textFieldExpression>
-				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Band" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-3" positionType="FixRelativeToTop" stretchType="NoStretch" width="515" x="115" y="1">
-							<printWhenExpression><![CDATA[new Boolean( $P{_HLAVA} != null )]]></printWhenExpression>
-						</reportElement>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Bottom">
-						<font fontName="CMU Bright" isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="12"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(($P{_REPORT_NAME} != null ? 
+	<parameter name="PAGE_NUMBER" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false"/>
+	<parameter name="_REPORT_NAME" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_REPORT_NAME_A" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_REPORT_NAME_B" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_REPORT_NAME_C" class="java.lang.String" isForPrompting="false"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="2" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<textField textAdjust="ScaleFont" isBlankWhenNull="false">
+				<reportElement key="textField-1" x="666" y="18" width="114" height="12" uuid="abef738f-60fd-4ae8-b3aa-a933a37d4f41"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "stranka", true ) + " " + $P{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Report" pattern="dd.MM.yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-2" x="709" y="6" width="71" height="12" uuid="629fe5b3-47a5-4b88-badf-f0c6d805726f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDateTimeInMinutes(new java.util.GregorianCalendar())]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Band" isBlankWhenNull="true">
+				<reportElement key="textField-3" stretchType="ContainerHeight" x="115" y="1" width="515" height="17" uuid="7bc0c420-59a9-4c6b-b2d6-bb6e1ee22059">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean( $P{_HLAVA} != null )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="CMU Bright" size="12" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($P{_REPORT_NAME} != null ? 
 $P{_PROJEKT}.getLocalizedText( new String[] {$P{_REPORT_NAME}, $P{_REPORT_NAME_A}, $P{_REPORT_NAME_B}, $P{_REPORT_NAME_C}}, new java.util.Locale($P{_LOADER}.getLocaleCode()) ) + " - "
 : "") 
 + ($P{_ADAPTER} != null ?
@@ -61,35 +75,44 @@ $P{_ADAPTER}.getReportTitle() :
 ($P{_LOADER} != null ? $P{_LOADER}.getLocalizedName( $P{_LOADER}.getReportDescriptor(), $P{_LOADER}.getDataBL().getModulKey(), $P{_LOCALE} ) :
 $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", $P{_HLAVA}, true )))
 ))]]></textFieldExpression>
-				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" textAdjust="ScaleFont">
-					<reportElement height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-4" positionType="FixRelativeToTop" stretchType="NoStretch" width="79" x="630" y="6"/>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Right">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle($P{_LOCALE}.GID_REPORTS, "global", "tisknutoDne", true) + ": "]]></textFieldExpression>
-				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement height="1" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-6" positionType="FixRelativeToTop" stretchType="NoStretch" width="780" x="0" y="30">
-							<printWhenExpression><![CDATA[new Boolean(
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="false">
+				<reportElement key="textField-4" x="630" y="6" width="79" height="12" uuid="47b79302-9fa2-407a-ac69-349716198398"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle($P{_LOCALE}.GID_REPORTS, "global", "tisknutoDne", true) + ": "]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-6" x="0" y="30" width="780" height="1" uuid="ef23492c-1d06-4c49-a839-2b5f8801b6ab">
+					<printWhenExpression><![CDATA[new Boolean(
 ($P{PAGE_NUMBER}.intValue() == 1)
 && ($P{_ADAPTER} != null && $P{_LOADER} != null ? $P{_ADAPTER}.isShowFilter($P{_LOADER}.getReportDescriptor()) : true)
 )]]></printWhenExpression>
-						</reportElement>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000" topPadding="2"/>
-					<textElement textAlignment="Center">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[((cz.winstrom.service.impl.WSValueObjectBLImpl) $P{_LOADER}.getDataBL()).getActualFiltersString($P{_LOCALE})]]></textFieldExpression>
-				</textField>
-				<line direction="TopDown">
-					<reportElement height="0" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="line-1" positionType="FixRelativeToTop" stretchType="NoStretch" width="780" x="0" y="31"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" textAdjust="StretchHeight">
-					<reportElement height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-7" positionType="FixRelativeToTop" stretchType="NoStretch" width="411" x="53" y="18">
-							<printWhenExpression><![CDATA[new Boolean ( false /*&&
+				</reportElement>
+				<box topPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[((cz.winstrom.service.impl.WSValueObjectBLImpl) $P{_LOADER}.getDataBL()).getActualFiltersString($P{_LOCALE})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="0" y="31" width="780" height="1" uuid="819d8293-6ead-4c17-82da-7a8760306d66"/>
+			</line>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="false">
+				<reportElement key="textField-7" x="53" y="18" width="411" height="12" uuid="4ce52601-85c1-48b5-b10e-c5399f688675">
+					<printWhenExpression><![CDATA[new Boolean ( false /*&&
 ($P{_ADAPTER} != null ?
 $P{_ADAPTER}.getLogo() != null
 :
@@ -97,16 +120,21 @@ $P{_ADAPTER}.getLogo() != null
 .getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
 )*/
 )]]></printWhenExpression>
-						</reportElement>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNazevFirmy()]]></textFieldExpression>
-				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="false" textAdjust="StretchHeight">
-					<reportElement height="12" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-8" positionType="FixRelativeToTop" stretchType="NoStretch" width="411" x="1" y="18">
-							<printWhenExpression><![CDATA[new Boolean (true
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getNazevFirmy()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="false">
+				<reportElement key="textField-8" x="1" y="18" width="411" height="12" uuid="2bd04a7b-6fed-44cd-8463-b6ba4b2039d1">
+					<printWhenExpression><![CDATA[new Boolean (true
 /*($P{_ADAPTER} != null ?
 $P{_ADAPTER}.getLogo() == null
 :
@@ -114,16 +142,21 @@ $P{_ADAPTER}.getLogo() == null
 .getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) == null
 )*/
 )]]></printWhenExpression>
-						</reportElement>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font fontName="CMU Bright" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf" size="8"/>
-					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_PROJEKT}.getNazevFirmy()]]></textFieldExpression>
-				</textField>
-				<image bookmarkLevel="0" evaluationTime="Now" hAlign="Center" hyperlinkTarget="Self" hyperlinkType="None" isLazy="true" isUsingCache="true" onErrorType="Error" scaleImage="RetainShape" vAlign="Middle">
-					<reportElement height="30" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="resizuj-1" positionType="FixRelativeToTop" stretchType="NoStretch" width="47" x="0" y="0">
-							<printWhenExpression><![CDATA[new Boolean ( false /* &&
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="CMU Bright" size="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getNazevFirmy()]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" isUsingCache="true" isLazy="true">
+				<reportElement key="resizuj-1" x="0" y="0" width="47" height="30" uuid="5facd575-b831-47ce-8c64-f465a9f68210">
+					<printWhenExpression><![CDATA[new Boolean ( false /* &&
 ($P{_ADAPTER} != null ?
 $P{_ADAPTER}.getLogo() != null 
 :
@@ -131,36 +164,35 @@ $P{_ADAPTER}.getLogo() != null
 .getLogo(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager())) != null
 )*/
 )]]></printWhenExpression>
-						</reportElement>
-					<box bottomBorder="None" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="None" topBorderColor="#000000"/>
-					<graphicElement stretchType="NoStretch"/>
-					<imageExpression class="java.awt.Image"><![CDATA[($P{_ADAPTER} != null ?
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[($P{_ADAPTER} != null ?
 $P{_ADAPTER}.getLogo()
 :
 ((cz.winstrom.service.nast.impl.NastaveniBLImpl)($P{_LOADER}.getDataBL().getVoBL(cz.winstrom.service.UctoFormConstants.NASTAV_NASTAVENI_ID)))
 .getLogoFullSize(((cz.winstrom.service.UctoProject)$P{_PROJEKT}).getNastaveni($P{_LOADER}.getDataBL().getSessionManager()))
 )]]></imageExpression>
-				</image>
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</columnHeader>
-		<detail>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</detail>
-		<columnFooter>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</columnFooter>
-		<pageFooter>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</pageFooter>
-		<summary>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</summary>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

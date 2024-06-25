@@ -1,395 +1,517 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with iReport - A designer for JasperReports --><jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnCount="1" columnSpacing="0" columnWidth="535" isFloatColumnFooter="false" isIgnorePagination="false" isSummaryNewPage="false" isTitleNewPage="false" language="java" leftMargin="0" name="prehledPomeru" orientation="Portrait" pageHeight="842" pageWidth="535" printOrder="Vertical" rightMargin="0" topMargin="0" whenNoDataType="NoPages" whenResourceMissingType="Null" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prehledPomeru" pageWidth="535" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8d8646eb-1afa-4608-822a-61d1f317c0d7">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
-	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
-
-	<style fontName="CMU Bright" fontSize="8" isBlankWhenNull="true" isDefault="true" isPdfEmbedded="true" isStyledText="true" name="detail" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbmr.ttf"/>
-
-	<parameter class="cz.winstrom.config.WSBundle" isForPrompting="false" name="_LOCALE"/>
-	<parameter class="cz.winstrom.WSProject" isForPrompting="false" name="_PROJEKT"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+	<style name="detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
 	</parameter>
-	<parameter class="java.io.InputStream" isForPrompting="false" name="SUBREPORT_STREAM"/>
-	<parameter class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false" name="_LOADER"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_HLAVA">
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["vyplatniPaska"]]></defaultValueExpression>
 	</parameter>
-	<parameter class="java.lang.String" isForPrompting="true" name="_NAZVY"/>
-	<parameter class="java.lang.Boolean" isForPrompting="false" name="_LINKA"/>
-	<parameter class="java.lang.String" isForPrompting="false" name="_VERZE"/>
-	<parameter class="cz.winstrom.service.mzdy.impl.AktualMzdyBLImpl" isForPrompting="false" name="_LOGIKA"/>
-	<parameter class="java.lang.Integer" isForPrompting="false" name="rok"/>
-	<parameter class="java.lang.Integer" isForPrompting="false" name="mesic"/>
-	<parameter class="cz.winstrom.vo.mzdy.OsobaHlav" isForPrompting="false" name="osobaHlav"/>
-
-	<field class="java.lang.String" name="kod">
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_LOGIKA" class="cz.winstrom.service.mzdy.impl.AktualMzdyBLImpl" isForPrompting="false"/>
+	<parameter name="rok" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="mesic" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="osobaHlav" class="cz.winstrom.vo.mzdy.OsobaHlav" isForPrompting="false"/>
+	<field name="kod" class="java.lang.String">
 		<fieldDescription><![CDATA[kod]]></fieldDescription>
 	</field>
-	<field class="java.lang.String" name="nazev">
+	<field name="nazev" class="java.lang.String">
 		<fieldDescription><![CDATA[nazev]]></fieldDescription>
 	</field>
-	<field class="java.lang.Integer" name="id">
+	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[id]]></fieldDescription>
 	</field>
-
-		<background>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</background>
-		<title>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</title>
-		<pageHeader>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</columnHeader>
-		<detail>
-			<band height="69" isSplitAllowed="true">
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement backcolor="#E1E1E1" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-1" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="81" x="62" y="0"/>
-					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="Thin" topBorderColor="#000000"/>
+	<group name="pracpom" keepTogether="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="11">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-3" style="detail" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="62" height="11" backcolor="#E1E1E1" uuid="4e9dcc3c-1b31-45ba-b572-28237c6cc0a5"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<textElement>
-						<font isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="10"/>
+						<font size="10" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kod}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.PracPom", "kod", true ) + ":"]]></textFieldExpression>
 				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement backcolor="#E1E1E1" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-3" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="62" x="0" y="0"/>
-					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="Thin" topBorderColor="#000000"/>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-1" style="detail" stretchType="RelativeToBandHeight" mode="Opaque" x="62" y="0" width="91" height="11" backcolor="#E1E1E1" uuid="4801ba5c-2f13-480a-9497-c1ced9b91d45"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<textElement>
-						<font isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="10"/>
+						<font size="10" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.PracPom", "kod", true ) + ":"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{kod}]]></textFieldExpression>
 				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement backcolor="#E1E1E1" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-5" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="330" x="205" y="0"/>
-					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" topBorder="Thin" topBorderColor="#000000"/>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-7" style="detail" stretchType="RelativeToBandHeight" mode="Opaque" x="153" y="0" width="62" height="11" backcolor="#E1E1E1" uuid="4e923051-067d-4136-8405-be90b2c1a52e"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<textElement>
-						<font isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="10"/>
+						<font size="10" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nazev}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.PracPom", "nazev", true ) + ":"]]></textFieldExpression>
 				</textField>
-				<textField bookmarkLevel="0" evaluationTime="Now" hyperlinkTarget="Self" hyperlinkType="None" isBlankWhenNull="true" textAdjust="StretchHeight">
-					<reportElement backcolor="#E1E1E1" height="11" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="textField-7" mode="Opaque" positionType="FixRelativeToTop" stretchType="NoStretch" style="detail" width="62" x="143" y="0"/>
-					<box bottomBorder="Thin" bottomBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" topBorder="Thin" topBorderColor="#000000"/>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="detail" stretchType="RelativeToBandHeight" mode="Opaque" x="215" y="0" width="320" height="11" backcolor="#E1E1E1" uuid="aba03594-8d7c-469b-af27-f50390bd4971"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<textElement>
-						<font isBold="true" isPdfEmbedded="true" pdfEncoding="Identity-H" pdfFontName="/resources/fonts/cmunbbx.ttf" size="10"/>
+						<font size="10" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.PracPom", "nazev", true ) + ":"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nazev}]]></textFieldExpression>
 				</textField>
-				<subreport isUsingCache="true">
-					<reportElement height="14" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-1" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="0" y="13"/>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.doba"]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="rok">
-						<subreportParameterExpression><![CDATA[$P{rok}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="mesic">
-						<subreportParameterExpression><![CDATA[$P{mesic}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="osobaHlav">
-						<subreportParameterExpression><![CDATA[$P{osobaHlav}]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.doba"}, new String[] {"dnyPrac", "hodiny"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="17" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-2" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="0" y="31"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.zakladMzda"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.zakladMzda"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-3" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="0" y="54"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.odmeny"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.odmeny"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-4" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="270" y="13"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.priplatky"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.priplatky"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-5" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="270" y="27"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.ostatNahrad"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.ostatNahrad"}, new String[] {"hodiny", "castMzd"}))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-10" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="270" y="41"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.nepritomnost"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.nepritomnost", "skupinaSlozky.nepritNemoc", "skupinaSlozky.nepritKaran", "skupinaSlozky.nepritNeplac"}, new String[] {"hodiny", "castMzd", "hodinySvatek"}, new String[] {"typSlozky.vstup"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
-				<subreport isUsingCache="true">
-					<reportElement height="10" isPrintInFirstWholeBand="false" isPrintRepeatedValues="true" isPrintWhenDetailOverflows="false" isRemoveLineWhenBlank="false" key="subreport-11" mode="Transparent" positionType="Float" stretchType="NoStretch" width="265" x="270" y="54"/>
-					<subreportParameter name="_LOADER">
-						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_HLAVA">
-						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOGIKA">
-						<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PAGE_NUMBER">
-						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LINKA">
-						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_NAZVY">
-						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUBREPORT_STREAM">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_PROJEKT">
-						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_VERZE">
-						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_LOCALE">
-						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="_SKUPINASLOZEK">
-						<subreportParameterExpression><![CDATA["skupinaSlozky.hrubaMzda"]]></subreportParameterExpression>
-					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPaskuVyznam( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"vyznamSlozky.hrubaMzda"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
-					<subreportExpression class="java.io.InputStream"><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
-				</subreport>
 			</band>
-		</detail>
-		<columnFooter>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</columnFooter>
-		<pageFooter>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</pageFooter>
-		<summary>
-			<band height="0" isSplitAllowed="true">
-			</band>
-		</summary>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-1" positionType="Float" mode="Transparent" x="0" y="3" width="265" height="14" uuid="64103a4d-27b9-4715-ab5d-7fb6d22d131e"/>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.doba"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="rok">
+					<subreportParameterExpression><![CDATA[$P{rok}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mesic">
+					<subreportParameterExpression><![CDATA[$P{mesic}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="osobaHlav">
+					<subreportParameterExpression><![CDATA[$P{osobaHlav}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.doba"}, new String[] {"dnyPrac", "hodiny"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-2" positionType="Float" mode="Transparent" x="0" y="21" width="265" height="14" uuid="1fb24582-d6ed-49d3-b861-d9c90cf5b1fe"/>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.zakladMzda"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.zakladMzda"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-3" positionType="Float" mode="Transparent" x="0" y="39" width="265" height="10" uuid="bfc9f925-1b28-46fa-bbd4-f3358b3c1d5f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.odmeny"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.odmeny"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-4" positionType="Float" mode="Transparent" x="270" y="3" width="265" height="5" uuid="a0b12e64-f420-4672-8849-e74860934618">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.priplatky"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.priplatky"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-5" positionType="Float" mode="Transparent" x="270" y="12" width="265" height="5" uuid="2cbf8e9e-5372-4674-abe3-4c9327b6fac5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.ostatNahrad"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.ostatNahrad"}, new String[] {"hodiny", "castMzd"}))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-10" positionType="Float" mode="Transparent" x="270" y="21" width="265" height="5" uuid="feccad43-da62-46d3-829d-c183136c88f2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.nepritomnost"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.nepritomnost", "skupinaSlozky.nepritNemoc", "skupinaSlozky.nepritKaran", "skupinaSlozky.nepritNeplac"}, new String[] {"hodiny", "castMzd", "hodinySvatek"}, new String[] {"typSlozky.vstup"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-11" positionType="Float" mode="Transparent" x="270" y="30" width="265" height="5" uuid="9e455b01-b886-44f2-a549-25866b91abc9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.hrubaMzda"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPaskuVyznam( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"vyznamSlozky.hrubaMzda"}, new String[] {"hodiny", "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-11" positionType="Float" mode="Transparent" x="270" y="48" width="265" height="5" uuid="2cbd9f41-e761-457c-b9cb-3ac1efde2c08">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.benefity"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.benefity"}, new String[] {null, "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-11" positionType="Float" mode="Transparent" x="270" y="39" width="265" height="5" uuid="d5195c66-2e3f-40f8-9528-d77a05040962">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOGIKA">
+					<subreportParameterExpression><![CDATA[$P{_LOGIKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_SKUPINASLOZEK">
+					<subreportParameterExpression><![CDATA["skupinaSlozky.prispevky"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_LOGIKA}.getSlozkyProPracPomProVyplatniPasku( $P{rok}.intValue(), $P{mesic}.intValue(), $P{osobaHlav}, $F{id}.intValue(), new String[]{"skupinaSlozky.prispevky"}, new String[] {"dnyPrac", "castMzd"} ))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "prehledSlozek.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

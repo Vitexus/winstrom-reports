@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fakturaConfig" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="1a9d7268-9fa6-4958-be46-3d8541db3626">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="ColumnHeader" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.dok.DokladReportAdapter" isForPrompting="false"/>
+	<parameter name="_HIDE_QR_IF_NOT_SUPPORTED" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[$P{_ADAPTER}.cfgBoolean( "hideQRpaymentIfNotDirectlySupported", false )]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="kod" class="java.lang.String">
+		<fieldDescription><![CDATA[kod]]></fieldDescription>
+	</field>
+	<field name="typDokl" class="cz.winstrom.vo.dok.TypDokl">
+		<fieldDescription><![CDATA[typDokl]]></fieldDescription>
+	</field>
+	<field name="nazFirmy" class="java.lang.String">
+		<fieldDescription><![CDATA[nazFirmy]]></fieldDescription>
+	</field>
+	<field name="ulice" class="java.lang.String">
+		<fieldDescription><![CDATA[ulice]]></fieldDescription>
+	</field>
+	<field name="psc" class="java.lang.String">
+		<fieldDescription><![CDATA[psc]]></fieldDescription>
+	</field>
+	<field name="mesto" class="java.lang.String">
+		<fieldDescription><![CDATA[mesto]]></fieldDescription>
+	</field>
+	<field name="stat" class="cz.winstrom.vo.adr.Stat">
+		<fieldDescription><![CDATA[stat]]></fieldDescription>
+	</field>
+	<field name="ic" class="java.lang.String">
+		<fieldDescription><![CDATA[ic]]></fieldDescription>
+	</field>
+	<field name="dic" class="java.lang.String">
+		<fieldDescription><![CDATA[dic]]></fieldDescription>
+	</field>
+	<field name="vatId" class="java.lang.String">
+		<fieldDescription><![CDATA[vatId]]></fieldDescription>
+	</field>
+	<field name="datVyst" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datVyst]]></fieldDescription>
+	</field>
+	<field name="datSplat" class="java.util.Calendar">
+		<fieldDescription><![CDATA[datSplat]]></fieldDescription>
+	</field>
+	<field name="duzpUcto" class="java.util.Calendar">
+		<fieldDescription><![CDATA[duzpUcto]]></fieldDescription>
+	</field>
+	<field name="duzpPuv" class="java.util.Calendar">
+		<fieldDescription><![CDATA[duzpPuv]]></fieldDescription>
+	</field>
+	<field name="bspBan" class="cz.winstrom.vo.dok.Bsp">
+		<fieldDescription><![CDATA[bspBan]]></fieldDescription>
+	</field>
+	<field name="formaUhradyCis" class="cz.winstrom.vo.dok.FormaUhradyCis">
+		<fieldDescription><![CDATA[formaUhradyCis]]></fieldDescription>
+	</field>
+	<field name="varSym" class="java.lang.String">
+		<fieldDescription><![CDATA[varSym]]></fieldDescription>
+	</field>
+	<field name="stredisko" class="cz.winstrom.vo.ucto.Stredisko">
+		<fieldDescription><![CDATA[stredisko]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="uvodTxt" class="java.lang.String">
+		<fieldDescription><![CDATA[uvodTxt]]></fieldDescription>
+	</field>
+	<field name="zavTxt" class="java.lang.String">
+		<fieldDescription><![CDATA[zavTxt]]></fieldDescription>
+	</field>
+	<field name="nestornovanePolozkyDokladu" class="java.util.List">
+		<fieldDescription><![CDATA[nestornovanePolozkyDokladu]]></fieldDescription>
+	</field>
+	<field name="this" class="cz.winstrom.vo.WSValueObject">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<field name="modul" class="java.lang.String">
+		<fieldDescription><![CDATA[modul]]></fieldDescription>
+	</field>
+	<field name="storno" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[storno]]></fieldDescription>
+	</field>
+	<variable name="bankovniUcet" class="java.lang.String" resetType="Group" resetGroup="datumy">
+		<variableExpression><![CDATA[($F{bspBan} != null ?
+	(!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBuc()) ?
+	   (!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBuc()) ? $F{bspBan}.getBuc() + "/" : "") +
+       ($F{bspBan}.getSmerKod() != null ? $F{bspBan}.getSmerKod().getKod() : "")
+	   : 
+	   (!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getIban()) ? $F{bspBan}.getIban() : "")
+	)
+   :
+   ""
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{bspBan} != null ?
+	(!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBuc()) ?
+	   (!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBuc()) ? $F{bspBan}.getBuc() + "/" : "") +
+       ($F{bspBan}.getSmerKod() != null ? $F{bspBan}.getSmerKod().getKod() : "")
+	   : 
+	   (!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getIban()) ? $F{bspBan}.getIban() : "")
+	)
+   :
+   ""
+)]]></initialValueExpression>
+	</variable>
+	<variable name="datSplatValue" class="java.lang.String" resetType="Group" resetGroup="datumy">
+		<variableExpression><![CDATA[$P{_ADAPTER}.resolve( $F{this}, $P{_ADAPTER}.cfgProperty( "datSplatReplacement", 
+("OBP".equals($F{modul}) || "NAV".equals($F{modul}) ? "object.datTermin" : "object.datSplat")
+ ) )]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.resolve( $F{this}, $P{_ADAPTER}.cfgProperty( "datSplatReplacement", 
+("OBP".equals($F{modul}) || "NAV".equals($F{modul}) ? "object.datTermin" : "object.datSplat")
+ ) )]]></initialValueExpression>
+	</variable>
+	<variable name="dobropisovanyDoklad" class="cz.winstrom.vo.dok.Doklad" resetType="Group" resetGroup="addonFieldsMargin">
+		<variableExpression><![CDATA[("FAV".equals($F{modul}) ?
+$P{_ADAPTER}.findDobropisovanyDoklad( (cz.winstrom.vo.dok.Doklad) $F{this} )
+:
+null
+)]]></variableExpression>
+		<initialValueExpression><![CDATA[("FAV".equals($F{modul}) ?
+$P{_ADAPTER}.findDobropisovanyDoklad( (cz.winstrom.vo.dok.Doklad) $F{this} )
+:
+null
+)]]></initialValueExpression>
+	</variable>
+	<variable name="addonFields.left" class="java.util.List">
+		<variableExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.left" )]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.left" )]]></initialValueExpression>
+	</variable>
+	<variable name="addonFields.right" class="java.util.List">
+		<variableExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.right" )]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.right" )]]></initialValueExpression>
+	</variable>
+	<variable name="addonFields.center" class="java.util.List">
+		<variableExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.center" )]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.center" )]]></initialValueExpression>
+	</variable>
+	<group name="adresy-eachPage" isStartNewPage="true" isReprintHeaderOnEachPage="true" footerPosition="StackAtBottom">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "addressesOnEachPage", false ))]]></printWhenExpression>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-2" mode="Transparent" x="0" y="0" width="535" height="14" isRemoveLineWhenBlank="true" uuid="b6c2f4cc-65bc-48f1-86b2-d80395586e95"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_POLDOKL_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}.getPolDoklReportAdapter()]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigAdresy.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="17">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<image scaleImage="RetainShape" hAlign="Right" vAlign="Top">
+					<reportElement key="image-1" style="Detail" positionType="FixRelativeToBottom" x="410" y="1" width="125" height="15" uuid="b266db96-56be-4cc7-aacc-cbc01ddb1ca6">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<imageExpression><![CDATA[$P{_ADAPTER}.getImage("/resources/wsreports/_globalreports/faktura/fakturaConfig.jasper", "system-logo.png" )]]></imageExpression>
+				</image>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="392" y="5" width="18" height="12" uuid="71bbee8c-2f1d-4372-8fc5-0a8a5f0bf945">
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{bspBan} != null && !cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getIban()) ?
+$P{_ADAPTER}.getTitle("iban") + " " + $F{bspBan}.getIban()
+:
+""
+)
++
+($F{bspBan} != null && !cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getIban()) && !cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBic()) ?
+	" - " : ""
+)
++
+($F{bspBan} != null && !cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBic()) ?
+$P{_ADAPTER}.getTitle("bic") + " " + $F{bspBan}.getBic()
+:
+""
+)]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="370" y="5" width="22" height="12" uuid="a7192b63-e082-4e5b-850d-3355b256bb67">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText(
+        new String[]{$P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnac(),
+$P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnacA(), $P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnacB(),
+ $P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnacC()},
+    new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="adresy-firstPage" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[new Boolean(!$P{_ADAPTER}.cfgBoolean( "addressesOnEachPage", false ))]]></printWhenExpression>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-2" mode="Transparent" x="0" y="0" width="535" height="14" isRemoveLineWhenBlank="true" uuid="9e38df38-3556-4c96-b369-fe8f1c09175f"/>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_POLDOKL_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}.getPolDoklReportAdapter()]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigAdresy.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="addonFieldsMargin">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="14" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="b1227ee5-a8ac-40a5-8669-1ed4aba9d56d">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="14" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="5002d360-ff0b-45e8-bc0b-879c35e03688">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="270">
+				<printWhenExpression><![CDATA[new Boolean(
+	($P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue() ? $P{_ADAPTER}.isQRCodeDirectlySupported( (cz.winstrom.vo.dok.Doklad) $F{this} ) : true)
+	&&
+	$P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
+)]]></printWhenExpression>
+				<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
+					<reportElement key="bez-ramecku" mode="Transparent" x="1" y="0" width="534" height="270" backcolor="#FFFB00" uuid="d89f21f0-c324-4d18-b8f5-d2dc792dd02d">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
+)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<imageExpression><![CDATA[$P{_ADAPTER}.createQRBill((cz.winstrom.vo.dok.Doklad) $F{this})]]></imageExpression>
+				</image>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="datumy" isResetPageNumber="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[new Boolean(!$P{_ADAPTER}.cfgBoolean( "hidePredefinedFields", false ))]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="b5a70167-720f-4fec-a01f-0d784908dd75">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="31bacc58-9d13-42aa-802d-48aa1d475ad3">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="1537d446-6dcd-4230-af93-5e58e0ee1ef0">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("datVyst")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="0" y="12" width="170" height="16" uuid="3a0b6f48-7330-4270-81d8-44b7fe9010f6">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datVyst})]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="977a6fd0-9959-456d-a8bf-765c5fd1e3bc">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($V{datSplatValue}))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("datSplatDatTermin")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="365" y="12" width="170" height="16" uuid="9a4b71b4-c962-4bbb-9600-d879b8b60209">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{datSplatValue}
+/*cz.winstrom.util.WSFormatUtil.formatToShortDate($F{datSplat})*/]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="182" y="0" width="170" height="12" uuid="dcceb627-a956-4c6c-86fa-57c7f6348387">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($F{duzpPuv} != null && $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph())]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("duzpPuv")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="182" y="12" width="170" height="16" uuid="95fcf19e-171e-4e8e-8c69-fb20ed431543">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($F{duzpPuv} != null && $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph())]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[/*$P{_PROJEKT}.getLocalizedText($F{bspBan}.getSmerKod().getNazvy(), new java.util.Locale($P{_LOCALE}.getLocaleCode()) )*/
+
+cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="platba">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[new Boolean(
+	(!$P{_ADAPTER}.cfgBoolean( "hidePredefinedFields", false ))
+	&&
+	!$P{_PROJEKT}.isSvycarskaLegislativa()
+	&&
+	(
+	$F{formaUhradyCis} != null
+	||
+	cz.winstrom.util.WSValidationUtil.isNotBlank($F{varSym})
+	||
+	cz.winstrom.util.WSValidationUtil.isNotBlank($V{bankovniUcet})
+	)
+)]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="3accf850-de6a-4768-8afb-c62a311d57e5">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="3d7d1487-3081-464f-b6c5-c98835d05b93">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="0" y="12" width="170" height="16" uuid="f108d1e2-41fd-4fa6-8fd7-bca14a6a1596">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( $F{formaUhradyCis}.getNazvy(), new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="182" y="12" width="170" height="16" uuid="52f3880e-fb75-4fdf-9ee0-1f137c005d19">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{bankovniUcet}
+/*($F{bspBan} != null ?
+	(!cz.winstrom.util.WSValidationUtil.isBlank($F{bspBan}.getBuc()) ? $F{bspBan}.getBuc() + "/" : "") +
+	($F{bspBan}.getSmerKod() != null ? $F{bspBan}.getSmerKod().getKod() : "")
+	: ""
+)*/]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="182" y="0" width="180" height="12" uuid="62d5845d-e2f5-4b3d-8071-2fb3111ea40b">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($V{bankovniUcet}))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("cisloBanUctu")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="7bd9b60c-3b5d-43b8-b362-c88d42ed7b12">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($F{varSym}))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("varSym")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="9d19922b-3c1d-4692-8f0a-ff0536c14793">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($F{formaUhradyCis} != null)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("formaUhrady")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="365" y="12" width="170" height="16" uuid="b96adea6-f7d5-49f1-828d-b1e687c419dd">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{varSym}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="97">
+				<line>
+					<reportElement key="line-2" positionType="Float" x="0" y="0" width="535" height="1" forecolor="#DCE1E7" uuid="f91a7483-ac40-45dc-8f48-ad3fb3eee4e9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-4" isPrintRepeatedValues="false" mode="Transparent" x="215" y="15" width="320" height="77" backcolor="#FFEE00" uuid="136ef62b-99a5-4ac8-9417-a9db13e55f76">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VMENE">
+						<subreportParameterExpression><![CDATA[new Boolean(
+"R_DPH_V_MENE".equals($P{_LOADER}.getReportDescriptor().getSumKod())
+)]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource(
+$P{_ADAPTER}.getRekapitulaceDphBezZalohASPrenesenouDPH(
+$F{id}.intValue(),
+"R_DPH_V_MENE".equals($P{_LOADER}.getReportDescriptor().getSumKod())
+ )
+ )]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigRekapitulaceDph.jasper" )]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-4" isPrintRepeatedValues="false" mode="Transparent" x="0" y="15" width="215" height="77" backcolor="#FFEE00" uuid="a5557be5-7f85-4d85-8c53-bf2f511d4eb4">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VMENE">
+						<subreportParameterExpression><![CDATA[new Boolean(
+"R_DPH_V_MENE".equals($P{_LOADER}.getReportDescriptor().getSumKod())
+)]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigQrPlatba.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="custom-fields">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="5">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[new Boolean(
+($V{addonFields.left} != null && $V{addonFields.left}.size() > 0)
+||
+($V{addonFields.right} != null && $V{addonFields.right}.size() > 0)
+||
+($V{addonFields.center} != null && $V{addonFields.center}.size() > 0)
+)]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="5" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="6a4d476a-cf5e-444f-ae17-48698d133ca5">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="5" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="af9ce763-06b1-45f9-86d7-c2c8f1c2e6ad">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-4" mode="Transparent" x="0" y="0" width="535" height="1" isRemoveLineWhenBlank="true" uuid="9bfdbb02-063f-4f1b-8a42-6bd93baf6832">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.element.name" value="left"/>
+						<printWhenExpression><![CDATA[new Boolean(
+$V{addonFields.left} != null && $V{addonFields.left}.size() > 0
+)]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADDON_FIELDS_LEFT">
+						<subreportParameterExpression><![CDATA[$V{addonFields.left}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource( $V{addonFields.left} )]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigAddonFieldsLeft.jasper" )]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-4" mode="Transparent" x="0" y="0" width="535" height="1" isRemoveLineWhenBlank="true" uuid="53882789-8534-426f-afcd-58cd80e8c9e8">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.element.name" value="right"/>
+						<printWhenExpression><![CDATA[new Boolean(
+$V{addonFields.right} != null && $V{addonFields.right}.size() > 0
+)]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADDON_FIELDS_LEFT">
+						<subreportParameterExpression><![CDATA[$V{addonFields.left}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource( $V{addonFields.right} )]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigAddonFieldsRight.jasper" )]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="true">
+					<reportElement key="subreport-4" mode="Transparent" x="0" y="0" width="535" height="1" isRemoveLineWhenBlank="true" uuid="f26b8089-f0b7-4a64-bdd4-a56488067254">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.element.name" value="center"/>
+						<printWhenExpression><![CDATA[new Boolean(
+$V{addonFields.center} != null && $V{addonFields.center}.size() > 0
+)]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="_LOCALE">
+						<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_PROJEKT">
+						<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_STREAM">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LOADER">
+						<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_HLAVA">
+						<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_NAZVY">
+						<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_LINKA">
+						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_VERZE">
+						<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADDON_FIELDS_LEFT">
+						<subreportParameterExpression><![CDATA[$V{addonFields.left}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_DOKLAD">
+						<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource( $V{addonFields.center} )]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigAddonFieldsCenter.jasper" )]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="dobropis">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[new Boolean($V{dobropisovanyDoklad} != null)]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="26f0140e-2adb-4dc7-885b-a938583e8051">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="200e2d61-ae91-40f0-8fc0-a54db4005eab">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="0" y="12" width="170" height="16" uuid="75492cb1-5c05-473f-8b36-0e7f6c6074be">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSValidationUtil.isNotBlank($V{dobropisovanyDoklad}.getCisDosle()) ? $V{dobropisovanyDoklad}.getCisDosle() : $V{dobropisovanyDoklad}.getKod()]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="b473317e-4e7f-4f95-a372-060a4349295f">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($F{varSym}))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("dobropisovanyDokladDatum")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="0bf1b5d2-6b94-4792-a1af-5a5adfa982bd">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($F{formaUhradyCis} != null)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("dobropisovanyDokladCislo")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="365" y="12" width="170" height="16" uuid="ef1b2d18-4062-4c05-84fd-a7d8581fad51">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($V{dobropisovanyDoklad}.getDatVyst())]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="oddelovac">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="5">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="5" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="5d0fc7eb-736e-48d2-bb09-eb8b4a082256">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="5" forecolor="#F2F4F8" backcolor="#DCE1E7" uuid="209fc0f7-2153-4363-8b4d-3dbfc3050dcf">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="texty">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="46">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[!cz.winstrom.util.WSValidationUtil.isBlank($F{uvodTxt})]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="0" y="14" width="535" height="16" uuid="6493a7c6-164e-4c2b-88fd-1bf5c40c034c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{uvodTxt}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="46">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<printWhenExpression><![CDATA[!cz.winstrom.util.WSValidationUtil.isBlank($F{zavTxt})]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="0" y="14" width="535" height="16" uuid="4035c45c-2a71-4eb6-9c26-b1a7452e6a8b">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{zavTxt}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="false">
+				<reportElement key="textField-212" x="0" y="0" width="535" height="400" forecolor="#CCCCCC" uuid="4d76e32d-320b-406d-8d82-4148dfebd53d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="CMU Bright" size="65" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{storno}.booleanValue()?
+$P{_ADAPTER}.getTitle("stornovano").toUpperCase()
+:
+($P{_PROJEKT}.isDeveloperMode()?
+  $P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "developerMode", true ).toUpperCase()
+  :
+  ""
+)
+)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="false">
+				<reportElement key="textField-213" x="0" y="400" width="535" height="400" forecolor="#CCCCCC" uuid="13fcdd24-2242-49b9-af26-f0b27f1c9781"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="CMU Bright" size="65" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{storno}.booleanValue()?
+$P{_ADAPTER}.getTitle("stornovano").toUpperCase()
+:
+($P{_PROJEKT}.isDeveloperMode()?
+  $P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "developerMode", true ).toUpperCase()
+  :
+  ""
+)
+)]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="560" y="0" width="5" height="802" uuid="24f92c60-e4a0-4dae-b7ba-124413f2d15e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(!$P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{_ADAPTER}.createImage( "verticalLineColor", "#27C240" )]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<line>
+				<reportElement key="line-2" positionType="Float" x="0" y="50" width="535" height="1" forecolor="#DCE1E7" uuid="e176a9af-9c45-4e2a-82ab-01bf62d3876e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-4" isPrintRepeatedValues="false" x="0" y="0" width="261" height="42" uuid="b5f6ddfa-bb01-4d12-9962-80861af5ab87">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADAPTER">
+					<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_DOKLAD">
+					<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_LEFT">
+					<subreportParameterExpression><![CDATA[$V{addonFields.left}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_RIGHT">
+					<subreportParameterExpression><![CDATA[$V{addonFields.right}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_CENTER">
+					<subreportParameterExpression><![CDATA[$V{addonFields.center}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[($P{_ADAPTER}.cfgBoolean( "switchLogoAndDocNumber", false ) ?
+$P{_LOADER}.getSubreport( "fakturaConfigLogo.jasper" )
+:
+$P{_LOADER}.getSubreport( "fakturaConfigDocNumber.jasper" )
+)]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-4" isPrintRepeatedValues="false" x="274" y="0" width="261" height="42" uuid="29dbcd4e-83b7-4ad5-bc14-13a09f9eaa79">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADAPTER">
+					<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_DOKLAD">
+					<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_LEFT">
+					<subreportParameterExpression><![CDATA[$V{addonFields.left}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_RIGHT">
+					<subreportParameterExpression><![CDATA[$V{addonFields.right}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADDON_FIELDS_CENTER">
+					<subreportParameterExpression><![CDATA[$V{addonFields.center}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[($P{_ADAPTER}.cfgBoolean( "switchLogoAndDocNumber", false ) ?
+$P{_LOADER}.getSubreport( "fakturaConfigDocNumber.jasper" )
+:
+$P{_LOADER}.getSubreport( "fakturaConfigLogo.jasper" )
+)]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="subreport-2" mode="Transparent" x="-30" y="0" width="595" height="14" isRemoveLineWhenBlank="true" uuid="d5d48da8-6fd3-4e6d-b7a4-83171f5f79bc"/>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADAPTER">
+					<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_POLDOKL_ADAPTER">
+					<subreportParameterExpression><![CDATA[$P{_ADAPTER}.getPolDoklReportAdapter()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_DOKLAD">
+					<subreportParameterExpression><![CDATA[$F{this}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource( $P{_ADAPTER}.getPolozkyProTisk($F{id}.intValue(), $P{_LOADER}.getLocaleCode()) )
+/*new cz.winstrom.reports.impl.WSBeanCollectionDataSource($F{nestornovanePolozkyDokladu})*/]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "fakturaConfigPolozky.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

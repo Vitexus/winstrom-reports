@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_Mustr_Port" pageWidth="215" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="215" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="cd5cd504-fbce-45e6-b29c-88a9913dfb95">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="ColumnHeader" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.dok.DokladReportAdapter" isForPrompting="false"/>
+	<parameter name="_DOKLAD" class="cz.winstrom.vo.dok.Doklad"/>
+	<parameter name="_HIDE_QR_IF_NOT_SUPPORTED" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[$P{_ADAPTER}.cfgBoolean( "hideQRpaymentIfNotDirectlySupported", false )]]></defaultValueExpression>
+	</parameter>
+	<group name="uhrazeno">
+		<groupHeader>
+			<band height="49">
+				<printWhenExpression><![CDATA[new Boolean(
+	$P{_ADAPTER}.cfgBoolean( "printPaid", false )
+	&&
+	("FAV".equals($P{_DOKLAD}.getModul()) && $P{_DOKLAD}.getDouble( "zbyvaUhradit" ) == 0.0)
+)]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-8" style="ColumnHeader" x="0" y="7" width="120" height="42" forecolor="#DF0039" uuid="ffa59c05-4cb1-4bf3-badb-0c315ec4e77b">
+						<printWhenExpression><![CDATA[new Boolean(
+	$P{_ADAPTER}.cfgBoolean( "printPaid", false )
+	&&
+	("FAV".equals($P{_DOKLAD}.getModul()) && $P{_DOKLAD}.getDouble( "zbyvaUhradit" ) == 0.0)
+)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<pen lineColor="#DF0039"/>
+						<topPen lineWidth="1.0" lineStyle="Dashed" lineColor="#DF0039"/>
+						<leftPen lineWidth="1.0" lineStyle="Dashed" lineColor="#DF0039"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed" lineColor="#DF0039"/>
+						<rightPen lineWidth="1.0" lineStyle="Dashed" lineColor="#DF0039"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("uhrazeno")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-5" style="Detail" x="1" y="0" width="72" height="72" uuid="562a8a72-92a6-498c-bcd9-752b0d1cd0cd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(
+   ($P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue() ? $P{_ADAPTER}.isQRCodeDirectlySupported( $P{_DOKLAD} ) : true)
+   &&
+$P{_ADAPTER}.printQRCode( $P{_DOKLAD}, !$P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue())
+&&
+$P{_ADAPTER}.printQRCodeBorder( $P{_DOKLAD} )
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#C0C7CE"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#C0C7CE"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#C0C7CE"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#C0C7CE"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="bez-ramecku" mode="Transparent" x="3" y="2" width="68" height="68" uuid="084904ef-370d-4a1f-bdb6-a17db11d3969">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(
+   ($P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue() ? $P{_ADAPTER}.isQRCodeDirectlySupported( $P{_DOKLAD} ) : true)
+   &&
+$P{_ADAPTER}.printQRCode( $P{_DOKLAD}, !$P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue())
+&&
+$P{_ADAPTER}.printQRCodeBorder( $P{_DOKLAD} )
+&&
+!$P{_ADAPTER}.printQRBill( $P{_DOKLAD} )
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[$P{_ADAPTER}.createQRCode($P{_DOKLAD})]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="bez-ramecku" mode="Transparent" x="1" y="0" width="72" height="72" uuid="8811d197-5824-44d0-aa1e-a257a846f7ab">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(
+   ($P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue() ? $P{_ADAPTER}.isQRCodeDirectlySupported( $P{_DOKLAD} ) : true)
+   &&
+$P{_ADAPTER}.printQRCode( $P{_DOKLAD}, !$P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue())
+&&
+!$P{_ADAPTER}.printQRCodeBorder( $P{_DOKLAD} )
+&&
+!$P{_ADAPTER}.printQRBill( $P{_DOKLAD} )
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<imageExpression><![CDATA[$P{_ADAPTER}.createQRCode($P{_DOKLAD})]]></imageExpression>
+			</image>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-5" style="Detail" mode="Opaque" x="12" y="65" width="50" height="12" uuid="87dc11ad-bbcb-448b-b202-ccb3e0ab0ecb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(
+   ($P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue() ? $P{_ADAPTER}.isQRCodeDirectlySupported( $P{_DOKLAD} ) : true)
+   &&
+$P{_ADAPTER}.printQRCode( $P{_DOKLAD}, !$P{_HIDE_QR_IF_NOT_SUPPORTED}.booleanValue())
+&&
+$P{_ADAPTER}.printQRCodeBorder( $P{_DOKLAD} )
+)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["QR Platba"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
