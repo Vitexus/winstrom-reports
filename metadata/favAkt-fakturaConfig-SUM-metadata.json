@@ -167,6 +167,23 @@
       }
     },
     {
+      "name": "hideVatRecapitulationOnAdvanceDocument",
+      "type": "boolean",
+      "defaultValue": true,
+      "label": {
+        "en": "Hide VAT On non-accountable advance",
+        "cs": "Skrýt DPH na neúčetní záloze",
+        "sk": "Skryť DPH na neúčtovnej zálohe",
+        "de": "MwSt bei Anzahlung ausblenden"
+      },
+      "tooltip": {
+        "en": "Hide the VAT recapitulation on the non-accounting advance document",
+        "cs": "Na neúčetním zálohovém dokladu skrýt rekapitulaci DPH",
+        "sk": "Na neúčtovnom zálohovom doklade skryť rekapituláciu DPH",
+        "de": "Blenden Sie die Mehrwertsteuerzusammenfassung auf dem nicht buchhalterischen Vorabbeleg aus"
+      }
+    },
+    {
       "name": "showStampAndSignature",
       "type": "boolean",
       "label": {
@@ -227,7 +244,8 @@
     },
     {
       "name": "verticalLineColor",
-      "type": "colorPicker",
+      "type": "rgbColorPicker",
+      "defaultValue": "#27C240",
       "label": {
         "en": "Vertical line color",
         "cs": "Barva svislé čáry",
@@ -242,8 +260,63 @@
       }
     },
     {
+      "name": "horizontalStripeColor",
+      "type": "rgbColorPicker",
+      "defaultValue": "#DCE1E7",
+      "label": {
+        "en": "Horizontal stripe color",
+        "cs": "Barva vodorovného pruhu",
+        "sk": "Farba vodorovného pruhu",
+        "de": "Die Farbe der horizontalen Streif"
+      },
+      "tooltip": {
+        "en": "",
+        "cs": "",
+        "sk": "",
+        "de": ""
+      }
+    },
+    {
+      "name": "horizontalStripeTextColor",
+      "type": "select",
+      "defaultValue": "#000000",
+      "items": [
+        {
+          "value": "#000000",
+          "label": {
+            "en": "Black",
+            "cs": "Černá",
+            "sk": "Čierná",
+            "de": "Schwarz"
+          }
+        },
+        {
+          "value": "#ffffff",
+          "label": {
+            "en": "White",
+            "cs": "Bílá",
+            "sk": "Biela",
+            "de": "Weiß"
+          }
+        }
+      ],
+      "label": {
+        "en": "Horizontal stripe text color",
+        "cs": "Barva textu vodorovného pruhu",
+        "sk": "Farba textu vodorovného pruhu",
+        "de": "Die Farbe des horizontalen Streifentextes"
+      },
+      "tooltip": {
+        "en": "",
+        "cs": "",
+        "sk": "",
+        "de": ""
+      }
+    },
+    {
       "name": "addIsdocLogoIfIsdocIsAttached",
       "type": "boolean",
+      "defaultValue": true,
       "label": {
         "en": "Add ISDOC logo to PDF",
         "cs": "Zobrazit logo ISDOC v PDF",
@@ -260,8 +333,8 @@
           "label": {
             "en": "Always",
             "cs": "Vždy",
-            "sk": "",
-            "de": ""
+            "sk": "Vždy",
+            "de": "Immer"
           }
         },
         {
@@ -269,8 +342,8 @@
           "label": {
             "en": "Never",
             "cs": "Nikdy",
-            "sk": "",
-            "de": ""
+            "sk": "Nikdy",
+            "de": "Niemals"
           }
         },
         {
@@ -278,8 +351,8 @@
           "label": {
             "en": "Only if EAN is filled in",
             "cs": "Pouze pokud je vyplněn EAN",
-            "sk": "",
-            "de": ""
+            "sk": "Iba ak je vyplnený EAN",
+            "de": "Nur wenn EAN gefüllt ist"
           }
         }
       ],
@@ -290,6 +363,107 @@
       "tooltip": {
         "en": "...",
         "cs": "..."
+      }
+    },
+    {
+      "name": "cenaMjDph",
+      "type": "select",
+      "defaultValue": "dlePol",
+      "items": [
+        {
+          "value": "dlePol",
+          "label": {
+            "en": "According to the item",
+            "cs": "Podle položky",
+            "sk": "Podľa položky",
+            "de": "Nach Posten"
+          }
+        },
+        {
+          "value": "sDph",
+          "label": {
+            "en": "Including VAT",
+            "cs": "Včetně DPH",
+            "sk": "Vrátane DPH",
+            "de": "Inkl. MwSt."
+          }
+        },
+        {
+          "value": "bezDph",
+          "label": {
+            "en": "Without VAT",
+            "cs": "Bez DPH",
+            "sk": "Bez DPH",
+            "de": "Ohne MwSt."
+          }
+        }
+      ],
+      "label": {
+        "en": "Unit prices",
+        "cs": "Jednotkové ceny",
+        "sk": "Jednotkové ceny",
+        "de": "Einheitspreises"
+      },
+      "tooltip": {
+        "en": "The unit price displayed for the document items",
+        "cs": "Jednotková cena zobrazená u položek dokladu",
+        "sk": "Jednotková cena zobrazená pri položkách dokladu",
+        "de": "Die Einheitspreise der angezeigte Belegposten"
+      }
+    },
+    {
+      "name": "cenaMjDigits",
+      "type": "select",
+      "defaultValue": "adaptive",
+      "items": [
+        {
+          "value": "adaptive",
+          "label": {
+            "en": "2-6 decimal places",
+            "cs": "2-6 desetinných míst",
+            "sk": "2-6 desatinných miest",
+            "de": "2-6 Nachkommastellen"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "2 decimal places",
+            "cs": "2 desetinná místa",
+            "sk": "2 desatinné miesta",
+            "de": "2 Nachkommastellen"
+          }
+        },
+        {
+          "value": "3",
+          "label": {
+            "en": "3 decimal places",
+            "cs": "3 desetinná místa",
+            "sk": "3 desatinné miesta",
+            "de": "3 Nachkommastellen"
+          }
+        },
+        {
+          "value": "6",
+          "label": {
+            "en": "6 decimal places",
+            "cs": "6 desetinných míst",
+            "sk": "6 desatinných miest",
+            "de": "6 Nachkommastellen"
+          }
+        }
+      ],
+      "label": {
+        "en": "Decimal places of unit prices",
+        "cs": "Desetinná místa jednotkových cen",
+        "sk": "Desatinné miesta jednotkových cien",
+        "de": "Dezimalstellen der Einheitspreise"
+      },
+      "tooltip": {
+        "en": "The number of decimal places for the unit prices of the document items",
+        "cs": "Počet desetinných míst u jednotkových cen položek dokladu",
+        "sk": "Počet desatinných miest pri jednotkových cenách položiek dokladu",
+        "de": "Die Anzahl der Dezimalstellen für die Einheitspreise der Belegposten"
       }
     }
   ],
@@ -336,14 +510,19 @@
                 "sk": "Nastavenia",
                 "de": "Einstellungen"
               }, "class": "h2" },
-              { "field": "verticalLineColor"},
               { "field": "hideLineOnTheSide" },
+              { "field": "verticalLineColor"},
+              { "field": "horizontalStripeColor"},
+              { "field": "horizontalStripeTextColor"},
+              { "field": "cenaMjDph" },
+              { "field": "cenaMjDigits" },
               { "field": "printPaid" },
               { "field": "addressesOnEachPage" },
               { "field": "switchLogoAndDocNumber" },
               { "field": "hideEmptyAddonFields" },
               { "field": "hidePredefinedFields" },
               { "field": "hideQRpaymentIfNotDirectlySupported" },
+              { "field": "hideVatRecapitulationOnAdvanceDocument" },
               { "field": "showStampAndSignature" },
               { "field": "showPricesBeforeDiscount" },
               { "field": "addIsdocLogoIfIsdocIsAttached" }

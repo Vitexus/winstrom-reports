@@ -319,7 +319,8 @@ $P{_ADAPTER}.isTisknoutDanOdvadiPrijemce($P{_DOKLAD}).booleanValue()
 				</textElement>
 				<textFieldExpression><![CDATA[(
 $F{prenDPH}.booleanValue()  == true?
-"Přenesená daňová povinnost"
+$P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "prenesenaDanovaPovinnost", true )
++ ($F{sazbaDph} != null  ? " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%" : "")
 :
 $P{_ADAPTER}.getTitle( $P{_LOCALE}.GID_REPORTS, "faktura", "zaklad", true ) + " " + cz.winstrom.util.WSFormatUtil.format($F{sazbaDph}.getSzbDph()) + "%"
 )]]></textFieldExpression>

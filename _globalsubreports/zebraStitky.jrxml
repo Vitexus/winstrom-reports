@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="zebraStitky" pageWidth="141" pageHeight="85" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="141" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="6155d3ae-9cf4-47a1-8743-edfcf50034c1">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -11,6 +11,7 @@
 	<import value="net.sf.jasperreports.engine.data.*"/>
 	<style name="Detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 	<style name="ColumnHeader" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Barcode" hImageAlign="Center" vImageAlign="Middle"/>
 	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
 	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -80,16 +81,16 @@ $F{cenik}.getKod()
 )]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement style="Detail" x="0" y="37" width="141" height="31" uuid="59dada50-6fd8-4049-849c-a5ceb02f4d84">
+				<reportElement style="Barcode" x="0" y="37" width="141" height="31" uuid="59dada50-6fd8-4049-849c-a5ceb02f4d84">
 					<printWhenExpression><![CDATA[new Boolean(
     ($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod()) != null
     &&
     !($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod()).isEmpty()
 )]]></printWhenExpression>
 				</reportElement>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false" barWidth="3" barHeight="55">
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<jr:codeExpression><![CDATA[($F{polDokl} != null ? $F{polDokl}.getEanKod() : $F{cenik}.getEanKod())]]></jr:codeExpression>
-				</jr:barbecue>
+				</jr:Code128>
 			</componentElement>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField" style="ColumnHeader" mode="Transparent" x="0" y="68" width="141" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="908602aa-dedd-4ae8-8d91-d06346ae4ed7"/>

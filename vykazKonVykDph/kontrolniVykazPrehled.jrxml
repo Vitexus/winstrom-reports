@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.11.0  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kontrolniVykazPrehled" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="a46e7ff3-98ce-4afc-9ff1-be0151c09c8d">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -22,6 +22,9 @@
 	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
 	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="_ADAPTER" class="cz.winstrom.service.vyk.KonVykDphReportAdapter" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
 	<field name="ciselnyKodZbozi" class="java.lang.String">
 		<fieldDescription><![CDATA[ciselnyKodZbozi]]></fieldDescription>
 	</field>
@@ -88,6 +91,12 @@
 	<field name="clenKonVykDph" class="cz.winstrom.vo.ucto.ClenKonVykDph">
 		<fieldDescription><![CDATA[clenKonVykDph]]></fieldDescription>
 	</field>
+	<field name="kodDokl" class="java.lang.String">
+		<fieldDescription><![CDATA[kodDokl]]></fieldDescription>
+	</field>
+	<field name="duzpPuv" class="java.util.Calendar">
+		<fieldDescription><![CDATA[duzpPuv]]></fieldDescription>
+	</field>
 	<sortField name="clenKonVykDphVysledny"/>
 	<variable name="sumZkl" class="java.lang.Double" resetType="Group" resetGroup="clenKonVykDph" calculation="Sum">
 		<variableExpression><![CDATA[$F{sumZkl}]]></variableExpression>
@@ -137,7 +146,7 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "vatId", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-8" style="ColumnHeader" positionType="Float" x="126" y="12" width="44" height="18" uuid="a675946b-3a55-4484-be27-4d19e6f0eaa8"/>
+					<reportElement key="textField-8" style="ColumnHeader" positionType="Float" x="205" y="12" width="44" height="18" uuid="a675946b-3a55-4484-be27-4d19e6f0eaa8"/>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -145,7 +154,7 @@
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "duzpUcto", true )]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "duzpPuv", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement key="textField-24" style="ColumnHeader" positionType="Float" x="57" y="12" width="69" height="18" uuid="985b6eff-c3a8-4f91-8435-5b350d0590f6"/>
@@ -156,7 +165,7 @@
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "kod", true )]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "kontrolniVykazPrehled", "kod", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement key="textField-26" style="ColumnHeader" mode="Transparent" x="0" y="0" width="782" height="9" uuid="4578ef9b-7688-4fe3-8283-b5501653523d"/>
@@ -169,7 +178,9 @@
 					<textFieldExpression><![CDATA[$F{clenKonVykDphVysledny} + " " + $P{_ADAPTER}.getNazev($F{clenKonVykDphVysledny})]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-27" style="ColumnHeader" positionType="Float" x="170" y="12" width="69" height="18" uuid="a43af8d2-b388-41e2-9993-9fa862e6bc1b"/>
+					<reportElement key="textField-27" style="ColumnHeader" positionType="Float" x="249" y="12" width="60" height="18" uuid="a43af8d2-b388-41e2-9993-9fa862e6bc1b">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -180,7 +191,9 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "sumZkl", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-29" style="ColumnHeader" positionType="Float" x="239" y="12" width="69" height="18" uuid="7c68f4bc-473b-4bdb-ab6c-352936438ab3"/>
+					<reportElement key="textField-29" style="ColumnHeader" positionType="Float" x="309" y="12" width="60" height="18" uuid="7c68f4bc-473b-4bdb-ab6c-352936438ab3">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -191,7 +204,7 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "sumDph", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-32" style="ColumnHeader" positionType="Float" x="308" y="12" width="40" height="18" uuid="2c8d1401-be86-4ba6-9ae0-823806c977a1"/>
+					<reportElement key="textField-32" style="ColumnHeader" positionType="Float" x="369" y="12" width="40" height="18" uuid="2c8d1401-be86-4ba6-9ae0-823806c977a1"/>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -202,7 +215,8 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "szbDph", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-34" style="ColumnHeader" positionType="Float" x="357" y="12" width="69" height="18" uuid="6f7aa7c6-7983-46df-9e7a-27086d938e4a">
+					<reportElement key="textField-34" style="ColumnHeader" positionType="Float" x="417" y="12" width="60" height="18" uuid="6f7aa7c6-7983-46df-9e7a-27086d938e4a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -218,7 +232,8 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "ciselnyKodZbozi", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-35" style="ColumnHeader" positionType="Float" x="426" y="12" width="69" height="18" uuid="72410b60-4540-4806-a783-ea2a8579e0d8">
+					<reportElement key="textField-35" style="ColumnHeader" positionType="Float" x="477" y="12" width="60" height="18" uuid="72410b60-4540-4806-a783-ea2a8579e0d8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -234,7 +249,8 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "druhZbozi", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-38" style="ColumnHeader" positionType="Float" x="495" y="12" width="69" height="18" uuid="0e19fc99-4c5a-4f76-af58-d3be3fb21dd6">
+					<reportElement key="textField-38" style="ColumnHeader" positionType="Float" x="537" y="12" width="60" height="18" uuid="0e19fc99-4c5a-4f76-af58-d3be3fb21dd6">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -250,7 +266,8 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "sumMnozMj", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-42" style="ColumnHeader" positionType="Float" x="571" y="12" width="44" height="18" uuid="0c390030-bad6-4668-8f20-c4d70f36cd71">
+					<reportElement key="textField-42" style="ColumnHeader" positionType="Float" x="602" y="12" width="40" height="18" uuid="0c390030-bad6-4668-8f20-c4d70f36cd71">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -266,7 +283,7 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "mj", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-44" style="ColumnHeader" positionType="Float" x="615" y="12" width="69" height="18" uuid="73781441-99ce-4490-bd72-8e963066473d">
+					<reportElement key="textField-44" style="ColumnHeader" positionType="Float" x="642" y="12" width="69" height="18" uuid="73781441-99ce-4490-bd72-8e963066473d">
 						<printWhenExpression><![CDATA[new Boolean(
  "B.1.".equals($F{clenKonVykDph}.getKod())
 ||  "B.2.".equals($F{clenKonVykDph}.getKod())
@@ -283,7 +300,7 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "sumOdpocDph", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-45" style="ColumnHeader" positionType="Float" x="693" y="12" width="69" height="18" uuid="aa597625-62b8-430b-bea7-6cb7feaa66cb">
+					<reportElement key="textField-45" style="ColumnHeader" positionType="Float" x="714" y="12" width="69" height="18" uuid="aa597625-62b8-430b-bea7-6cb7feaa66cb">
 						<printWhenExpression><![CDATA[new Boolean(
 "C.1.".equals($F{clenKonVykDph}.getKod())
 || "C.2.".equals($F{clenKonVykDph}.getKod())
@@ -298,12 +315,25 @@
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "kodPuv", true )]]></textFieldExpression>
 				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-24" style="ColumnHeader" positionType="Float" x="126" y="12" width="69" height="18" uuid="686aa736-5fa1-4911-997f-ffe1dda4eb3a"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.KonVykDph", "kodDokl", true )]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="16" splitType="Stretch">
 				<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement key="textField-47" style="ColumnHeader" mode="Transparent" x="239" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="c2fe12d5-f61a-4eb0-9c8d-e90d3dbfc5fe"/>
+					<reportElement key="textField-47" style="ColumnHeader" mode="Transparent" x="309" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="c2fe12d5-f61a-4eb0-9c8d-e90d3dbfc5fe">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -314,7 +344,9 @@
 					<textFieldExpression><![CDATA[$V{sumDph}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement key="textField-48" style="ColumnHeader" mode="Transparent" x="170" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="3ffa6342-9760-44df-90b8-2fabdfc3cfe1"/>
+					<reportElement key="textField-48" style="ColumnHeader" mode="Transparent" x="249" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="3ffa6342-9760-44df-90b8-2fabdfc3cfe1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -336,7 +368,7 @@
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "global", "celkem", true )]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement key="textField-47" style="ColumnHeader" mode="Transparent" x="615" y="2" width="69" height="9" backcolor="#FFFFFF" uuid="3d719b5b-2b7c-4fa5-8238-b9d59f50fd2c">
+					<reportElement key="textField-47" style="ColumnHeader" mode="Transparent" x="642" y="2" width="69" height="9" backcolor="#FFFFFF" uuid="3d719b5b-2b7c-4fa5-8238-b9d59f50fd2c">
 						<printWhenExpression><![CDATA[new Boolean( $F{clenKonVykDph} != null &&
  ($F{clenKonVykDph}.getKod().startsWith("B.1.")
 || $F{clenKonVykDph}.getKod().startsWith("B.2.")
@@ -403,7 +435,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="11" splitType="Stretch">
+		<band height="14" splitType="Stretch">
 			<printWhenExpression><![CDATA[new Boolean(!$P{_LOADER}.isRozsireny())]]></printWhenExpression>
 			<line direction="BottomUp">
 				<reportElement key="line-4" positionType="FixRelativeToBottom" x="0" y="10" width="781" height="1" forecolor="#000000" uuid="dc2a77b1-38db-4182-ae05-fc4614b85f49">
@@ -424,14 +456,14 @@
 				<textFieldExpression><![CDATA[$F{vatId}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField" style="Detail" x="126" y="0" width="44" height="9" uuid="f229bc25-4282-4435-b5b3-9f0570f75157"/>
+				<reportElement key="textField" style="Detail" x="205" y="0" width="44" height="9" uuid="f229bc25-4282-4435-b5b3-9f0570f75157"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpUcto})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv})]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-23" style="Detail" mode="Transparent" x="57" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="d21d049f-cfd7-4d02-bb45-a5c3cb0e1c5a"/>
@@ -444,7 +476,9 @@
 				<textFieldExpression><![CDATA[$F{kod}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-28" style="Detail" mode="Transparent" x="170" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="9530c470-0a84-4c5b-8092-1cc55b6667a3"/>
+				<reportElement key="textField-28" style="Detail" mode="Transparent" x="249" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="9530c470-0a84-4c5b-8092-1cc55b6667a3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -455,7 +489,9 @@
 				<textFieldExpression><![CDATA[$F{sumZkl}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-30" style="Detail" mode="Transparent" x="239" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="930a474d-bd00-4b93-a94e-12f6a138faa2"/>
+				<reportElement key="textField-30" style="Detail" mode="Transparent" x="309" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="930a474d-bd00-4b93-a94e-12f6a138faa2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -466,7 +502,7 @@
 				<textFieldExpression><![CDATA[$F{sumDph}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-31" style="Detail" mode="Transparent" x="308" y="0" width="40" height="9" backcolor="#FFFFFF" uuid="7aca4d9d-4269-425e-aa08-c5569c927f73"/>
+				<reportElement key="textField-31" style="Detail" mode="Transparent" x="369" y="0" width="40" height="9" backcolor="#FFFFFF" uuid="7aca4d9d-4269-425e-aa08-c5569c927f73"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -477,7 +513,8 @@
 				<textFieldExpression><![CDATA[$F{szbDph}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-33" style="Detail" mode="Transparent" x="357" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="7e35c1f4-f7ee-4822-b90f-1953bc570f4b">
+				<reportElement key="textField-33" style="Detail" mode="Transparent" x="417" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="7e35c1f4-f7ee-4822-b90f-1953bc570f4b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -492,7 +529,8 @@
 				<textFieldExpression><![CDATA[$F{ciselnyKodZbozi}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-36" style="Detail" mode="Transparent" x="426" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="9a898fd6-9385-4263-b125-e7b78b8d1a72">
+				<reportElement key="textField-36" style="Detail" mode="Transparent" x="477" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="9a898fd6-9385-4263-b125-e7b78b8d1a72">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -507,7 +545,8 @@
 				<textFieldExpression><![CDATA[$F{druhZbozi}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-37" style="Detail" mode="Transparent" x="495" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="a69e3a04-3103-4ee4-9740-3d98dcfd0e60">
+				<reportElement key="textField-37" style="Detail" mode="Transparent" x="537" y="0" width="60" height="9" backcolor="#FFFFFF" uuid="a69e3a04-3103-4ee4-9740-3d98dcfd0e60">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -523,7 +562,8 @@
 				<textFieldExpression><![CDATA[$F{sumMnozMj}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-41" style="Detail" x="571" y="0" width="44" height="9" uuid="9b315c80-bc66-4333-88a7-989637b384a0">
+				<reportElement key="textField-41" style="Detail" x="602" y="0" width="40" height="9" uuid="9b315c80-bc66-4333-88a7-989637b384a0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean(
 "A.2.".equals($F{clenKonVykDph}.getKod())
 || "C.1.".equals($F{clenKonVykDph}.getKod())
@@ -538,7 +578,7 @@
 				<textFieldExpression><![CDATA[$F{mj}.getKod()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-43" style="Detail" mode="Transparent" x="615" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="b31ef5ab-6edd-4f8a-9199-46bf231427b4">
+				<reportElement key="textField-43" style="Detail" mode="Transparent" x="642" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="b31ef5ab-6edd-4f8a-9199-46bf231427b4">
 					<printWhenExpression><![CDATA[new Boolean(
  "B.1.".equals($F{clenKonVykDph}.getKod())
 ||  "B.2.".equals($F{clenKonVykDph}.getKod())
@@ -555,7 +595,7 @@
 				<textFieldExpression><![CDATA[$F{sumOdpocDph}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-46" style="Detail" mode="Transparent" x="693" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="edd6ea8a-9d72-4169-a276-9b9dc05758a4">
+				<reportElement key="textField-46" style="Detail" mode="Transparent" x="714" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="edd6ea8a-9d72-4169-a276-9b9dc05758a4">
 					<printWhenExpression><![CDATA[new Boolean(
 "C.1.".equals($F{clenKonVykDph}.getKod())
 || "C.2.".equals($F{clenKonVykDph}.getKod())
@@ -568,6 +608,16 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{kodPuv}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-23" style="Detail" mode="Transparent" x="126" y="0" width="69" height="9" backcolor="#FFFFFF" uuid="fba7fb4b-e9a0-4eb7-b712-d5087d486176"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{kodDokl}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

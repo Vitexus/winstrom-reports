@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fakturaConfigPolozky" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="25c60a6c-42c0-4fc9-9deb-443fbe76214a">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -145,7 +145,11 @@
 		<groupExpression><![CDATA[$F{modul}]]></groupExpression>
 		<groupHeader>
 			<band height="28">
-				<printWhenExpression><![CDATA[!$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()]]></printWhenExpression>
+				<printWhenExpression><![CDATA[new Boolean(
+!$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+||
+($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+)]]></printWhenExpression>
 				<line>
 					<reportElement key="line-2" positionType="Float" x="0" y="0" width="535" height="1" forecolor="#DCE1E7" uuid="abbb57ee-b243-4c4e-a736-538cf468e9a2">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -234,7 +238,7 @@
 					<textElement textAlignment="Right">
 						<font size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("sumCelkem", $F{mena}.getKod() )]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("sumCelkem", $P{_DOKLAD}.getMena().getKod() )]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -355,6 +359,56 @@ $P{_ADDON_FIELDS_POLOZKY} != null && $P{_ADDON_FIELDS_POLOZKY}.size() > 0 && fal
 			</band>
 		</groupFooter>
 	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{this}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<printWhenExpression><![CDATA[Boolean.valueOf(
+  $F{this}.getValue("sazbaDphPuv") != null
+  && $F{sazbaDph} != null
+  && !$F{sazbaDph}.equalsIgnoreVersion($F{this}.getValue("sazbaDphPuv"))
+  && $F{this}.getValue("clenDph") != null
+  && cz.winstrom.vo.UctoLokCiselniky.KOD_PLNENI_PRENES_DAN_POVIN.equals(((cz.winstrom.vo.ucto.ClenDph) $F{this}.getValue("clenDph")).getKodPlneniK())
+)]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Detail" x="340" y="0" width="24" height="14" uuid="58c206f0-6d52-4fd4-ace4-412e5f5272bd">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.format(
+	(((cz.winstrom.vo.nast.SazbaDph) ($F{this}.getValue("sazbaDphPuv"))) != null ?
+ new Double(((cz.winstrom.vo.nast.SazbaDph) ($F{this}.getValue("sazbaDphPuv"))).getSzbDph())
+:
+ null)
+ )]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Detail" x="15" y="0" width="164" height="14" uuid="e3aa0a4b-843c-47d9-84d7-373061476a8e"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("puvodniSazbaDph") + ":"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<group name="predSlevou">
 		<groupExpression><![CDATA[$F{id}]]></groupExpression>
 		<groupHeader>
@@ -400,7 +454,9 @@ cz.winstrom.vo.dok.PolDokl.SUM_CELKEM
 					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("predSlevou") + ":"]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-6" style="Detail" x="384" y="0" width="66" height="14" uuid="a22defcd-0bdc-4d98-aed9-093b6ef45e86"/>
+					<reportElement key="textField-6" style="Detail" x="384" y="0" width="66" height="14" uuid="a22defcd-0bdc-4d98-aed9-093b6ef45e86">
+						<printWhenExpression><![CDATA[!$P{_POLDOKL_ADAPTER}.isOdpocetNeucetniZalohy($F{this})]]></printWhenExpression>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -430,12 +486,7 @@ cz.winstrom.vo.dok.PolDokl.SUM_CELKEM
 					<textElement textAlignment="Right">
 						<font size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
-$F{cenaMj} ,
-$P{_LOCALE}.getLocaleCode(),
-$P{_ADAPTER}.getVoBL(),
-cz.winstrom.vo.dok.PolDokl.CENA_MJ
-)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{_POLDOKL_ADAPTER}.getCenaMjDphFormatted((cz.winstrom.vo.dok.PolDokl)$F{this})]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -445,13 +496,20 @@ cz.winstrom.vo.dok.PolDokl.CENA_MJ
 		<groupHeader>
 			<band>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<printWhenExpression><![CDATA[!$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()]]></printWhenExpression>
+				<printWhenExpression><![CDATA[new Boolean(
+    !$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+    ||
+    ($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+)]]></printWhenExpression>
 			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="16">
 				<printWhenExpression><![CDATA[new Boolean (
-!$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+(!$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+	||
+	($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+)
 &&
 !cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})
 )]]></printWhenExpression>
@@ -549,14 +607,10 @@ cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
 					<textElement textAlignment="Right">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+					<textFieldExpression><![CDATA[$P{_POLDOKL_ADAPTER}.getCenaMjDphFormatted((cz.winstrom.vo.dok.PolDokl)$F{this},
 $F{cenaMj}.doubleValue()*
 (1-($F{uplSlevaDokl}.booleanValue() ? $F{slevaDokl}.doubleValue() : 0.0)/100)
-* (1-$F{slevaPol}.doubleValue()/100) ,
-$P{_LOCALE}.getLocaleCode(),
-$P{_ADAPTER}.getVoBL(),
-cz.winstrom.vo.dok.PolDokl.CENA_MJ
-)]]></textFieldExpression>
+* (1-$F{slevaPol}.doubleValue()/100))]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement key="textField-6" style="Detail" x="430" y="0" width="106" height="16" uuid="64ca3aae-eb11-47db-9384-070f292664f2">
@@ -616,7 +670,11 @@ cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_ODPOCET_ZALOHY.equals($F{typPolozkyK
 	</pageHeader>
 	<columnHeader>
 		<band height="28" splitType="Stretch">
-			<printWhenExpression><![CDATA[$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()]]></printWhenExpression>
+			<printWhenExpression><![CDATA[new Boolean(
+$P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+&&
+!($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+)]]></printWhenExpression>
 			<line>
 				<reportElement key="line-2" positionType="Float" x="0" y="0" width="535" height="1" forecolor="#DCE1E7" uuid="17a35204-1324-43b9-b9a3-e09d34261f37">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -746,6 +804,8 @@ cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_ODPOCET_ZALOHY.equals($F{typPolozkyK
 			<printWhenExpression><![CDATA[new Boolean(
    $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
    &&
+   !($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+   &&
    !cz.winstrom.vo.UctoLokCiselniky.TYP_POLOZKY_TEXT.equals($F{typPolozkyK})   
 )]]></printWhenExpression>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -842,14 +902,10 @@ cz.winstrom.vo.dok.PolDokl.MNOZ_MJ
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatCena(
+				<textFieldExpression><![CDATA[$P{_POLDOKL_ADAPTER}.getCenaMjDphFormatted((cz.winstrom.vo.dok.PolDokl)$F{this},
 $F{cenaMj}.doubleValue()*
 (1-($F{uplSlevaDokl}.booleanValue() ? $F{slevaDokl}.doubleValue() : 0.0)/100)
-* (1-$F{slevaPol}.doubleValue()/100) ,
-$P{_LOCALE}.getLocaleCode(),
-$P{_ADAPTER}.getVoBL(),
-cz.winstrom.vo.dok.PolDokl.CENA_MJ
-)]]></textFieldExpression>
+* (1-$F{slevaPol}.doubleValue()/100))]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-6" style="Detail" x="450" y="0" width="86" height="16" uuid="2af3ccba-2091-432b-97a7-074b07a3bb9d">
@@ -874,6 +930,7 @@ cz.winstrom.vo.dok.PolDokl.SUM_CELKEM
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-6" style="Detail" x="340" y="0" width="24" height="16" uuid="cdef1e31-441b-4871-b00c-ba9c71680465">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[!$P{_POLDOKL_ADAPTER}.isOdpocetNeucetniZalohy($F{this})]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -889,6 +946,7 @@ cz.winstrom.vo.dok.PolDokl.SUM_CELKEM
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-6" style="Detail" x="384" y="0" width="66" height="16" uuid="0d584451-a570-4879-8c33-aca8d718c978">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[!$P{_POLDOKL_ADAPTER}.isOdpocetNeucetniZalohy($F{this})]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -947,6 +1005,13 @@ $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-6" style="ColumnHeader" x="384" y="1" width="66" height="16" uuid="b5765a03-595a-406d-acf3-949442173d00">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(
+   $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph()
+   &&
+   !($P{_ADAPTER}.cfgBoolean( "hideVatRecapitulationOnAdvanceDocument", true ) && $P{_ADAPTER}.isNeucetniZaloha($P{_DOKLAD}))
+   && 
+   ($F{this} == null || !$P{_POLDOKL_ADAPTER}.hasDokladOdpocetNeucetniZalohy($F{this}.getDoklad()))
+)]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
