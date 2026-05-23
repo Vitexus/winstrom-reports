@@ -2,7 +2,7 @@
 
 Jasper Reports sources for Abra Flexi 
 
-https://www.flexibee.eu/podpora/dokumentace/napoveda/uzivatelske_reporty/
+[https://www.flexibee.eu/podpora/dokumentace/napoveda/uzivatelske_reporty/](https://podpora.flexibee.eu/cs/articles/4553831-uzivatelske-reporty)
 
 QuickStart
 ----------
@@ -31,25 +31,10 @@ updating /home/vitex/Projects/aacuk/MyReports/.classpath
 ```
 
 
-Copy & Paste
-------------
-
-Installation commands on Debian
-
-```shell
-sudo apt install lsb-release wget
-echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
-echo "deb http://repo.vitexsoftware.com borrow main" | sudo tee -a /etc/apt/sources.list.d/vitexsoftware.list
-sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
-sudo apt update
-sudo apt install git flexibee-tools flexibee-client jaspersoftstudio
-```
 And finally clone the source files
 ```
 git clone https://github.com/Vitexus/winstrom-reports
 /usr/share/flexibee/bin/updatejasperclasspath
 ```
-
-All tested on Debian 10 Buster
 
 See Also: https://github.com/VitexSoftware/flexibee-dark-gui (Dark skin for FlexiBee Desktop client)
