@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sesRadkyPortRozpadUce" pageWidth="595" pageHeight="782" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="1b7c1173-267e-4772-b06a-457296ad0deb">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="ColumnHeader" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.uses.SestavaReportAdapter" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ucet" class="cz.winstrom.vo.ucto.Ucet">
+		<fieldDescription><![CDATA[ucet]]></fieldDescription>
+	</field>
+	<field name="hod1" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod1]]></fieldDescription>
+	</field>
+	<field name="hod2" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod2]]></fieldDescription>
+	</field>
+	<field name="hod3" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod3]]></fieldDescription>
+	</field>
+	<field name="hod4" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod4]]></fieldDescription>
+	</field>
+	<field name="hod5" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod5]]></fieldDescription>
+	</field>
+	<field name="hod6" class="java.lang.Double">
+		<fieldDescription><![CDATA[hod6]]></fieldDescription>
+	</field>
+	<field name="radek" class="cz.winstrom.vo.uses.Radek">
+		<fieldDescription><![CDATA[radek]]></fieldDescription>
+	</field>
+	<field name="this" class="cz.winstrom.vo.WSValueObject">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="9" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean(
+	$P{_ADAPTER}.isTisknoutUcetDACH( $P{_LOADER}, (cz.winstrom.vo.uses.RozpadUce) $F{this} )
+)]]></printWhenExpression>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-7" style="Detail" mode="Transparent" x="13" y="0" width="44" height="9" forecolor="#6F6F6F" backcolor="#FFFFFF" uuid="ab0a855f-063c-498b-9769-3a6c9565df77"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{ucet}.getKod()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-16" style="Detail" mode="Transparent" x="426" y="0" width="57" height="9" forecolor="#6F6F6F" backcolor="#FFFFFF" uuid="71d5d043-88ee-4919-a29e-e2ee2b2f61e8">
+					<printWhenExpression><![CDATA[new Boolean( $F{radek}.getUcetniSestava().isZobrazit4() )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hod4}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-18" style="Detail" mode="Transparent" x="483" y="0" width="57" height="9" forecolor="#6F6F6F" backcolor="#FFFFFF" uuid="2fcb3f91-80ab-447d-a850-ed9ee5c76b51">
+					<printWhenExpression><![CDATA[new Boolean( $F{radek}.getUcetniSestava().isZobrazit1() )]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hod1}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField-19" style="Detail" mode="Transparent" x="57" y="0" width="369" height="9" forecolor="#6F6F6F" backcolor="#FFFFFF" uuid="700abe24-ea53-408e-9592-d3e5f57ee5ab"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( $F{ucet}.getNazvy(), new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-4" style="Detail" stretchType="RelativeToBandHeight" x="5" y="0" width="1" height="9" forecolor="#6F6F6F" uuid="32059ae9-05f6-44d9-b157-4fb61f9f18a3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-5" style="Detail" positionType="FixRelativeToBottom" x="5" y="8" width="8" height="1" forecolor="#6F6F6F" uuid="ec3e06da-baa5-4de9-93b5-25f7f6199d46"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch">
+			<line>
+				<reportElement key="line-3" positionType="Float" x="12" y="1" width="583" height="1" uuid="7cb46cac-3760-4323-a3ff-94df1344d239">
+					<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prehledSmluv" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="b6adfcb9-7969-4ae1-b272-15e0e136ab2b">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -22,11 +22,15 @@
 	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
 	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="platiOd" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.UctoReportAdapter"/>
 	<field name="this" class="cz.winstrom.vo.WSValueObject">
 		<fieldDescription><![CDATA[this]]></fieldDescription>
 	</field>
 	<variable name="smlouva" class="cz.winstrom.vo.dok.SmlouvaAbstract" resetType="Group" resetGroup="smlouva">
-		<variableExpression><![CDATA[$F{this}]]></variableExpression>
+		<variableExpression><![CDATA[$F{this} instanceof cz.winstrom.vo.dok.SmlouvaAbstract ?
+$F{this}
+:
+$P{_ADAPTER}.getVoBL().findByPk($F{this}.getId())]]></variableExpression>
 		<initialValueExpression><![CDATA[$F{this}]]></initialValueExpression>
 	</variable>
 	<group name="cara">

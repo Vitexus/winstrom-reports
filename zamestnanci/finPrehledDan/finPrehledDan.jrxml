@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="finPrehledDan" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="2e529e13-bb83-4a20-8072-1b298f0f1b14">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -34,8 +34,8 @@
 	<field name="mesic" class="java.lang.Integer">
 		<fieldDescription><![CDATA[mesic]]></fieldDescription>
 	</field>
-	<field name="hrubaMzda" class="java.lang.Double">
-		<fieldDescription><![CDATA[hrubaMzda]]></fieldDescription>
+	<field name="zakladDaneNezaokr" class="java.lang.Double">
+		<fieldDescription><![CDATA[zakladDaneNezaokr]]></fieldDescription>
 	</field>
 	<field name="superhrubaMzda" class="java.lang.Double">
 		<fieldDescription><![CDATA[superhrubaMzda]]></fieldDescription>
@@ -64,21 +64,39 @@ $F{danZaloha}.doubleValue() > 0.0 ||
 $F{danBonus}.doubleValue() > 0.0 ||
 $F{danRezident}.doubleValue() > 0.0 ||
 $F{superhrubaMzda}.doubleValue() > 0.0 ||
-$F{hrubaMzda}.doubleValue() > 0.0
+$F{danZaklSum}.doubleValue() > 0.0
 ) ?
-$F{hrubaMzda} : new Double(0.0))]]></variableExpression>
+$F{zakladDaneNezaokr} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="superhrubaMzdaMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{superhrubaMzda}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{superhrubaMzda} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZalohaMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaloha}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaloha} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danBonusMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danBonus}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danBonus} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="hrubaMzdaRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
@@ -87,53 +105,119 @@ $F{danZaloha}.doubleValue() > 0.0 ||
 $F{danBonus}.doubleValue() > 0.0 ||
 $F{danRezident}.doubleValue() > 0.0 ||
 $F{superhrubaMzda}.doubleValue() > 0.0 ||
-$F{hrubaMzda}.doubleValue() > 0.0
+$F{danZaklSum}.doubleValue() > 0.0
 ) ?
-$F{hrubaMzda} : new Double(0.0))]]></variableExpression>
+$F{zakladDaneNezaokr} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="superhrubaMzdaRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{superhrubaMzda}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{superhrubaMzda} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZalohaRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaloha}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaloha} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danBonusRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danBonus}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danBonus} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danSrazkaMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danSrazka}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danSrazka} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZaklSrazSumMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaklSrazSum}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaklSrazSum} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danRezidentMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danRezident}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danRezident} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danSrazkaRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danSrazka}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danSrazka} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZaklSrazSumRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaklSrazSum}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaklSrazSum} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danRezidentRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danRezident}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danRezident} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZaklSumMesic" class="java.lang.Double" resetType="Group" resetGroup="mesic" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaklSum}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaklSum} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="danZaklSumRok" class="java.lang.Double" resetType="Group" resetGroup="rok" calculation="Sum">
-		<variableExpression><![CDATA[$F{danZaklSum}]]></variableExpression>
+		<variableExpression><![CDATA[($F{danZaloha}.doubleValue() > 0.0 ||
+$F{danBonus}.doubleValue() > 0.0 ||
+$F{danRezident}.doubleValue() > 0.0 ||
+$F{superhrubaMzda}.doubleValue() > 0.0 ||
+$F{danZaklSum}.doubleValue() > 0.0
+?
+$F{danZaklSum} : new Double(0.0))]]></variableExpression>
 		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="rok">
@@ -479,7 +563,7 @@ $F{hrubaMzda} : new Double(0.0))]]></variableExpression>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.AktualMzdy", "hrubaMzda", true )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.mzdy.AktualMzdy", "zakladDaneNezaokr", true )]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-31" style="ColumnHeader" x="318" y="2" width="72" height="11" uuid="f0feef4b-3c0e-4bca-b3ed-a953a7188588"/>
@@ -608,7 +692,7 @@ $F{danZaklSum}.doubleValue() > 0.0
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{hrubaMzda}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{zakladDaneNezaokr}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0;-#,##0" isBlankWhenNull="true">
 				<reportElement key="textField-28" style="Detail" mode="Transparent" x="462" y="1" width="72" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="ac988934-7759-4e5a-8e3b-f46658abaa39"/>

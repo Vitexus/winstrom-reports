@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sesRadkyPortSubreport" pageWidth="595" pageHeight="782" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="76d9888d-b75a-4e11-9918-400bb0eb8f48">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -22,6 +22,9 @@
 	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
 	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="_ADAPTER" class="cz.winstrom.service.uses.SestavaReportAdapter" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
 	<field name="oznaceni" class="java.lang.String">
 		<fieldDescription><![CDATA[oznaceni]]></fieldDescription>
 	</field>
@@ -76,6 +79,13 @@
 	<field name="this" class="cz.winstrom.vo.WSValueObject">
 		<fieldDescription><![CDATA[this]]></fieldDescription>
 	</field>
+	<field name="cisRadXml" class="java.lang.Integer">
+		<fieldDescription><![CDATA[cisRadXml]]></fieldDescription>
+	</field>
+	<variable name="rowNumber" class="java.lang.Integer" resetType="Page" incrementType="Group" incrementGroup="skupina" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
 	<group name="skupina">
 		<groupExpression><![CDATA[$F{oznaceni}]]></groupExpression>
 		<groupHeader>
@@ -84,12 +94,6 @@
 		<groupFooter>
 			<band height="3" splitType="Stretch">
 				<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.getSubreportName( $P{_LOADER}.getReportDescriptor() ) != null)]]></printWhenExpression>
-				<line direction="BottomUp">
-					<reportElement key="line-4" positionType="FixRelativeToBottom" x="0" y="2" width="543" height="1" forecolor="#000000" uuid="77d619f1-df95-4c78-b7a2-862bc148f574"/>
-					<graphicElement>
-						<pen lineWidth="0.5" lineStyle="Solid"/>
-					</graphicElement>
-				</line>
 				<subreport isUsingCache="true">
 					<reportElement key="subreport-4" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="1" width="543" height="0" uuid="a6405e13-47dc-4660-94e3-e7a911158a32">
 						<printWhenExpression><![CDATA[new Boolean( !$P{_ADAPTER}.getDataForSubreport( $P{_LOADER}.getReportDescriptor(), (cz.winstrom.vo.uses.Radek) $F{this} ).isEmpty() )]]></printWhenExpression>
@@ -120,6 +124,9 @@
 					</subreportParameter>
 					<subreportParameter name="_LINKA">
 						<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="_ADAPTER">
+						<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
 					</subreportParameter>
 					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($P{_ADAPTER}.getDataForSubreport( $P{_LOADER}.getReportDescriptor(), (cz.winstrom.vo.uses.Radek) $F{this} ))]]></dataSourceExpression>
 					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( $P{_ADAPTER}.getSubreportName( $P{_LOADER}.getReportDescriptor() ) )]]></subreportExpression>
@@ -152,7 +159,7 @@
 				<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.uses.StdPredpis", "cisloUctuSyn", true )]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line-2" positionType="Float" x="-2" y="20" width="543" height="1" uuid="3293ac1a-9fb0-4296-b1d5-e8102e202707"/>
+				<reportElement key="line-2" positionType="Float" x="-2" y="20" width="543" height="1" forecolor="#000000" uuid="3293ac1a-9fb0-4296-b1d5-e8102e202707"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 				</graphicElement>
@@ -382,9 +389,22 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="9" splitType="Stretch">
+		<band height="10" splitType="Stretch">
+			<line direction="BottomUp">
+				<reportElement key="line-4" x="0" y="0" width="543" height="1" forecolor="#000000" uuid="77d619f1-df95-4c78-b7a2-862bc148f574">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($P{_ADAPTER}.getOznaceni($F{oznaceni}))
+&& $V{rowNumber} > 1)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField" style="Detail" mode="Transparent" x="57" y="0" width="111" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5ce01429-2959-487c-81d4-b8b8ff19eae9"/>
+				<reportElement key="textField" style="Detail" mode="Transparent" x="57" y="1" width="111" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="5ce01429-2959-487c-81d4-b8b8ff19eae9">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[cz.winstrom.util.WSValidationUtil.isNotBlank($P{_ADAPTER}.getOznaceni($F{oznaceni}))]]></printWhenExpression>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -394,7 +414,9 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-7" style="Detail" mode="Transparent" x="0" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="8c9a345b-0ad3-4eb3-9618-d38110d07c57"/>
+				<reportElement key="textField-7" style="Detail" mode="Transparent" x="0" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="8c9a345b-0ad3-4eb3-9618-d38110d07c57">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -404,7 +426,9 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$P{_ADAPTER}.getOznaceni($F{oznaceni})]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-24" style="Detail" mode="Transparent" x="168" y="0" width="30" height="9" backcolor="#FFFFFF" uuid="f0cedb0c-7b92-4ecc-84b1-3cb610385fc3"/>
+				<reportElement key="textField-24" style="Detail" mode="Transparent" x="168" y="1" width="30" height="9" backcolor="#FFFFFF" uuid="f0cedb0c-7b92-4ecc-84b1-3cb610385fc3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -414,10 +438,11 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cisRad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cisRadXml}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-25" style="Detail" mode="Transparent" x="198" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="266cf7a5-a2a6-465d-919b-0ae705afc76a">
+				<reportElement key="textField-25" style="Detail" mode="Transparent" x="198" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="266cf7a5-a2a6-465d-919b-0ae705afc76a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit1() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -430,7 +455,8 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{hod1}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-28" style="Detail" mode="Transparent" x="255" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="64cc08a1-4295-4701-9eeb-3ddcd446d092">
+				<reportElement key="textField-28" style="Detail" mode="Transparent" x="255" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="64cc08a1-4295-4701-9eeb-3ddcd446d092">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit2() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -443,7 +469,8 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{hod2}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-29" style="Detail" mode="Transparent" x="312" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="37d7833b-5dee-4788-aeb2-2afa89824e5e">
+				<reportElement key="textField-29" style="Detail" mode="Transparent" x="312" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="37d7833b-5dee-4788-aeb2-2afa89824e5e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit3() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -456,7 +483,8 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{hod3}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-31" style="Detail" mode="Transparent" x="369" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="942cf92c-80f6-4c51-bd27-4541b4652d10">
+				<reportElement key="textField-31" style="Detail" mode="Transparent" x="369" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="942cf92c-80f6-4c51-bd27-4541b4652d10">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit4() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -469,7 +497,8 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{hod4}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-33" style="Detail" mode="Transparent" x="426" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="8fdac4cd-ff19-4c52-94a2-4672d4dadf09">
+				<reportElement key="textField-33" style="Detail" mode="Transparent" x="426" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="8fdac4cd-ff19-4c52-94a2-4672d4dadf09">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit5() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -482,7 +511,8 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{hod5}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField-35" style="Detail" mode="Transparent" x="483" y="0" width="57" height="9" backcolor="#FFFFFF" uuid="2018b5e6-3097-4cd2-880a-110d1bbc3aca">
+				<reportElement key="textField-35" style="Detail" mode="Transparent" x="483" y="1" width="57" height="9" backcolor="#FFFFFF" uuid="2018b5e6-3097-4cd2-880a-110d1bbc3aca">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[new Boolean( $F{ucetniSestava}.isZobrazit6() )]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -493,6 +523,19 @@ new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 				</box>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{hod6}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="textField" style="Detail" mode="Transparent" x="10" y="1" width="158" height="9" forecolor="#000000" backcolor="#FFFFFF" uuid="c995afd7-1877-4cbf-b95b-7a32599d684a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[cz.winstrom.util.WSValidationUtil.isBlank($P{_ADAPTER}.getOznaceni($F{oznaceni}))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText( new String[] {$F{nazev}, $F{nazevA}, $F{nazevB}, $F{nazevC}}, new java.util.Locale($P{_LOADER}.getLocaleCode()) )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

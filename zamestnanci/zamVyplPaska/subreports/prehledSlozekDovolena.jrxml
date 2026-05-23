@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prehledSlozek" pageWidth="265" pageHeight="842" whenNoDataType="NoPages" columnWidth="265" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="dfea91bc-52f8-44a3-a285-f36193a6f213">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="detail" isDefault="true" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" pdfFontName="/resources/fonts/cmunbmr.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="culmnHeader" style="detail" markup="styled" isBlankWhenNull="true" fontName="CMU Bright" fontSize="8" isBold="true" pdfFontName="/resources/fonts/cmunbbx.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["vyplatniPaska"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_LOGIKA" class="cz.winstrom.service.mzdy.impl.AktualMzdyBLImpl" isForPrompting="false"/>
+	<parameter name="_SKUPINASLOZEK" class="java.lang.String" isForPrompting="false"/>
+	<field name="hodnota1" class="java.lang.Double">
+		<fieldDescription><![CDATA[hodnota1]]></fieldDescription>
+	</field>
+	<field name="hodnota2" class="java.lang.Double">
+		<fieldDescription><![CDATA[hodnota2]]></fieldDescription>
+	</field>
+	<field name="nazev" class="java.lang.String">
+		<fieldDescription><![CDATA[nazev]]></fieldDescription>
+	</field>
+	<field name="kodPracPomeru" class="java.lang.String">
+		<fieldDescription><![CDATA[kodPracPomeru]]></fieldDescription>
+	</field>
+	<field name="hodnota1desMist" class="java.lang.Integer">
+		<fieldDescription><![CDATA[hodnota1desMist]]></fieldDescription>
+	</field>
+	<field name="hodnota2desMist" class="java.lang.Integer">
+		<fieldDescription><![CDATA[hodnota2desMist]]></fieldDescription>
+	</field>
+	<field name="hodnota3" class="java.lang.Double">
+		<fieldDescription><![CDATA[hodnota3]]></fieldDescription>
+	</field>
+	<field name="hodnota3desMist" class="java.lang.Integer">
+		<fieldDescription><![CDATA[hodnota3desMist]]></fieldDescription>
+	</field>
+	<field name="skupSlozky" class="java.lang.String">
+		<fieldDescription><![CDATA[skupSlozky]]></fieldDescription>
+	</field>
+	<field name="uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[uuid]]></fieldDescription>
+	</field>
+	<group name="columnHeader2">
+		<groupHeader>
+			<band height="14">
+				<printWhenExpression><![CDATA[!"skupinaSlozky.dovolenaKraceni".equals($P{_SKUPINASLOZEK}) ]]></printWhenExpression>
+				<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="false">
+					<reportElement key="textField-5" style="culmnHeader" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="165" height="14" isPrintWhenDetailOverflows="true" uuid="d1df2f5e-a358-4d91-a3d6-bd4e4a2a487c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[!$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni") ]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" rightPadding="5">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="culmnHeader" stretchType="RelativeToBandHeight" mode="Transparent" x="165" y="0" width="50" height="14" uuid="b702a22b-521b-4049-ab2a-0baa450df017">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[!$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni") ]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" rightPadding="5">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekZakladni", true )]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="culmnHeader" stretchType="RelativeToBandHeight" mode="Transparent" x="215" y="0" width="50" height="14" uuid="87961afa-f1af-4eb8-bd25-bcf4c608769f">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<printWhenExpression><![CDATA[!$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni") ]]></printWhenExpression>
+					</reportElement>
+					<box topPadding="3" rightPadding="5">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekAktualni", true )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight" pattern="##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-3" style="culmnHeader" mode="Transparent" x="0" y="0" width="130" height="14" backcolor="#FFFFFF" uuid="88691a0d-4111-4b2c-b1fc-75a921f69a2c"/>
+				<box topPadding="3" leftPadding="3">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni")  ? $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekDovolenaKraceni", true )
+: $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_DIALS, $P{_SKUPINASLOZEK}, true )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-10" style="culmnHeader" stretchType="RelativeToBandHeight" mode="Transparent" x="130" y="0" width="35" height="14" uuid="4269f3e8-8c7e-47af-9e3e-33cc9299a43a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="3" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni") ? "" :
+($P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolena") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.srazky") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.prispevky") ? 
+	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekDny", true )
+: $P{_SKUPINASLOZEK}.equals("skupinaSlozky.dan") ? 
+	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekZaklad", true )
+: (!$P{_SKUPINASLOZEK}.equals("skupinaSlozky.srazky") && !$P{_SKUPINASLOZEK}.equals("skupinaSlozky.vyplata") && !$P{_SKUPINASLOZEK}.equals("skupinaSlozky.benefity")) ?
+	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekHodiny", true )
+: "")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-5" style="culmnHeader" stretchType="RelativeToBandHeight" mode="Transparent" x="165" y="0" width="100" height="14" uuid="4a5939c4-cd6b-4f46-a67f-49ef2cf2aac6">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="3" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolenaKraceni") ? "" : 
+($P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolena")? 
+	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekHodiny", true )
+	: $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekCastkaMzdy", true ))]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField textAdjust="StretchHeight" pattern="##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-11" style="detail" mode="Transparent" x="0" y="0" width="130" height="11" uuid="32936b2d-50e6-46e3-93d2-2ff8efe645b8"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[cz.winstrom.reports.impl.WSReportImpl.formatNazev($F{nazev})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement key="textField-12" style="detail" stretchType="RelativeToTallestObject" mode="Transparent" x="130" y="0" width="35" height="11" uuid="fd0448c4-32eb-4b54-81fd-7ff4805f9052">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{skupSlozky}.equals("skupinaSlozky.nepritNemoc") ? (cz.winstrom.util.WSFormatUtil.format(
+  cz.winstrom.util.WSMath.round(cz.winstrom.util.WSMath.sum(new Double[]{$F{hodnota1}, $F{hodnota3}}), $F{hodnota3desMist}.intValue()).doubleValue()
+)) : cz.winstrom.util.WSFormatUtil.format(
+  cz.winstrom.util.WSMath.round($F{hodnota1}.doubleValue(), $F{hodnota1desMist}.intValue())
+)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement key="textField-13" style="detail" stretchType="RelativeToTallestObject" mode="Transparent" x="165" y="0" width="50" height="11" uuid="c7198b8b-93bc-4a7b-b6cd-acb2bdf8ae9b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.format(
+  cz.winstrom.util.WSMath.round($F{hodnota2}.doubleValue(), $F{hodnota2desMist}.intValue())
+)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement key="textField-13" style="detail" stretchType="RelativeToTallestObject" mode="Transparent" x="215" y="0" width="50" height="11" uuid="1f8d56c2-bb59-4c10-b505-717430de9213">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new Boolean(cz.winstrom.service.mzdy.MzdyConstants.DOVOLENA_KRACENI.equals($F{uuid})) ? "" 
+:
+(cz.winstrom.util.WSFormatUtil.format(
+  cz.winstrom.util.WSMath.round($F{hodnota3}.doubleValue(), $F{hodnota3desMist}.intValue())
+))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="ScaleFont" pattern="##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-6" style="culmnHeader" mode="Transparent" x="0" y="0" width="139" height="2" uuid="449b4907-28f3-47b3-bcec-defbfa9ff261"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-7" style="culmnHeader" mode="Transparent" x="139" y="0" width="62" height="2" uuid="29a09430-cc21-4e40-8344-0a1b8bed28d8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-8" style="culmnHeader" mode="Transparent" x="201" y="0" width="64" height="2" uuid="28d6b529-31b9-4838-9a93-7f55aead3355"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

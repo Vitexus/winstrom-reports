@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="podkladyDph" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="b5f18929-130c-4dd4-b6ec-dc9576032576">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -909,7 +909,7 @@ new Double(0.0))]]></variableExpression>
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textFieldExpression><![CDATA[$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "clenDph", true ) + " "
-+ ($F{clenDph} != null ? $F{clenDph}.getKod() : "") + ": " + ((int) $F{szbDph}.doubleValue()) + " %"]]></textFieldExpression>
++ ($F{clenDph} != null ? $F{clenDph}.getKod() : "") + ": " + cz.winstrom.util.WSFormatUtil.format($F{szbDph}.doubleValue()) + " %"]]></textFieldExpression>
 				</textField>
 				<line direction="BottomUp">
 					<reportElement key="line-5" positionType="FixRelativeToBottom" x="0" y="9" width="781" height="1" forecolor="#000000" uuid="30e80f23-596f-4f4b-a1ff-2397e4c1963e">
@@ -1009,8 +1009,7 @@ new Double(0.0))]]></variableExpression>
 $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "vatId", true )
 :
 $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "dic", true )
-)
-]]></textFieldExpression>
+)]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-23" style="ColumnHeader" x="74" y="2" width="44" height="18" uuid="12184f49-58a3-402c-a4b2-184043f6f95a"/>
@@ -1309,7 +1308,7 @@ $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_BEANS, "cz.winstrom.vo.vyk.PodkladyDph", "
 				</box>
 				<textFieldExpression><![CDATA[$F{clenDph}.getKod()]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" pattern="###0" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="###0.##" isBlankWhenNull="true">
 				<reportElement key="textField-38" style="Detail" mode="Transparent" x="190" y="0" width="35" height="9" backcolor="#FFFFFF" uuid="c69f4a16-66bc-4e3d-8506-04896e7fd85e"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="oznameniPotrebaOsetrovaniMaster" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="3c588db4-0c19-4ca0-8b86-a1692fa7250a">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Detail" isDefault="true" fontName="SansSerif" fontSize="10"/>
+	<style name="ColumnHeader" fontName="SansSerif" fontSize="10" isBold="true"/>
+	<parameter name="_LOCALE" class="cz.winstrom.config.WSBundle" isForPrompting="false"/>
+	<parameter name="_PROJEKT" class="cz.winstrom.WSProject" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetbeansProjects\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="_LOADER" class="cz.winstrom.reports.impl.WSReportImpl" isForPrompting="false"/>
+	<parameter name="_HLAVA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Doklady"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_NAZVY" class="java.lang.String"/>
+	<parameter name="_LINKA" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="_VERZE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="_ADAPTER" class="cz.winstrom.service.UctoReportAdapter" isForPrompting="false"/>
+	<field name="this" class="cz.winstrom.vo.WSValueObject">
+		<fieldDescription><![CDATA[this]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="200" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement x="0" y="0" width="535" height="200" uuid="550e8400-e29b-41d4-a716-446655440000"/>
+				<subreportParameter name="_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_PROJEKT">
+					<subreportParameterExpression><![CDATA[$P{_PROJEKT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_STREAM">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_STREAM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LOADER">
+					<subreportParameterExpression><![CDATA[$P{_LOADER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_HLAVA">
+					<subreportParameterExpression><![CDATA[$P{_HLAVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_NAZVY">
+					<subreportParameterExpression><![CDATA[$P{_NAZVY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_LINKA">
+					<subreportParameterExpression><![CDATA[$P{_LINKA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_VERZE">
+					<subreportParameterExpression><![CDATA[$P{_VERZE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="_ADAPTER">
+					<subreportParameterExpression><![CDATA[$P{_ADAPTER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(
+    java.util.Collections.singletonList(
+        new cz.winstrom.vo.mzdy.NepritomnostInfo(
+            $F{this},
+            (cz.winstrom.service.WSReportAdapter) $P{_ADAPTER}
+        )
+    )
+)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{_LOADER}.getSubreport("oznameniPotrebaOsetrovani.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

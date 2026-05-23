@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fakturaConfig" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="1a9d7268-9fa6-4958-be46-3d8541db3626">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -157,11 +157,11 @@ null
 		<variableExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.center" )]]></variableExpression>
 		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgProperties( "addonFields.center" )]]></initialValueExpression>
 	</variable>
-	<variable name="stripeBackcolor">
+	<variable name="stripeBackcolor" class="java.lang.String">
 		<variableExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeColor", "#DCE1E7" )]]></variableExpression>
 		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeColor", "#DCE1E7" )]]></initialValueExpression>
 	</variable>
-	<variable name="stripeForecolor">
+	<variable name="stripeForecolor" class="java.lang.String">
 		<variableExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeTextColor", "#000000" )]]></variableExpression>
 		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeTextColor", "#000000" )]]></initialValueExpression>
 	</variable>
@@ -259,7 +259,7 @@ $P{_ADAPTER}.getTitle("bic") + " " + $F{bspBan}.getBic()
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement key="textField-5" style="Detail" x="370" y="5" width="22" height="12" uuid="a7192b63-e082-4e5b-850d-3355b256bb67">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -340,7 +340,7 @@ $P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnacA(), $P{_PROJEKT}.getNast
 					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="14" uuid="b1227ee5-a8ac-40a5-8669-1ed4aba9d56d">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -357,7 +357,7 @@ $P{_PROJEKT}.getNastaveniAPI( $F{datVyst} ).getSpisZnacA(), $P{_PROJEKT}.getNast
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="14" uuid="5002d360-ff0b-45e8-bc0b-879c35e03688">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -407,10 +407,11 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<printWhenExpression><![CDATA[new Boolean(!$P{_ADAPTER}.cfgBoolean( "hidePredefinedFields", false ))]]></printWhenExpression>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" uuid="b5a70167-720f-4fec-a01f-0d784908dd75">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="594" height="33" uuid="b5a70167-720f-4fec-a01f-0d784908dd75">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -425,9 +426,11 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" uuid="31bacc58-9d13-42aa-802d-48aa1d475ad3">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="590" height="33" uuid="31bacc58-9d13-42aa-802d-48aa1d475ad3">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -444,7 +447,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="1537d446-6dcd-4230-af93-5e58e0ee1ef0">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -462,7 +465,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -480,7 +483,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($V{datSplatValue}))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -500,7 +503,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -518,7 +521,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 					<reportElement key="textField-5" style="Detail" x="182" y="0" width="170" height="12" uuid="dcceb627-a956-4c6c-86fa-57c7f6348387">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($F{duzpPuv} != null && $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph())]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -537,7 +540,7 @@ $P{_ADAPTER}.printQRBill( (cz.winstrom.vo.dok.Doklad) $F{this} )
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($F{duzpPuv} != null && $P{_ADAPTER}.getNastaveni( $F{datVyst} ).isPlatceDph())]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -578,10 +581,11 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 	)
 )]]></printWhenExpression>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" uuid="3accf850-de6a-4768-8afb-c62a311d57e5">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="594" height="33" uuid="3accf850-de6a-4768-8afb-c62a311d57e5">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -596,10 +600,11 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" uuid="3d7d1487-3081-464f-b6c5-c98835d05b93">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="590" height="33" uuid="3d7d1487-3081-464f-b6c5-c98835d05b93">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -616,7 +621,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 					<reportElement key="textField-5" style="ColumnHeader" x="0" y="12" width="170" height="16" uuid="f108d1e2-41fd-4fa6-8fd7-bca14a6a1596">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -634,7 +639,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -655,7 +660,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement key="textField-5" style="Detail" x="182" y="0" width="180" height="12" uuid="62d5845d-e2f5-4b3d-8071-2fb3111ea40b">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($V{bankovniUcet}))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -673,7 +678,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="7bd9b60c-3b5d-43b8-b362-c88d42ed7b12">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($F{varSym}))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -691,7 +696,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="9d19922b-3c1d-4692-8f0a-ff0536c14793">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($F{formaUhradyCis} != null)]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -710,7 +715,7 @@ cz.winstrom.util.WSFormatUtil.formatToShortDate($F{duzpPuv}, new java.util.Local
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -827,10 +832,11 @@ $F{id}.intValue(),
 ($V{addonFields.center} != null && $V{addonFields.center}.size() > 0)
 )]]></printWhenExpression>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="5" uuid="6a4d476a-cf5e-444f-ae17-48698d133ca5">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="594" height="6" uuid="6a4d476a-cf5e-444f-ae17-48698d133ca5">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -845,10 +851,11 @@ $F{id}.intValue(),
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="5" uuid="af9ce763-06b1-45f9-86d7-c2c8f1c2e6ad">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="590" height="6" uuid="af9ce763-06b1-45f9-86d7-c2c8f1c2e6ad">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1015,10 +1022,11 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<printWhenExpression><![CDATA[new Boolean($V{dobropisovanyDoklad} != null)]]></printWhenExpression>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="32" uuid="26f0140e-2adb-4dc7-885b-a938583e8051">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="594" height="33" uuid="26f0140e-2adb-4dc7-885b-a938583e8051">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -1033,10 +1041,11 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="32" uuid="200e2d61-ae91-40f0-8fc0-a54db4005eab">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="590" height="33" uuid="200e2d61-ae91-40f0-8fc0-a54db4005eab">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1053,6 +1062,7 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<reportElement key="textField-5" style="ColumnHeader" x="0" y="12" width="170" height="16" uuid="75492cb1-5c05-473f-8b36-0e7f6c6074be">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1066,11 +1076,10 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<textFieldExpression><![CDATA[cz.winstrom.util.WSValidationUtil.isNotBlank($V{dobropisovanyDoklad}.getCisDosle()) ? $V{dobropisovanyDoklad}.getCisDosle() : $V{dobropisovanyDoklad}.getKod()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="b473317e-4e7f-4f95-a372-060a4349295f">
+					<reportElement key="textField-5" style="Detail" x="182" y="0" width="170" height="12" uuid="b473317e-4e7f-4f95-a372-060a4349295f">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
-						<printWhenExpression><![CDATA[new Boolean(cz.winstrom.util.WSValidationUtil.isNotBlank($F{varSym}))]]></printWhenExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1087,8 +1096,7 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<reportElement key="textField-5" style="Detail" x="0" y="0" width="170" height="12" uuid="0bf1b5d2-6b94-4792-a1af-5a5adfa982bd">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
-						<printWhenExpression><![CDATA[new Boolean($F{formaUhradyCis} != null)]]></printWhenExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1102,12 +1110,12 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("dobropisovanyDokladCislo")]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" x="365" y="12" width="170" height="16" uuid="ef1b2d18-4062-4c05-84fd-a7d8581fad51">
+					<reportElement key="textField-5" style="ColumnHeader" x="182" y="12" width="170" height="16" uuid="ef1b2d18-4062-4c05-84fd-a7d8581fad51">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.forecolor">$V{stripeForecolor}</propertyExpression>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -1119,6 +1127,41 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($V{dobropisovanyDoklad}.getDatVyst(), new java.util.Locale($P{_LOCALE}.getLocaleCode()))]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="Detail" x="365" y="0" width="170" height="12" uuid="ca8e7bdb-1d64-42ee-8941-82f15240da41">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
+						<printWhenExpression><![CDATA[new Boolean($V{dobropisovanyDoklad}.getDatSplat() != null)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{_ADAPTER}.getTitle("splatnostPuvodni")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement key="textField-5" style="ColumnHeader" x="365" y="12" width="170" height="16" uuid="730e9bdc-5877-4963-83c6-66bb87d51447">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[cz.winstrom.util.WSFormatUtil.formatToShortDate($V{dobropisovanyDoklad}.getDatSplat(), new java.util.Locale($P{_LOCALE}.getLocaleCode()))]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -1132,10 +1175,11 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 			<band height="5">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="594" height="5" uuid="5d0fc7eb-736e-48d2-bb09-eb8b4a082256">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="594" height="6" uuid="5d0fc7eb-736e-48d2-bb09-eb8b4a082256">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 						<printWhenExpression><![CDATA[new Boolean($P{_ADAPTER}.cfgBoolean( "hideLineOnTheSide", false ))]]></printWhenExpression>
 					</reportElement>
 					<box>
@@ -1150,10 +1194,11 @@ $V{addonFields.center} != null && $V{addonFields.center}.size() > 0
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="0" width="590" height="5" uuid="209fc0f7-2153-4363-8b4d-3dbfc3050dcf">
+					<reportElement key="textField-5" style="ColumnHeader" stretchType="RelativeToBandHeight" mode="Opaque" x="-30" y="-1" width="590" height="6" uuid="209fc0f7-2153-4363-8b4d-3dbfc3050dcf">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<propertyExpression name="net.sf.jasperreports.style.backcolor">$V{stripeBackcolor}</propertyExpression>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$V{stripeBackcolor}]]></propertyExpression>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

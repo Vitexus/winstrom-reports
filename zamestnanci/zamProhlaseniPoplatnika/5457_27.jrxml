@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_Mustr_Port" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="18e0e610-590c-430d-845f-b8fe8524e003">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -36,6 +36,7 @@
 	<parameter name="_PAGE2BW" class="java.awt.Image">
 		<defaultValueExpression><![CDATA[$P{_ADAPTER}.getImage( $P{_LOADER}.getReportDescriptor().getName(), "5457_27_2_bw.png" )]]></defaultValueExpression>
 	</parameter>
+	<parameter name="_LOGIKA" class="cz.winstrom.service.mzdy.impl.OsobaBLImpl" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -209,7 +210,7 @@ $P{_PAGE1}]]></imageExpression>
 					<subreportParameter name="_PAGE2">
 						<subreportParameterExpression><![CDATA[$P{_PAGE2}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource($F{osobaHlav}.getDeti())]]></dataSourceExpression>
+					<dataSourceExpression><![CDATA[new cz.winstrom.reports.impl.WSBeanCollectionDataSource(((cz.winstrom.service.mzdy.impl.OsobaHlavBLImpl)$P{_LOGIKA}.getHlavickaBL()).getStudujiciDetiKDatu($F{osobaHlav}, cz.winstrom.util.WSCalendarUtil.getActualCalendar(true)))]]></dataSourceExpression>
 					<subreportExpression><![CDATA[$P{_LOADER}.getSubreport( "5457_27_deti.jasper" )]]></subreportExpression>
 				</subreport>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">

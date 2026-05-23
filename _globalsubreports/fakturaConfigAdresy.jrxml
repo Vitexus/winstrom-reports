@@ -38,7 +38,7 @@
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="88" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-5" style="Detail" x="0" y="0" width="261" height="18" uuid="b3eb0c31-ec37-43a4-b5d1-9b7699130aae"/>
@@ -109,21 +109,7 @@
 				<textElement textAlignment="Left">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ).getUlice()]]></textFieldExpression>
-			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="0" y="48" width="261" height="12" uuid="76dac4fa-2eea-46d5-bb57-6383790b657b"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(!cz.winstrom.util.WSValidationUtil.isBlank($P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ).getMesto()) ? $P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ).getMesto() + ", " : "") +
-(!cz.winstrom.util.WSValidationUtil.isBlank($P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ).getPsc()) ? $P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ).getPsc() : "")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getAdresuSidla((cz.winstrom.vo.nast.Nastaveni)$P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst()), $P{_LOCALE}.getLocaleCode())]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement key="textField-5" style="Detail" positionType="Float" x="274" y="36" width="261" height="12" uuid="d0883f31-3a3f-4344-912a-083777fc44be"/>
@@ -136,25 +122,12 @@
 				<textElement textAlignment="Left">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{_DOKLAD}.getUlice()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{_ADAPTER}.getAdresuSidla($P{_DOKLAD}, $P{_LOCALE}.getLocaleCode())]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="274" y="48" width="261" height="12" uuid="dd579357-8cd4-4710-ad09-3173d6d9086a"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(!cz.winstrom.util.WSValidationUtil.isBlank($P{_DOKLAD}.getMesto()) ? $P{_DOKLAD}.getMesto() + ", " : "") +
-(!cz.winstrom.util.WSValidationUtil.isBlank($P{_DOKLAD}.getPsc()) ? $P{_DOKLAD}.getPsc() : "")]]></textFieldExpression>
-			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="274" y="74" width="261" height="14" uuid="178de48a-1156-4e1b-a939-471686204918">
+				<reportElement key="textField-5" style="Detail" positionType="Float" x="274" y="48" width="261" height="14" uuid="178de48a-1156-4e1b-a939-471686204918">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -186,8 +159,9 @@
 )]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="0" y="74" width="261" height="14" uuid="167b750c-4853-458f-b979-0d95b3c19120">
+				<reportElement key="textField-5" style="Detail" positionType="Float" x="0" y="48" width="261" height="14" uuid="167b750c-4853-458f-b979-0d95b3c19120">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -228,36 +202,6 @@ $P{_ADAPTER}.getTitle("neplatceDph")
 : ""
 )
 )]]></textFieldExpression>
-			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="0" y="60" width="261" height="14" uuid="ab93bcf0-87f6-4790-8dec-cecf9f161c6d">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText(((cz.winstrom.vo.nast.Nastaveni) ($P{_ADAPTER}.getNastaveni( $P{_DOKLAD}.getDatVyst() ))).getStat().getNazvy() , new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
-			</textField>
-			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement key="textField-5" style="Detail" positionType="Float" x="274" y="60" width="261" height="14" uuid="adf25b09-9be4-4d18-b7a4-c5f9de996d7c">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{_PROJEKT}.getLocalizedText($P{_DOKLAD}.getStat().getNazvy() , new java.util.Locale($P{_LOCALE}.getLocaleCode()) )]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

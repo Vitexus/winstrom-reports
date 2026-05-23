@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fakturaConfigAddonFieldsLeft" pageWidth="535" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="575f34a5-aa05-4228-bbd2-3d61022f6c07">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -35,6 +35,10 @@
 	<field name="this" class="cz.winstrom.service.ReportProperty">
 		<fieldDescription><![CDATA[this]]></fieldDescription>
 	</field>
+	<variable name="stripeForecolor" class="java.lang.String">
+		<variableExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeTextColor", "#000000" )]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{_ADAPTER}.cfgString( "horizontalStripeTextColor", "#000000" )]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -62,6 +66,7 @@ $P{_ADAPTER}.resolve($P{_DOKLAD}, $F{this}.getProperty())
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -78,6 +83,8 @@ $P{_ADAPTER}.resolve($P{_DOKLAD}, $F{this}.getProperty())
 				<reportElement key="textField-6" style="Detail" x="0" y="0" width="170" height="12" uuid="57f69966-6ff7-4386-9a04-3f8a5055583d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$V{stripeForecolor}]]></propertyExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

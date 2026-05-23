@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.11.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prehledSlozek" pageWidth="265" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="265" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="dfea91bc-52f8-44a3-a285-f36193a6f213">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -80,7 +80,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") ? 
+				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolena")? 
 	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekHodiny", true )
 	: $P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekCastkaMzdy", true )]]></textFieldExpression>
 			</textField>
@@ -93,7 +93,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.srazky") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.prispevky") ? 
+				<textFieldExpression><![CDATA[$P{_SKUPINASLOZEK}.equals("skupinaSlozky.dovolena") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.doba") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.srazky") || $P{_SKUPINASLOZEK}.equals("skupinaSlozky.prispevky") ? 
 	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekDny", true )
 : $P{_SKUPINASLOZEK}.equals("skupinaSlozky.dan") ? 
 	$P{_LOCALE}.getTitle( $P{_LOCALE}.GID_REPORTS, "vyplatniPaska", "prehledSlozekZaklad", true )
@@ -124,11 +124,23 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{skupSlozky}.equals("skupinaSlozky.nepritNemoc") ? (cz.winstrom.util.WSFormatUtil.format(
-  cz.winstrom.util.WSMath.round(cz.winstrom.util.WSMath.sum(new Double[]{$F{hodnota1}, $F{hodnota3}}), $F{hodnota3desMist}.intValue()).doubleValue()
-)) : cz.winstrom.util.WSFormatUtil.format(
-  cz.winstrom.util.WSMath.round($F{hodnota1}.doubleValue(), $F{hodnota1desMist}.intValue())
-)]]></textFieldExpression>
+				<textFieldExpression><![CDATA[
+$F{skupSlozky}.equals("skupinaSlozky.nepritNemoc")
+    ? cz.winstrom.util.WSFormatUtil.format(
+          cz.winstrom.util.WSMath.round(
+              cz.winstrom.util.WSMath.sum(new Double[] { $F{hodnota1}, $F{hodnota3} }),
+              $F{hodnota3desMist} != 0
+                  ? $F{hodnota3desMist}.intValue()
+                  : $F{hodnota1desMist}.intValue()
+          ).doubleValue()
+      )
+    : cz.winstrom.util.WSFormatUtil.format(
+          cz.winstrom.util.WSMath.round(
+              $F{hodnota1}.doubleValue(),
+              $F{hodnota1desMist}.intValue()
+          )
+      )
+]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="#,##0;-#,##0" isBlankWhenNull="true">
 				<reportElement key="textField-13" style="detail" stretchType="RelativeToTallestObject" mode="Transparent" x="189" y="0" width="76" height="11" uuid="c7198b8b-93bc-4a7b-b6cd-acb2bdf8ae9b"/>
